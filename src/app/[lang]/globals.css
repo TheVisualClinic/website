@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 31 17% 21%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 0, 0%, 95%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 0, 0%, 95%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 0, 0%, 95%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 79.1% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 42 65% 57%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 51 58% 95%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 51 58% 95%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 51 58% 95%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 79.1% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.page-loader {
+  --uib-size: 80px;
+  --uib-color: #51463a;
+  --uib-speed: 1.75s;
+  --uib-stroke: 5px;
+  --uib-bg-opacity: 0.1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--uib-stroke);
+  width: var(--uib-size);
+  border-radius: calc(var(--uib-stroke) / 2);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.page-loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--uib-color);
+  opacity: var(--uib-bg-opacity);
+  transition: background-color 0.3s ease;
+}
+
+.page-loader::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--uib-stroke) / 2);
+  animation: wobble var(--uib-speed) ease-in-out infinite;
+  transform: translateX(-95%);
+  background-color: var(--uib-color);
+  transition: background-color 0.3s ease;
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(-95%);
+  }
+  50% {
+    transform: translateX(95%);
+  }
+}

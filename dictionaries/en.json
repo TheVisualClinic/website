@@ -1,0 +1,26 @@
+{
+  "startPage": {
+    "heading": "Welcome!",
+    "subHeading": "Welcome to our website. Here you will find the best information and services tailored just for you."
+  },
+  "langSwitcher": {
+    "title": "Switch Language"
+  },
+  "signInPage": {
+    "title": "WELCOME BACK",
+    "description": "Sign in to your account",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "usernameRequired": "Username is required.",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "Password is required.",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot password",
+    "signIn": "Sign In",
+    "signInFail": {
+      "title": "Sign in failed!",
+      "description": "Incorrect username or password"
+    }
+  }
+}
