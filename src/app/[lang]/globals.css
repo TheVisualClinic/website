@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -116,4 +117,10 @@
   50% {
     transform: translateX(95%);
   }
+}
+
+.dancing-script-font {
+  font-family: 'Dancing Script', cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
