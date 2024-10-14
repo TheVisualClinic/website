@@ -8,3 +8,5 @@ export { default as imgService1 } from './img-service-1.jpg'
 export { default as imgService2 } from './img-service-2.jpg'
 export { default as imgService3 } from './img-service-3.jpg'
 export { default as imgService4 } from './img-service-4.jpg'
+
+export { default as homeAboutImg } from './about-img.jpg'
