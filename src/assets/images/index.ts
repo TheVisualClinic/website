@@ -3,10 +3,17 @@ export { default as thFlag } from './th-flag.png'
 export { default as profileTopBackground } from './profile-top-bg.jpg'
 
 export { default as homeHeroImg } from './hero-img.jpg'
+export { default as homeAboutImg } from './about-img.jpg'
+export { default as homePromotionImg } from './promotion-img.jpg'
+export { default as homeDoctorImg } from './doctor-img.jpg'
+export { default as homeDoctorImgTest } from './doctor-test.jpg'
 
 export { default as imgService1 } from './img-service-1.jpg'
 export { default as imgService2 } from './img-service-2.jpg'
 export { default as imgService3 } from './img-service-3.jpg'
 export { default as imgService4 } from './img-service-4.jpg'
 
-export { default as homeAboutImg } from './about-img.jpg'
+export { default as imgBlog1 } from './img-blog-1.jpg'
+export { default as imgBlog2 } from './img-blog-2.jpg'
+export { default as imgBlog3 } from './img-blog-3.jpg'
+export { default as imgBlog4 } from './img-blog-4.jpg'

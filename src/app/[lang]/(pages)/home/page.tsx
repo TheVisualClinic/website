@@ -1,5 +1,9 @@
+import BlogsSection from './sub-components/blog-services'
 import AboutSection from './sub-components/section-about'
+import DoctorSection from './sub-components/section-doctor'
 import HeroSection from './sub-components/section-hero'
+import PromotionsSection from './sub-components/section-promotions'
+import ReviewsSection from './sub-components/section-reviews'
 import ServicesSection from './sub-components/section-services'
 
 export default function HomePage() {
@@ -8,6 +12,10 @@ export default function HomePage() {
       <HeroSection />
       <ServicesSection />
       <AboutSection />
+      <PromotionsSection />
+      <DoctorSection />
+      <ReviewsSection />
+      <BlogsSection />
     </div>
   )
 }

@@ -1,4 +1,13 @@
-import { imgService1, imgService2, imgService3, imgService4 } from '@/assets/images'
+import {
+  imgService1,
+  imgService2,
+  imgService3,
+  imgService4,
+  imgBlog1,
+  imgBlog2,
+  imgBlog3,
+  imgBlog4,
+} from '@/assets/images'
 
 export const servicesMockup = [
   {
@@ -79,5 +88,80 @@ export const servicesMockup = [
       'PRP Therapy (Platelet-Rich Plasma) เป็นการรักษาที่ใช้เลือดของคุณเองเพื่อฟื้นฟูผิว.',
     imgSrc: imgService4,
     link: '/services/prp-therapy',
+  },
+]
+
+export const blogsMockup = [
+  {
+    id: 1,
+    order: 3,
+    title: 'โบท็อกซ์: วิธีการทำงานและข้อดี',
+    description:
+      'บทความนี้จะพาคุณรู้จักกับโบท็อกซ์ วิธีการทำงาน และข้อดีของการรักษาเพื่อลดเลือนริ้วรอยบนใบหน้า.',
+    imgSrc: imgBlog1,
+    link: '/blogs/botox',
+  },
+  {
+    id: 2,
+    order: 6,
+    title: 'เดอร์มอลฟิลเลอร์: ทำไมถึงเป็นที่นิยม',
+    description:
+      'ทำความรู้จักกับเดอร์มอลฟิลเลอร์ และเหตุผลที่ทำให้การเติมเต็มและฟื้นฟูความเต่งตึงบนใบหน้าเป็นที่นิยม.',
+    imgSrc: imgBlog2,
+    link: '/blogs/dermal-filler',
+  },
+  {
+    id: 3,
+    order: 1,
+    title: 'คอลลาเจนไบโอสติมูเลเตอร์: เพิ่มความยืดหยุ่นให้ผิว',
+    description:
+      'บทความนี้อธิบายเกี่ยวกับคอลลาเจนไบโอสติมูเลเตอร์ และวิธีการที่ช่วยกระตุ้นการผลิตคอลลาเจนในผิว.',
+    imgSrc: imgBlog3,
+    link: '/blogs/collagen-biostimulators',
+  },
+  {
+    id: 4,
+    order: 8,
+    title: 'อัลตราฟอร์เมอร์: ยกกระชับผิวแบบไม่เจ็บ',
+    description:
+      'เรียนรู้เกี่ยวกับอัลตราฟอร์เมอร์ การรักษาที่ไม่ต้องผ่าตัดและใช้เทคโนโลยีอัลตราซาวด์เพื่อยกกระชับผิว.',
+    imgSrc: imgBlog4,
+    link: '/blogs/ultraformer',
+  },
+  {
+    id: 5,
+    order: 2,
+    title: 'เมโสแฟต: ลดไขมันเฉพาะจุด',
+    description:
+      'วิธีการทำเมโสแฟตเพื่อกำจัดไขมันเฉพาะจุดและปรับรูปทรงของร่างกายอย่างมีประสิทธิภาพ.',
+    imgSrc: imgBlog1,
+    link: '/blogs/mesofat',
+  },
+  {
+    id: 6,
+    order: 4,
+    title: 'HIFU: เทคโนโลยียกกระชับผิว',
+    description:
+      'HIFU (High-Intensity Focused Ultrasound) เทคโนโลยีที่ช่วยยกกระชับผิวหน้าโดยไม่ต้องผ่าตัด.',
+    imgSrc: imgBlog2,
+    link: '/blogs/hifu',
+  },
+  {
+    id: 7,
+    order: 5,
+    title: 'Thermage: การกระชับผิวด้วยพลังงานคลื่นวิทยุ',
+    description:
+      'บทความนี้จะพาคุณรู้จักกับ Thermage และวิธีการที่ใช้พลังงานคลื่นวิทยุเพื่อกระชับและเรียบเนียนผิว.',
+    imgSrc: imgBlog3,
+    link: '/blogs/thermage',
+  },
+  {
+    id: 8,
+    order: 7,
+    title: 'PRP Therapy: การฟื้นฟูผิวด้วยพลาสมา',
+    description:
+      'PRP Therapy (Platelet-Rich Plasma) คืออะไร และวิธีการใช้พลาสมาจากเลือดของคุณเองเพื่อฟื้นฟูผิว.',
+    imgSrc: imgBlog4,
+    link: '/blogs/prp-therapy',
   },
 ]
