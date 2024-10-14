@@ -9,3 +9,8 @@ export { default as socialLineDark } from './social-line-dark.svg'
 export { default as aboutIcon1 } from './about-icon-1.png'
 export { default as aboutIcon2 } from './about-icon-2.png'
 export { default as aboutIcon3 } from './about-icon-3.png'
+
+export { default as socialFacebookSolid } from './social-facebook-solid.svg'
+export { default as socialInstagramSolid } from './social-instagram-solid.svg'
+export { default as socialTiktokSolid } from './social-tiktok-solid.svg'
+export { default as socialLineSolid } from './social-line-solid.svg'

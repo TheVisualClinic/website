@@ -39,7 +39,7 @@ export default function Footer() {
     { href: '#', label: 'ทีมแพทย์' },
     { href: '#', label: 'โปรโมชั่น' },
     { href: '#', label: 'รีวิว' },
-    { href: '#', label: 'บล็อก' },
+    { href: '#', label: 'บทความ' },
     { href: '#', label: 'ติดต่อเรา' },
   ]
 

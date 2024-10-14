@@ -61,7 +61,7 @@ export default function Navbar() {
     { href: `/${activeLocale}/medical-team`, label: 'ทีมแพทย์' },
     { href: `/${activeLocale}/promotions`, label: 'โปรโมชั่น' },
     { href: `/${activeLocale}/reviews`, label: 'รีวิว' },
-    { href: `/${activeLocale}/blog`, label: 'บล็อก' },
+    { href: `/${activeLocale}/blog`, label: 'บทความ' },
     { href: `/${activeLocale}/contact`, label: 'ติดต่อเรา' },
   ]
 

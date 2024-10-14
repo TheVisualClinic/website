@@ -17,3 +17,7 @@ export { default as imgBlog1 } from './img-blog-1.jpg'
 export { default as imgBlog2 } from './img-blog-2.jpg'
 export { default as imgBlog3 } from './img-blog-3.jpg'
 export { default as imgBlog4 } from './img-blog-4.jpg'
+
+export { default as contactImg } from './contact-img.jpg'
+
+export { default as aboutUsImg } from './about-us-img.jpg'
