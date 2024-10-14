@@ -16,6 +16,8 @@ export default function ServicesSection() {
 
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const sectionRef = useRef<HTMLDivElement | null>(null)
+  const textRef = useRef<HTMLDivElement | null>(null)
+  const [hasAnimated, setHasAnimated] = useState(false)
 
   const handleGroupChange = (index: number) => {
     if (sectionRef.current) {
@@ -34,7 +36,7 @@ export default function ServicesSection() {
       const serviceItems = sectionRef.current.querySelectorAll<HTMLElement>('.service-item')
       anime({
         targets: serviceItems,
-        translateY: ['-100%', '0%'],
+        translateY: ['-20%', '0%'],
         opacity: [0, 1],
         delay: anime.stagger(100),
         duration: 800,
@@ -43,16 +45,37 @@ export default function ServicesSection() {
     }
   }, [currentGroupIndex])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (textRef.current && !hasAnimated) {
+        const rect = textRef.current.getBoundingClientRect()
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          anime({
+            targets: textRef.current,
+            translateX: ['100%', '0%'],
+            opacity: [0, 1],
+            duration: 2000,
+            easing: 'easeOutExpo',
+          })
+          setHasAnimated(true)
+        }
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [hasAnimated])
+
   return (
     <section className='py-16 bg-[#F9F6F3]' ref={sectionRef}>
       <div className='container'>
-        <div className='text-center mb-8'>
+        <div className='text-center mb-8 opacity-0' ref={textRef}>
           <p className='text-[#9C6E5A] font-semibold'>บริการทั้งหมด</p>
           <h2 className='text-3xl font-light max-w-xl mx-auto text-[#483E3B]'>
             With our cutting-edge techniques and advanced cosmetic procedures.
           </h2>
         </div>
 
+        {/* ส่วนของ group */}
         <div className='space-y-6'>
           <div className='grid gap-6 grid-cols-4'>
             {groupedServices[currentGroupIndex].map((service, serviceIndex) => (
