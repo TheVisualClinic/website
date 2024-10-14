@@ -7,7 +7,6 @@ import anime from 'animejs'
 import { servicesMockup } from './mock-data'
 
 export default function ServicesSection() {
-  // Sort services by order and group into chunks of 4
   const sortedServices = [...servicesMockup].sort((a, b) => a.order - b.order)
   const groupedServices = []
   for (let i = 0; i < sortedServices.length; i += 4) {
@@ -17,7 +16,9 @@ export default function ServicesSection() {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const textRef = useRef<HTMLDivElement | null>(null)
-  const [hasAnimated, setHasAnimated] = useState(false)
+  const groupRef = useRef<HTMLDivElement | null>(null)
+  const [hasAnimatedText, setHasAnimatedText] = useState(false)
+  const [hasAnimatedGroup, setHasAnimatedGroup] = useState(false)
 
   const handleGroupChange = (index: number) => {
     if (sectionRef.current) {
@@ -47,7 +48,7 @@ export default function ServicesSection() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (textRef.current && !hasAnimated) {
+      if (textRef.current && !hasAnimatedText) {
         const rect = textRef.current.getBoundingClientRect()
         if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
           anime({
@@ -57,13 +58,26 @@ export default function ServicesSection() {
             duration: 2000,
             easing: 'easeOutExpo',
           })
-          setHasAnimated(true)
+          setHasAnimatedText(true)
+        }
+      }
+      if (groupRef.current && !hasAnimatedGroup) {
+        const rect = groupRef.current.getBoundingClientRect()
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          anime({
+            targets: groupRef.current,
+            translateY: ['20%', '0%'],
+            opacity: [0, 1],
+            duration: 2000,
+            easing: 'easeOutExpo',
+          })
+          setHasAnimatedGroup(true)
         }
       }
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [hasAnimated])
+  }, [hasAnimatedText, hasAnimatedGroup])
 
   return (
     <section className='py-16 bg-[#F9F6F3]' ref={sectionRef}>
@@ -75,8 +89,7 @@ export default function ServicesSection() {
           </h2>
         </div>
 
-        {/* ส่วนของ group */}
-        <div className='space-y-6'>
+        <div className='space-y-6 opacity-0' ref={groupRef}>
           <div className='grid gap-6 grid-cols-4'>
             {groupedServices[currentGroupIndex].map((service, serviceIndex) => (
               <div
