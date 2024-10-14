@@ -23,19 +23,19 @@ export default function ContactSection() {
           <div className='border border-[#473D3C] rounded-xl p-6 space-y-4'>
             <h3 className='text-2xl'>Contact Us</h3>
             <div className='flex items-center gap-4'>
-              <MapPinIcon />
+              <MapPinIcon className='min-w-6 min-h-6' />
               <p>1845/10 1845/10 ถ. พหลโยธิน แขวงลาดยาว จตุจักร กรุงเทพมหานคร 10900</p>
             </div>
             <div className='flex items-center gap-4'>
-              <PhoneIcon />
+              <PhoneIcon className='min-w-6 min-h-6' />
               <p>084-194-5626</p>
             </div>
             <div className='flex items-center gap-4'>
-              <MailIcon />
+              <MailIcon className='min-w-6 min-h-6' />
               <p>thevisualclinic@gmail.com</p>
             </div>
             <div className='flex items-center gap-4'>
-              <Clock2Icon />
+              <Clock2Icon className='min-w-6 min-h-6' />
               <p>12.00-20.00 น. (หยุดทุกวันพุธ)</p>
             </div>
           </div>

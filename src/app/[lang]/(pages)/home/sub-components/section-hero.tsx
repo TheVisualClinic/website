@@ -25,9 +25,8 @@ export default function HeroSection() {
         <div className='w-full md:w-3/4 lg:w-1/2 p-6 ml-0 md:ml-32'>
           <div className='bg-white/50 p-6 rounded-lg backdrop-blur-md max-w-lg space-y-6'>
             <div>
-              <h1 className='text-4xl mb-2'>“ Be the best version of yourself ”</h1>
-              <h3 className='text-[32px] dancing-script-font text-gray-600'>
-                The Tailor-made Experience
+              <h3 className='text-4xl dancing-script-font text-gray-600'>
+                {'"'} The Tailor-made Experience {'"'}
               </h3>
             </div>
             <p>
