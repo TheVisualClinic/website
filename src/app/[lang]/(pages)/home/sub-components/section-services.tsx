@@ -15,7 +15,7 @@ export default function ServicesSection() {
   }
 
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
-  const sectionRef = useRef(null)
+  const sectionRef = useRef<HTMLDivElement | null>(null)
 
   const handleGroupChange = (index: number) => {
     if (sectionRef.current) {
@@ -28,6 +28,20 @@ export default function ServicesSection() {
     }
     setCurrentGroupIndex(index)
   }
+
+  useEffect(() => {
+    if (sectionRef.current) {
+      const serviceItems = sectionRef.current.querySelectorAll<HTMLElement>('.service-item')
+      anime({
+        targets: serviceItems,
+        translateY: ['-100%', '0%'],
+        opacity: [0, 1],
+        delay: anime.stagger(100),
+        duration: 800,
+        easing: 'easeOutExpo',
+      })
+    }
+  }, [currentGroupIndex])
 
   return (
     <section className='py-16 bg-[#F9F6F3]' ref={sectionRef}>
@@ -42,7 +56,10 @@ export default function ServicesSection() {
         <div className='space-y-6'>
           <div className='grid gap-6 grid-cols-4'>
             {groupedServices[currentGroupIndex].map((service, serviceIndex) => (
-              <div key={service.id} className={serviceIndex % 2 === 0 ? 'pt-6' : ''}>
+              <div
+                key={service.id}
+                className={`service-item ${serviceIndex % 2 === 0 ? 'pt-6' : ''}`}
+              >
                 <Image
                   src={service.imgSrc}
                   alt={service.title}
