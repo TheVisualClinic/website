@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function HeaderImageSection() {
+export default function NewCustomerPromotionSection() {
   return (
     <section className='relative'>
       <Image src={servicesHeaderImage} alt='ภาพหัวข้อ' />
