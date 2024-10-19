@@ -1,6 +1,6 @@
 export default function HeaderSection() {
   return (
-    <section className='py-16 bg-[#F9F6F3]'>
+    <section className='pt-16 bg-[#F9F6F3]'>
       <div className='container'>
         <div className='text-center mb-8'>
           <p className='text-[#9C6E5A] font-semibold'>รีวิวจากผู้ใช้บริการ</p>

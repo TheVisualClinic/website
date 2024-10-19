@@ -1,46 +1,50 @@
+'use client'
+
 import { socialFacebook, socialInstagram, socialLine, socialTiktok } from '@/assets/icons'
 import { logoTextWhite } from '@/assets/logo'
 import { MailIcon, PhoneIcon } from 'lucide-react'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Footer() {
+  const activeLocale = useLocale()
+
   const socialMediaLinks = [
     {
-      href: '#',
+      href: 'https://www.facebook.com/thevisualclinic',
       icon: socialFacebook,
       alt: 'social icon Facebook',
       label: 'The Visual Clinic รัชโยธิน',
     },
     {
-      href: '#',
+      href: 'https://www.instagram.com/thevisual_clinic/',
       icon: socialInstagram,
       alt: 'social icon Instagram',
-      label: 'The Visual Clinic',
+      label: 'thevisual_clinic',
     },
     {
-      href: '#',
+      href: 'https://www.tiktok.com/@thevisualclinic',
       icon: socialTiktok,
       alt: 'social icon Tiktok',
-      label: 'The Visual Clinic',
+      label: 'thevisualclinic',
     },
     {
-      href: '#',
+      href: 'https://lin.ee/CyHa9b3',
       icon: socialLine,
       alt: 'social icon LINE',
       label: '@thevisual_clinic',
     },
   ]
 
-  // สร้าง array ของเมนู
   const menuLinks = [
-    { href: '#', label: 'บริการ' },
-    { href: '#', label: 'เกี่ยวกับเรา' },
-    { href: '#', label: 'ทีมแพทย์' },
-    { href: '#', label: 'โปรโมชั่น' },
-    { href: '#', label: 'รีวิว' },
-    { href: '#', label: 'บทความ' },
-    { href: '#', label: 'ติดต่อเรา' },
+    { href: `/${activeLocale}/services`, label: 'บริการ' },
+    { href: `/${activeLocale}/about`, label: 'เกี่ยวกับเรา' },
+    { href: `/${activeLocale}/medical-team`, label: 'ทีมแพทย์' },
+    { href: `/${activeLocale}/promotions`, label: 'โปรโมชั่น' },
+    { href: `/${activeLocale}/reviews`, label: 'รีวิว' },
+    { href: `/${activeLocale}/blog`, label: 'บทความ' },
+    { href: `/${activeLocale}/contact`, label: 'ติดต่อเรา' },
   ]
 
   const contactInfo = [

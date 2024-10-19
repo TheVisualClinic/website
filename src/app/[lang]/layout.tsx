@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const notoSansThai = Noto_Sans_Thai({
   subsets: ['thai'],
-  weight: ['400', '700'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
 export default function RootLayout({

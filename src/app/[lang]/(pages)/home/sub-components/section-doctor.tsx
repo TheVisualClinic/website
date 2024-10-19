@@ -1,7 +1,14 @@
+'use client'
+
 import { homeDoctorImg, homeDoctorImgTest } from '@/assets/images'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 export default function DoctorSection() {
+  const router = useRouter()
+  const activeLocale = useLocale()
+
   return (
     <section className='bg-[#F9F6F3]'>
       <Image src={homeDoctorImg} alt='Medical Team Cover' className='w-full' />
@@ -14,11 +21,18 @@ export default function DoctorSection() {
           </h2>
         </div>
         <div className='text-center space-y-8'>
-          <Image src={homeDoctorImgTest} alt='Doctor' className='mx-auto w-[320px] rounded-2xl' />
+          <Image
+            src={homeDoctorImgTest}
+            alt='Doctor'
+            className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
+            onClick={() => {
+              router.replace(`/${activeLocale}/medical-team`)
+            }}
+          />
           <div>
             <h3 className='text-xl'>ชื่อเล่น</h3>
             <p>ชื่อ นามสกุล</p>
-            <p className='text-[#877A6B]'>ความเชี่ยวชาญ</p>
+            <p className='text-[#877A6B]'>ความเชี่ยวชาญ / Caption</p>
           </div>
         </div>
       </div>

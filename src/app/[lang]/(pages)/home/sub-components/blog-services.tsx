@@ -5,8 +5,11 @@ import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import anime from 'animejs'
 import { blogsMockup } from './mock-data'
+import { useLocale } from 'next-intl'
 
 export default function BlogsSection() {
+  const activeLocale = useLocale()
+
   const sortedServices = [...blogsMockup].sort((a, b) => a.order - b.order)
   const groupedServices = []
   for (let i = 0; i < sortedServices.length; i += 4) {
@@ -88,19 +91,19 @@ export default function BlogsSection() {
 
         <div className='space-y-6 opacity-0' ref={groupRef}>
           <div className='grid gap-6 grid-cols-4'>
-            {groupedServices[currentGroupIndex].map((service) => (
-              <div key={service.id} className={`service-item`}>
+            {groupedServices[currentGroupIndex].map((blog) => (
+              <div key={blog.id} className={`service-item`}>
                 <Image
-                  src={service.imgSrc}
-                  alt={service.title}
+                  src={blog.imgSrc}
+                  alt={blog.title}
                   className='rounded-2xl hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer transition-all duration-300'
                 />
                 <div className='p-2'>
-                  <h3 className='text-2xl text-[#483E3B] truncate'>{service.title}</h3>
-                  <p className='text-[#877A6B] line-clamp-2'>{service.description}</p>
+                  <h3 className='text-2xl text-[#483E3B] truncate'>{blog.title}</h3>
+                  <p className='text-[#877A6B] line-clamp-2'>{blog.description}</p>
                   <div className='flex justify-end py-2'>
                     <a
-                      href={`#`}
+                      href={`/${activeLocale}/blog/${blog.id}`}
                       className='flex gap-1 items-center text-[#9C6E5A] max-w-fit cursor-pointer transition-all duration-300 group hover:text-[#9C6E5A]/80'
                     >
                       <span>อ่านเพิ่มเติม</span>

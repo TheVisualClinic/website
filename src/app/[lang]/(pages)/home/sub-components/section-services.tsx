@@ -5,8 +5,11 @@ import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import anime from 'animejs'
 import { servicesMockup } from './mock-data'
+import { useLocale } from 'next-intl'
 
 export default function ServicesSection() {
+  const activeLocale = useLocale()
+
   const sortedServices = [...servicesMockup].sort((a, b) => a.order - b.order)
   const groupedServices = []
   for (let i = 0; i < sortedServices.length; i += 4) {
@@ -107,7 +110,7 @@ export default function ServicesSection() {
                   <p className='text-[#877A6B] line-clamp-2'>{service.description}</p>
                   <div className='flex justify-end py-2'>
                     <a
-                      href={`#`}
+                      href={`/${activeLocale}/services/${service.id}`}
                       className='flex gap-1 items-center text-[#9C6E5A] max-w-fit cursor-pointer transition-all duration-300 group hover:text-[#9C6E5A]/80'
                     >
                       <span>อ่านเพิ่มเติม</span>

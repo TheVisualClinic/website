@@ -7,6 +7,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { Clock2Icon, MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function ContactSection() {
   return (
@@ -56,10 +57,34 @@ export default function ContactSection() {
           <h2 className='text-2xl'>ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง</h2>
           <Separator className='my-6 max-w-md mx-auto bg-[#483E3B]' />
           <div className='flex items-center gap-6 justify-center'>
-            <Image src={socialFacebookSolid} alt='Socail Icon' />
-            <Image src={socialTiktokSolid} alt='Socail Icon' />
-            <Image src={socialInstagramSolid} alt='Socail Icon' />
-            <Image src={socialLineSolid} alt='Socail Icon' />
+            <Link
+              href={'https://www.facebook.com/thevisualclinic'}
+              target='_blank'
+              className='transition-all duration-300 hover:mt-[-8px]'
+            >
+              <Image src={socialFacebookSolid} alt='Socail Icon' />
+            </Link>
+            <Link
+              href={'https://www.instagram.com/thevisual_clinic/'}
+              target='_blank'
+              className='transition-all duration-300 hover:mt-[-8px]'
+            >
+              <Image src={socialInstagramSolid} alt='Socail Icon' />
+            </Link>
+            <Link
+              href={'https://www.tiktok.com/@thevisualclinic'}
+              target='_blank'
+              className='transition-all duration-300 hover:mt-[-8px]'
+            >
+              <Image src={socialTiktokSolid} alt='Socail Icon' />
+            </Link>
+            <Link
+              href={'https://lin.ee/CyHa9b3'}
+              target='_blank'
+              className='transition-all duration-300 hover:mt-[-8px]'
+            >
+              <Image src={socialLineSolid} alt='Socail Icon' />
+            </Link>
           </div>
         </div>
       </div>

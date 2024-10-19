@@ -21,7 +21,7 @@ export default function AboutSection() {
             </p>
           </div>
 
-          <div className='bg-white grid grid-cols-3 p-4 gap-4 rounded-2xl text-center'>
+          <div className='bg-white grid grid-cols-3 p-4 gap-4 rounded-2xl text-center w-[1080px]'>
             <div className='flex flex-col gap-6 py-8'>
               <Image src={aboutIcon1} alt='icon' width={60} className='mx-auto' />
               <p>ดูแลโดยแพทย์ผู้เชี่ยวชาญโดยตรง</p>
