@@ -23,18 +23,18 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className='absolute top-0 left-0 w-full h-full flex items-center mt-[-50px] md:mt-0'>
+      <div className='absolute top-0 left-0 w-full h-full flex items-center mt-[-50px] md:mt-0 text-[#483E3B]'>
         <div className='w-full md:w-3/4 lg:w-1/2 p-6 ml-0 md:ml-32'>
           <div className='bg-white/50 p-6 rounded-lg backdrop-blur-md max-w-lg space-y-6'>
             <div>
-              <h3 className='text-4xl dancing-script-font text-gray-600'>
+              <h3 className='text-4xl dancing-script-font'>
                 {'"'} The Tailor-made Experience {'"'}
               </h3>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem laborum quo doloribus,
-              similique voluptate perspiciatis sint laboriosam. Dignissimos placeat ipsum odio,
-              similique excepturi provident voluptate asperiores eaque delectus commodi in?
+              สัมผัสประสบการณ์ที่ออกแบบมาเฉพาะคุณที่ The Visual Clinic
+              เราให้ความสำคัญกับการดูแลแบบเฉพาะบุคคล ด้วยทีมผู้เชี่ยวชาญและเทคโนโลยีที่ทันสมัย
+              เพื่อให้คุณได้รับการดูแลที่ดีที่สุดและมั่นใจได้ในทุกขั้นตอน
             </p>
             <div className='flex items-center gap-4'>
               <Link href={'https://lin.ee/CyHa9b3'} target='_blank'>

@@ -14,10 +14,11 @@ export default function DoctorSection() {
       <Image src={homeDoctorImg} alt='Medical Team Cover' className='w-full' />
 
       <div className='container py-16 space-y-6'>
-        <div className='text-center'>
+        <div className='text-center space-y-2'>
           <p className='text-[#9C6E5A] font-semibold'>ทีมแพทย์</p>
-          <h2 className='text-3xl font-light max-w-2xl mx-auto'>
-            Lorem ipsum dolor sit amet consectetur. Pretium vulputate malesuada amet at quis non.
+          <h2 className='text-3xl font-light max-w-3xl mx-auto'>
+            เราพร้อมดูแลคุณด้วยความใส่ใจและประสบการณ์ระดับมืออาชีพ
+            เพื่อให้คุณได้รับการดูแลที่ดีที่สุด
           </h2>
         </div>
         <div className='text-center space-y-8'>

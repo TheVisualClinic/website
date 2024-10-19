@@ -7,6 +7,7 @@ import {
   imgBlog2,
   imgBlog3,
   imgBlog4,
+  img1200x1200,
 } from '@/assets/images'
 
 export const servicesMockup = [
@@ -98,7 +99,7 @@ export const blogsMockup = [
     title: 'โบท็อกซ์: วิธีการทำงานและข้อดี',
     description:
       'บทความนี้จะพาคุณรู้จักกับโบท็อกซ์ วิธีการทำงาน และข้อดีของการรักษาเพื่อลดเลือนริ้วรอยบนใบหน้า.',
-    imgSrc: imgBlog1,
+    imgSrc: img1200x1200,
     link: '/blogs/botox',
   },
   {
@@ -107,7 +108,7 @@ export const blogsMockup = [
     title: 'เดอร์มอลฟิลเลอร์: ทำไมถึงเป็นที่นิยม',
     description:
       'ทำความรู้จักกับเดอร์มอลฟิลเลอร์ และเหตุผลที่ทำให้การเติมเต็มและฟื้นฟูความเต่งตึงบนใบหน้าเป็นที่นิยม.',
-    imgSrc: imgBlog2,
+    imgSrc: img1200x1200,
     link: '/blogs/dermal-filler',
   },
   {
@@ -116,7 +117,7 @@ export const blogsMockup = [
     title: 'คอลลาเจนไบโอสติมูเลเตอร์: เพิ่มความยืดหยุ่นให้ผิว',
     description:
       'บทความนี้อธิบายเกี่ยวกับคอลลาเจนไบโอสติมูเลเตอร์ และวิธีการที่ช่วยกระตุ้นการผลิตคอลลาเจนในผิว.',
-    imgSrc: imgBlog3,
+    imgSrc: img1200x1200,
     link: '/blogs/collagen-biostimulators',
   },
   {
@@ -125,7 +126,7 @@ export const blogsMockup = [
     title: 'อัลตราฟอร์เมอร์: ยกกระชับผิวแบบไม่เจ็บ',
     description:
       'เรียนรู้เกี่ยวกับอัลตราฟอร์เมอร์ การรักษาที่ไม่ต้องผ่าตัดและใช้เทคโนโลยีอัลตราซาวด์เพื่อยกกระชับผิว.',
-    imgSrc: imgBlog4,
+    imgSrc: img1200x1200,
     link: '/blogs/ultraformer',
   },
   {
@@ -134,7 +135,7 @@ export const blogsMockup = [
     title: 'เมโสแฟต: ลดไขมันเฉพาะจุด',
     description:
       'วิธีการทำเมโสแฟตเพื่อกำจัดไขมันเฉพาะจุดและปรับรูปทรงของร่างกายอย่างมีประสิทธิภาพ.',
-    imgSrc: imgBlog1,
+    imgSrc: img1200x1200,
     link: '/blogs/mesofat',
   },
   {
@@ -143,7 +144,7 @@ export const blogsMockup = [
     title: 'HIFU: เทคโนโลยียกกระชับผิว',
     description:
       'HIFU (High-Intensity Focused Ultrasound) เทคโนโลยีที่ช่วยยกกระชับผิวหน้าโดยไม่ต้องผ่าตัด.',
-    imgSrc: imgBlog2,
+    imgSrc: img1200x1200,
     link: '/blogs/hifu',
   },
   {
@@ -152,7 +153,7 @@ export const blogsMockup = [
     title: 'Thermage: การกระชับผิวด้วยพลังงานคลื่นวิทยุ',
     description:
       'บทความนี้จะพาคุณรู้จักกับ Thermage และวิธีการที่ใช้พลังงานคลื่นวิทยุเพื่อกระชับและเรียบเนียนผิว.',
-    imgSrc: imgBlog3,
+    imgSrc: img1200x1200,
     link: '/blogs/thermage',
   },
   {
@@ -161,7 +162,7 @@ export const blogsMockup = [
     title: 'PRP Therapy: การฟื้นฟูผิวด้วยพลาสมา',
     description:
       'PRP Therapy (Platelet-Rich Plasma) คืออะไร และวิธีการใช้พลาสมาจากเลือดของคุณเองเพื่อฟื้นฟูผิว.',
-    imgSrc: imgBlog4,
+    imgSrc: img1200x1200,
     link: '/blogs/prp-therapy',
   },
 ]

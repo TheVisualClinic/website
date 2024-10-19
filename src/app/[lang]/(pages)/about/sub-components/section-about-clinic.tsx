@@ -1,21 +1,28 @@
+import { img1200x1200 } from '@/assets/images'
+import { logoText } from '@/assets/logo'
+import Image from 'next/image'
+
 export default function AboutClinicSection() {
   return (
     <section className='py-16 bg-[#F9F6F3]'>
       <div className='container'>
         <div className='grid grid-cols-12 gap-6 items-center'>
-          <div className='col-span-4 border rounded-xl bg-[#E7DDD3] flex justify-center items-center w-[420px] h-[420px]'>
-            Image
+          <div className='col-span-4'>
+            <Image src={img1200x1200} alt='' className='w-full object-cover rounded-xl' />
           </div>
           <div className='col-span-8 space-y-4'>
-            <p className='text-[#9C6E5A] font-semibold'>เกี่ยวกับเรา</p>
-            <h2 className='text-3xl text-[#483E3B]'>
-              Lorem ipsum dolor sit amet consetur. Pretium vulputate
+            <div className='pb-4'>
+              <Image src={logoText} alt='The Visual Clinic' className='max-w-xs' />
+            </div>
+            <h2 className='text-3xl font-normal text-[#483E3B]'>
+              คลินิกเสริมความงามที่เน้นความเป็นเอกลักษณ์ของคุณให้ดูดีที่สุด
             </h2>
             <p>
-              We are a leading cosmetology and dermatology clinic dedicated to transforming beauty
-              and enhancing confidence. Our team of highly skilled professionals combines artistry,
-              advanced techniques, and cutting-edge technology to deliver exceptional results
-              tailored to your unique needs.
+              The Visual Clinic เป็นคลินิกเสริมความงามและผิวหนัง ที่คุณสามารถไว้วางใจได้
+              เรามุ่งมั่นที่จะช่วยให้คุณรู้สึกมั่นใจและสวยงามในแบบของคุณเอง
+              ทีมแพทย์และผู้เชี่ยวชาญของเรามีประสบการณ์และความชำนาญสูง
+              ใช้เทคนิคที่ทันสมัยและเทคโนโลยีที่ล้ำหน้า เพื่อให้คุณได้รับการดูแลที่ดีที่สุด
+              และผลลัพธ์ที่ตอบโจทย์ความต้องการของคุณอย่างแท้จริง
             </p>
             <div className='grid grid-cols-3 text-center max-w-xl'>
               <div>

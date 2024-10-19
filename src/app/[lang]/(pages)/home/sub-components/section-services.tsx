@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react'
 import anime from 'animejs'
 import { servicesMockup } from './mock-data'
 import { useLocale } from 'next-intl'
+import Link from 'next/link'
 
 export default function ServicesSection() {
   const activeLocale = useLocale()
@@ -87,8 +88,8 @@ export default function ServicesSection() {
       <div className='container'>
         <div className='text-center mb-8 opacity-0' ref={textRef}>
           <p className='text-[#9C6E5A] font-semibold'>บริการทั้งหมด</p>
-          <h2 className='text-3xl font-light max-w-xl mx-auto text-[#483E3B]'>
-            With our cutting-edge techniques and advanced cosmetic procedures.
+          <h2 className='text-3xl font-light max-w-lg mx-auto text-[#483E3B]'>
+            สัมผัสบริการเสริมความงามครบวงจรจากเรา เพื่อดูแลคุณให้มั่นใจและดูดีทุกวัน
           </h2>
         </div>
 
@@ -99,23 +100,28 @@ export default function ServicesSection() {
                 key={service.id}
                 className={`service-item ${serviceIndex % 2 === 0 ? 'pt-6' : ''}`}
               >
-                <Image
-                  src={service.imgSrc}
-                  alt={service.title}
-                  className='rounded-2xl hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer transition-all duration-300'
-                />
+                <Link href={`/${activeLocale}/services/${service.id}`}>
+                  <Image
+                    src={service.imgSrc}
+                    alt={service.title}
+                    className='rounded-2xl hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer transition-all duration-300'
+                  />
+                </Link>
                 <div className='p-2'>
                   <h3 className='text-2xl text-[#483E3B]'>{service.title}</h3>
-                  <p className='text-[#9C6E5A]'>{service.price.toLocaleString('th-TH')}.-</p>
+                  <p className='text-[#9C6E5A] space-x-2'>
+                    <span>เริ่มต้นที่</span>
+                    <span className='font-medium'>{service.price.toLocaleString('th-TH')}.-</span>
+                  </p>
                   <p className='text-[#877A6B] line-clamp-2'>{service.description}</p>
                   <div className='flex justify-end py-2'>
-                    <a
+                    <Link
                       href={`/${activeLocale}/services/${service.id}`}
                       className='flex gap-1 items-center text-[#9C6E5A] max-w-fit cursor-pointer transition-all duration-300 group hover:text-[#9C6E5A]/80'
                     >
                       <span>อ่านเพิ่มเติม</span>
                       <ChevronRight className='w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300' />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

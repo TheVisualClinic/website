@@ -125,7 +125,7 @@ export default function Footer() {
       </div>
 
       <div className='border-t border-[#665942] mt-8 py-6 text-center'>
-        <p className='text-xs text-white'>
+        <p className='text-xs text-white/40'>
           Copyright © 2024 The Visual Clinic All Rights Reserved.
         </p>
       </div>

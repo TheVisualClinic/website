@@ -23,3 +23,7 @@ export { default as contactImg } from './contact-img.jpg'
 export { default as aboutUsImg } from './about-us-img.jpg'
 
 export { default as promotionBanner } from './promotion-banner.jpg'
+
+export { default as img1200x1000 } from './image-1200-1000.jpg'
+export { default as img1200x1200 } from './image-1200-1200.jpg'
+export { default as img1200x1425 } from './image-1200-1425.jpg'

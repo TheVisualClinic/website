@@ -1,5 +1,7 @@
 import AboutSection from './sub-components/section-about'
 import AboutClinicSection from './sub-components/section-about-clinic'
+import CertificateSection from './sub-components/section-certificate'
+import DoctorSection from './sub-components/section-doctor'
 import HeaderSection from './sub-components/section-header'
 import ImageSection from './sub-components/section-image'
 
@@ -10,6 +12,8 @@ export default function AboutPage() {
       <ImageSection />
       <AboutClinicSection />
       <AboutSection />
+      <DoctorSection />
+      <CertificateSection />
     </div>
   )
 }

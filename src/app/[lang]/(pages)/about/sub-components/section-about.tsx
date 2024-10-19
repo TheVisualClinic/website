@@ -13,7 +13,6 @@ export default function AboutSection() {
         />
         <div className='absolute inset-0 flex flex-col items-center justify-center space-y-8'>
           <div className='space-y-2 text-center'>
-            <p className='text-[#9C6E5A] font-semibold'>เกี่ยวกับเรา</p>
             <h2 className='text-3xl font-light mx-auto'>The Visual Clinic</h2>
             <p className='text-center'>
               ปรับรูปหน้า โบท็อกซ์ ฟิลเลอร์ ร้อยไหม วิตามินผิว หน้าใส รักษาสิว ฝ้า กระ
