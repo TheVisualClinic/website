@@ -12,15 +12,16 @@ import Link from 'next/link'
 export default function ContactSection() {
   return (
     <section className='py-16 bg-[#F9F6F3] text-[#483E3B]'>
-      <div className='container space-y-10'>
-        <div>
-          <p className='text-[#9C6E5A] font-semibold'>Caption</p>
-          <h2 className='text-2xl max-w-3xl text-[#483E3B]'>
-            Lorem ipsum dolor sit amet consectetur. Pretium vulputate malesuada amet at quis non.
+      <div className='container space-y-10 px-4 sm:px-8'>
+        <div className='space-y-2'>
+          <p className='text-[#9C6E5A] font-semibold'>The Visual Clinic</p>
+          <h2 className='text-xl font-light sm:text-2xl w-full sm:max-w-2xl text-[#483E3B]'>
+            ติดต่อเราวันนี้เพื่อรับข้อมูลเพิ่มเติมเกี่ยวกับบริการของเรา
+            ทีมงานของเราพร้อมให้คำแนะนำและช่วยเหลือคุณในทุกขั้นตอน
           </h2>
         </div>
 
-        <div className='grid grid-cols-2 gap-6'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           <div className='border border-[#473D3C] rounded-xl p-6 space-y-4'>
             <h3 className='text-2xl'>Contact Us</h3>
             <div className='flex items-center gap-4'>
@@ -54,7 +55,7 @@ export default function ContactSection() {
         </div>
 
         <div className='text-center'>
-          <h2 className='text-2xl'>ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง</h2>
+          <h2 className='text-xl sm:text-2xl'>ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง</h2>
           <Separator className='my-6 max-w-md mx-auto bg-[#483E3B]' />
           <div className='flex items-center gap-6 justify-center'>
             <Link

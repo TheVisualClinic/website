@@ -4,8 +4,6 @@ import { useEffect } from 'react'
 import { StarRatingIcon } from '@/components/base/star-rating-icon'
 import { useLocale } from 'next-intl'
 import anime from 'animejs'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 
 interface Review {
   id: number
@@ -77,14 +75,6 @@ export default function ReviewsSection() {
               <p className='font-medium text-[#877A6B]'>{review.author}</p>
             </div>
           ))}
-        </div>
-
-        <div className='flex justify-center'>
-          <Link href={`/${activeLocale}/reviews`}>
-            <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer'>
-              ดูรีวิวทั้งหมด
-            </Button>
-          </Link>
         </div>
       </div>
     </section>

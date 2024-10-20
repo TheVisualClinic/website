@@ -1,13 +1,14 @@
 import React from 'react'
 
 type StarRatingIconProps = {
-  variant?: 'solid' | 'outline'
+  variant?: 'filled' | 'outline'
+  className?: string
 }
 
-export function StarRatingIcon({ variant = 'solid' }: StarRatingIconProps) {
+export function StarRatingIcon({ variant = 'filled', className = '' }: StarRatingIconProps) {
   return (
-    <div>
-      {variant === 'solid' ? (
+    <div className={className}>
+      {variant === 'filled' ? (
         <svg
           width='24'
           height='24'
