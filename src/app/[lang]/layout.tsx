@@ -5,7 +5,6 @@ import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { Toaster } from '@/components/ui/toaster'
 import StoreProvider from '@/app/[lang]/provider/store-provider'
 import './globals.css'
-import BlockPage from '@/components/base/block-page'
 
 export const metadata: Metadata = {
   title: 'The Visual Clinic',
@@ -41,8 +40,6 @@ export default function RootLayout({
             </ThemeProvider>
           </NextIntlClientProvider>
         </StoreProvider>
-
-        <BlockPage />
       </body>
     </html>
   )

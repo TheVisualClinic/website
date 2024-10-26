@@ -81,13 +81,22 @@ export default function Navbar() {
         isScrolled ? 'bg-white/100 shadow-lg' : 'bg-white/20'
       }`}
     >
-      <div className='container flex justify-between items-center px-4 sm:px-2'>
+      <div className='container flex justify-between items-center px-4 lg:pr-6'>
         <div className='px-4 py-2 bg-white rounded-full'>
           <Image
             src={logoText}
             alt='The Visual Clinic'
             width={isScrolled ? 100 : 150}
-            className='cursor-pointer transition-all duration-300'
+            className='cursor-pointer transition-all duration-300 hidden lg:block'
+            onClick={() => {
+              router.replace(`/${activeLocale}/home`)
+            }}
+          />
+          <Image
+            src={logoText}
+            alt='The Visual Clinic'
+            width={100}
+            className='cursor-pointer transition-all duration-300 lg:hidden'
             onClick={() => {
               router.replace(`/${activeLocale}/home`)
             }}
@@ -151,7 +160,7 @@ export default function Navbar() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className='lg:hidden fixed top-0 left-0 w-full h-full bg-white z-40 flex flex-col items-center justify-center mobile-menu'>
+        <div className='lg:hidden fixed top-0 left-0 w-full h-full bg-white z-40 flex flex-col items-center justify-center mobile-menu pr-4'>
           <button
             className='absolute top-4 right-4 text-gray-700'
             onClick={() => setIsMobileMenuOpen(false)}
