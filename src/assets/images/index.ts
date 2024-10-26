@@ -27,6 +27,7 @@ export { default as promotionBanner } from './promotion-banner.jpg'
 export { default as img1200x1000 } from './image-1200-1000.jpg'
 export { default as img1200x1200 } from './image-1200-1200.jpg'
 export { default as img1200x1425 } from './image-1200-1425.jpg'
+export { default as img1600x900 } from './image-1600-900.jpg'
 
 export { default as reviewImg } from './review-img.jpg'
 export { default as topReviewImg } from './top-review-image.jpg'

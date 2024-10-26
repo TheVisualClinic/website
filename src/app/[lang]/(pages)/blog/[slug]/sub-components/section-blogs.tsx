@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import anime from 'animejs'
-import { blogsMockup } from './mock-data'
+import { blogsMockup } from '../../../home/sub-components/mock-data'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
 
@@ -87,7 +87,9 @@ export default function BlogsSection() {
     <section className='py-16 bg-[#F9F6F3]' ref={sectionRef}>
       <div className='container'>
         <div className='text-center mb-8 opacity-0' ref={textRef}>
-          <h2 className='text-3xl max-w-xl mx-auto text-[#483E3B] font-semibold'>บทความล่าสุด</h2>
+          <h2 className='text-3xl max-w-xl mx-auto text-[#483E3B] font-semibold'>
+            บทความอื่นๆ ที่น่าสนใจ
+          </h2>
         </div>
 
         <div className='space-y-6 opacity-0' ref={groupRef}>
