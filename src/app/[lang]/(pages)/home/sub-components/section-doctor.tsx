@@ -1,40 +1,72 @@
 'use client'
 
-import { homeDoctorImg, homeDoctorImgTest } from '@/assets/images'
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { doctorsList } from '@/assets/mock-data/doctors'
 
 export default function DoctorSection() {
   const router = useRouter()
   const activeLocale = useLocale()
 
+  const sectionImage = '/src/uploads/public/clinic-img-4.webp'
+
+  const pageContent = {
+    caption_th: 'ทีมแพทย์',
+    caption_en: 'Medical Team',
+    title_th:
+      'เราพร้อมดูแลคุณด้วยความใส่ใจและประสบการณ์ระดับมืออาชีพ \n เพื่อให้คุณได้รับการดูแลที่ดีที่สุด',
+    title_en:
+      'We provide dedicated and professional \n care to ensure you receive the best treatment and attention you deserve.',
+  }
+
   return (
     <section className='bg-[#F9F6F3]'>
-      <Image src={homeDoctorImg} alt='Medical Team Cover' className='w-full' />
+      <Image
+        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        alt='Medical Team Cover'
+        width={1920}
+        height={500}
+        className='w-full h-[500px] object-cover'
+      />
 
-      <div className='container py-16 space-y-6'>
+      <div className='container py-16'>
         <div className='text-center space-y-2'>
-          <p className='text-[#9C6E5A] font-semibold'>ทีมแพทย์</p>
-          <h2 className='text-3xl font-light max-w-3xl mx-auto'>
-            เราพร้อมดูแลคุณด้วยความใส่ใจและประสบการณ์ระดับมืออาชีพ
-            เพื่อให้คุณได้รับการดูแลที่ดีที่สุด
+          <p className='text-[#9C6E5A] font-semibold'>
+            {activeLocale === 'th' ? pageContent.caption_th : pageContent.caption_en}
+          </p>
+          <h2 className='text-3xl font-light text-center whitespace-pre-line'>
+            {activeLocale === 'th' ? pageContent.title_th : pageContent.title_en}
           </h2>
         </div>
-        <div className='text-center space-y-8'>
-          <Image
-            src={homeDoctorImgTest}
-            alt='Doctor'
-            className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
-            onClick={() => {
-              router.replace(`/${activeLocale}/medical-team`)
-            }}
-          />
-          <div>
-            <h3 className='text-xl'>ชื่อเล่น</h3>
-            <p>ชื่อ นามสกุล</p>
-            <p className='text-[#877A6B]'>ความเชี่ยวชาญ / Caption</p>
-          </div>
+        <div
+          className={`grid ${
+            doctorsList.length === 1 ? 'justify-items-center' : 'grid-cols-1 md:grid-cols-2'
+          } gap-8 mt-10`}
+        >
+          {doctorsList.map((doctor, index) => (
+            <div key={index} className='text-center space-y-4'>
+              <Image
+                src={`${process.env.STORAGE_PROVIDER_URL}${doctor.image}`}
+                alt={activeLocale === 'th' ? doctor.name_th : doctor.name_en}
+                className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
+                width={1200}
+                height={1425}
+                onClick={() => {
+                  router.replace(`/${activeLocale}/medical-team`)
+                }}
+              />
+              <div>
+                <h3 className='text-xl'>
+                  {activeLocale === 'th' ? doctor.name_th : doctor.name_en}
+                </h3>
+                <p>{activeLocale === 'th' ? doctor.full_name_th : doctor.full_name_en}</p>
+                <p className='text-[#877A6B] whitespace-pre-line'>
+                  {activeLocale === 'th' ? doctor.qualifications_th : doctor.qualifications_en}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -4,8 +4,9 @@ export default function HeaderSection() {
       <div className='container'>
         <div className='text-center space-y-2'>
           <p className='text-[#9C6E5A] font-semibold'>ทีมแพทย์ของเรา</p>
-          <h2 className='text-3xl font-light max-w-2xl mx-auto text-[#483E3B]'>
-            Lorem ipsum dolor sit amet consectetur. Pretium vulputate malesuada amet at quis non.
+          <h2 className='text-3xl font-light mx-auto text-[#483E3B]'>
+            เชี่ยวชาญด้านการปรับรูปหน้า และเลเซอร์ปรับคุณภาพผิว <br />
+            ออกแบบการรักษารายบุคคล เพื่อผลลัพธ์ที่ดีที่สุดสำหรับคุณ
           </h2>
         </div>
       </div>

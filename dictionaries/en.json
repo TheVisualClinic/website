@@ -22,5 +22,23 @@
       "title": "Sign in failed!",
       "description": "Incorrect username or password"
     }
+  },
+  "button": {
+    "booking": "booking",
+    "aboutUs": "about us",
+    "viewReviews": "all reviews"
+  },
+  "buttonLink": {
+    "readMore": "read more"
+  },
+  "navMenu": {
+    "home": "Home",
+    "services": "Services",
+    "aboutUs": "About Us",
+    "medicalTeam": "Medical Team",
+    "promotions": "Promotions",
+    "reviews": "Reviews",
+    "blogs": "Blogs",
+    "contactUs": "Contact Us"
   }
 }

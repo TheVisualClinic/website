@@ -1,4 +1,4 @@
-import { servicesHeaderImage } from '@/assets/services-page'
+import { clinicImg1 } from '@/assets/clinic-images'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,9 +6,9 @@ import Link from 'next/link'
 export default function NewCustomerPromotionSection() {
   return (
     <section className='relative'>
-      <Image src={servicesHeaderImage} alt='ภาพหัวข้อ' />
+      <Image src={clinicImg1} alt='image cover' className='w-full h-[500px] object-cover' />
 
-      <div className='max-w-[1080px] grid grid-cols-2 absolute top-0 bottom-0 left-0 right-0 m-auto h-fit'>
+      <div className='max-w-[600px] grid grid-cols-1 absolute top-0 bottom-0 left-0 right-0 m-auto h-fit'>
         <div className='text-[#483E3B] bg-white/50 backdrop-blur-md rounded-xl p-6 space-y-4 h-fit'>
           <p className='text-[#9C6E5A] font-semibold'>ข้อเสนอพิเศษสำหรับลูกค้าใหม่</p>
           <h2 className='text-3xl'>รับส่วนลด 20% สำหรับการทำทรีทเมนท์ความงามครั้งแรกของคุณ</h2>

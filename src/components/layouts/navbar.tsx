@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { logoText } from '@/assets/logo'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { startTransition } from 'react'
@@ -11,6 +11,8 @@ import { Menu, X } from 'lucide-react'
 import anime from 'animejs'
 
 export default function Navbar() {
+  const tNavMenu = useTranslations('navMenu')
+
   const router = useRouter()
   const activeLocale = useLocale()
   const pathname = usePathname()
@@ -55,14 +57,14 @@ export default function Navbar() {
   }, [isMobileMenuOpen])
 
   const menuItems = [
-    { href: `/${activeLocale}/home`, label: 'หน้าแรก' },
-    { href: `/${activeLocale}/services`, label: 'บริการ' },
-    { href: `/${activeLocale}/about`, label: 'เกี่ยวกับเรา' },
-    { href: `/${activeLocale}/medical-team`, label: 'ทีมแพทย์' },
-    { href: `/${activeLocale}/promotions`, label: 'โปรโมชั่น' },
-    { href: `/${activeLocale}/reviews`, label: 'รีวิว' },
-    { href: `/${activeLocale}/blog`, label: 'บทความ' },
-    { href: `/${activeLocale}/contact`, label: 'ติดต่อเรา' },
+    { href: `/${activeLocale}/home`, label: tNavMenu('home') },
+    { href: `/${activeLocale}/services`, label: tNavMenu('services') },
+    { href: `/${activeLocale}/about`, label: tNavMenu('aboutUs') },
+    { href: `/${activeLocale}/medical-team`, label: tNavMenu('medicalTeam') },
+    { href: `/${activeLocale}/promotions`, label: tNavMenu('promotions') },
+    { href: `/${activeLocale}/reviews`, label: tNavMenu('reviews') },
+    { href: `/${activeLocale}/blog`, label: tNavMenu('blogs') },
+    { href: `/${activeLocale}/contact`, label: tNavMenu('contactUs') },
   ]
 
   const pagePathName = usePathname().substring(3)
@@ -82,7 +84,7 @@ export default function Navbar() {
       }`}
     >
       <div className='container flex justify-between items-center px-4 lg:pr-6'>
-        <div className='px-4 py-2 bg-white rounded-full'>
+        <div className='px-4 py-2'>
           <Image
             src={logoText}
             alt='The Visual Clinic'
@@ -102,7 +104,6 @@ export default function Navbar() {
             }}
           />
         </div>
-
         <div className='hidden lg:flex items-center gap-16'>
           <nav className='flex items-center gap-6'>
             {menuItems.map((item, index) => {
@@ -122,19 +123,7 @@ export default function Navbar() {
               )
             })}
           </nav>
-
           <div className='flex items-center gap-2'>
-            <span
-              className={`cursor-pointer ${
-                activeLocale === 'en'
-                  ? 'text-[#9C6E5A] font-semibold'
-                  : 'text-gray-700 hover:text-gray-500'
-              }`}
-              onClick={() => onLangChange('en')}
-            >
-              EN
-            </span>
-            <span>|</span>
             <span
               className={`cursor-pointer ${
                 activeLocale === 'th'
@@ -145,9 +134,19 @@ export default function Navbar() {
             >
               TH
             </span>
+            <span>|</span>
+            <span
+              className={`cursor-pointer ${
+                activeLocale === 'en'
+                  ? 'text-[#9C6E5A] font-semibold'
+                  : 'text-gray-700 hover:text-gray-500'
+              }`}
+              onClick={() => onLangChange('en')}
+            >
+              EN
+            </span>
           </div>
         </div>
-
         <div className='lg:hidden flex items-center'>
           <button
             className='text-gray-700'
@@ -187,22 +186,7 @@ export default function Navbar() {
               )
             })}
           </nav>
-
           <div className='flex items-center gap-4 mt-8'>
-            <span
-              className={`cursor-pointer ${
-                activeLocale === 'en'
-                  ? 'text-[#9C6E5A] font-semibold'
-                  : 'text-gray-700 hover:text-gray-500'
-              } text-2xl transition-transform duration-300 ease-in-out transform hover:scale-110`}
-              onClick={() => {
-                onLangChange('en')
-                setIsMobileMenuOpen(false)
-              }}
-            >
-              EN
-            </span>
-            <span className='text-2xl'>|</span>
             <span
               className={`cursor-pointer ${
                 activeLocale === 'th'
@@ -215,6 +199,20 @@ export default function Navbar() {
               }}
             >
               TH
+            </span>
+            <span className='text-2xl'>|</span>
+            <span
+              className={`cursor-pointer ${
+                activeLocale === 'en'
+                  ? 'text-[#9C6E5A] font-semibold'
+                  : 'text-gray-700 hover:text-gray-500'
+              } text-2xl transition-transform duration-300 ease-in-out transform hover:scale-110`}
+              onClick={() => {
+                onLangChange('en')
+                setIsMobileMenuOpen(false)
+              }}
+            >
+              EN
             </span>
           </div>
         </div>

@@ -3,34 +3,41 @@
 import { socialFacebook, socialInstagram, socialLine, socialTiktok } from '@/assets/icons'
 import { logoTextWhite } from '@/assets/logo'
 import { MailIcon, PhoneIcon } from 'lucide-react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+import { socialLink, clinicContact } from '@/assets/mock-data/contacts'
 
 export default function Footer() {
   const activeLocale = useLocale()
+  const tNavMenu = useTranslations('navMenu')
+
+  const footerCaption = {
+    caption_th: '" The Tailor-made Experience "',
+    caption_en: '" The Tailor-made Experience "',
+  }
 
   const socialMediaLinks = [
     {
-      href: 'https://www.facebook.com/thevisualclinic',
+      href: socialLink.facebook,
       icon: socialFacebook,
       alt: 'social icon Facebook',
       label: 'The Visual Clinic รัชโยธิน',
     },
     {
-      href: 'https://www.instagram.com/thevisual_clinic/',
+      href: socialLink.instagram,
       icon: socialInstagram,
       alt: 'social icon Instagram',
       label: 'thevisual_clinic',
     },
     {
-      href: 'https://www.tiktok.com/@thevisualclinic',
+      href: socialLink.tiktok,
       icon: socialTiktok,
       alt: 'social icon Tiktok',
       label: 'thevisualclinic',
     },
     {
-      href: 'https://lin.ee/CyHa9b3',
+      href: socialLink.line,
       icon: socialLine,
       alt: 'social icon LINE',
       label: '@thevisual_clinic',
@@ -38,35 +45,40 @@ export default function Footer() {
   ]
 
   const menuLinks = [
-    { href: `/${activeLocale}/services`, label: 'บริการ' },
-    { href: `/${activeLocale}/about`, label: 'เกี่ยวกับเรา' },
-    { href: `/${activeLocale}/medical-team`, label: 'ทีมแพทย์' },
-    { href: `/${activeLocale}/promotions`, label: 'โปรโมชั่น' },
-    { href: `/${activeLocale}/reviews`, label: 'รีวิว' },
-    { href: `/${activeLocale}/blog`, label: 'บทความ' },
-    { href: `/${activeLocale}/contact`, label: 'ติดต่อเรา' },
+    { href: `/${activeLocale}/services`, label: tNavMenu('services') },
+    { href: `/${activeLocale}/about`, label: tNavMenu('aboutUs') },
+    { href: `/${activeLocale}/medical-team`, label: tNavMenu('medicalTeam') },
+    { href: `/${activeLocale}/promotions`, label: tNavMenu('promotions') },
+    { href: `/${activeLocale}/reviews`, label: tNavMenu('reviews') },
+    { href: `/${activeLocale}/blog`, label: tNavMenu('blogs') },
+    { href: `/${activeLocale}/contact`, label: tNavMenu('contactUs') },
   ]
 
   const contactInfo = [
-    { icon: <PhoneIcon className='w-5 h-5' />, label: '084-194-5626' },
-    { icon: <MailIcon className='w-5 h-5' />, label: 'thevisualclinic@gmail.com' },
+    { icon: <PhoneIcon className='w-5 h-5' />, label: formatPhoneNumber(clinicContact.phone) },
+    { icon: <MailIcon className='w-5 h-5' />, label: clinicContact.email },
   ]
+
+  function formatPhoneNumber(phoneNumber: string) {
+    const cleaned = ('' + phoneNumber).replace(/\D/g, '')
+    const formatted = cleaned.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
+    return formatted
+  }
 
   return (
     <footer className='bg-[#483E3B] text-white pt-14 text-lg md:text-sm'>
       <div className='container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8'>
         <div className='lg:col-span-2 text-[#E7DDD3] space-y-4'>
           <Image src={logoTextWhite} alt='The Visual Clinic Logo' width={200} />
-          <p className='max-w-md'>
-            Lorem ipsum dolor sit amet consectetur. Pretium vulputate malesuada amet
-          </p>
-          <p className='max-w-md'>
-            Lorem ipsum dolor sit amet consectetur. Pretium vulputate malesuada amet
-          </p>
+          <h3 className='text-4xl dancing-script-font'>
+            {activeLocale === 'th' ? footerCaption.caption_th : footerCaption.caption_en}
+          </h3>
         </div>
 
         <div>
-          <h2 className='text-lg text-[#B8977F] mb-6'>Social Media</h2>
+          <h2 className='text-lg text-[#B8977F] mb-6'>
+            {activeLocale === 'th' ? 'Social Media' : 'Social Media'}
+          </h2>
           <ul className='space-y-4'>
             {socialMediaLinks.map((item, index) => (
               <li key={index}>
@@ -89,7 +101,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className='text-lg text-[#B8977F] mb-6'>Menu</h2>
+          <h2 className='text-lg text-[#B8977F] mb-6'>{activeLocale === 'th' ? 'เมนู' : 'Menu'}</h2>
           <div className='grid grid-cols-2 gap-4'>
             <ul className='space-y-4 text-white/80'>
               {menuLinks.slice(0, 4).map((item, index) => (
@@ -113,7 +125,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h2 className='text-lg text-[#B8977F] mb-6'>Contact Us</h2>
+          <h2 className='text-lg text-[#B8977F] mb-6'>
+            {activeLocale === 'th' ? 'ติดต่อเรา' : 'Contact Us'}
+          </h2>
           <ul className='space-y-4 text-white/80'>
             {contactInfo.map((item, index) => (
               <li key={index} className='flex items-center gap-3'>

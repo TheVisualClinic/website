@@ -1,10 +1,10 @@
+import { clinicImg9 } from '@/assets/clinic-images'
 import {
   socialFacebookSolid,
   socialInstagramSolid,
   socialLineSolid,
   socialTiktokSolid,
 } from '@/assets/icons'
-import { servicesSocialMediaImage } from '@/assets/services-page'
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ import Link from 'next/link'
 export default function SocialMediaSection() {
   return (
     <section className='relative'>
-      <Image src={servicesSocialMediaImage} alt='Banner' />
+      <Image src={clinicImg9} alt='Banner' className='w-full h-[300px] object-cover' />
 
       <div className='absolute text-center top-0 left-0 right-0 bottom-0 m-auto bg-white/50 backdrop-blur-md h-fit max-w-[860px] py-8 rounded-2xl'>
         <h2 className='text-2xl'>ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง</h2>

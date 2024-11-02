@@ -1,0 +1,93 @@
+'use client'
+
+import Image from 'next/image'
+import {
+  certificateImg1,
+  certificateImg2,
+  certificateImg3,
+  certificateImg4,
+  certificateImg5,
+  certificateImg6,
+  certificateImg7,
+  certificateImg8,
+  certificateImg9,
+  certificateImg10,
+  certificateImg11,
+  certificateImg12,
+  certificateImg13,
+  certificateImg14,
+  certificateImg15,
+  certificateImg16,
+  certificateImg17,
+  certificateImg18,
+  certificateImg19,
+  certificateImg20,
+  certificateImg21,
+} from '@/assets/certificate-images'
+
+export default function CertificateSection() {
+  const certificateList1 = [
+    { caption: 'Clinic Certificate 1', image: certificateImg1 },
+    { caption: 'Clinic Certificate 2', image: certificateImg2 },
+    { caption: 'Clinic Certificate 3', image: certificateImg3 },
+    { caption: 'Clinic Certificate 4', image: certificateImg4 },
+    { caption: 'Clinic Certificate 5', image: certificateImg5 },
+    { caption: 'Clinic Certificate 6', image: certificateImg6 },
+    { caption: 'Clinic Certificate 7', image: certificateImg7 },
+    { caption: 'Clinic Certificate 8', image: certificateImg8 },
+    { caption: 'Clinic Certificate 9', image: certificateImg9 },
+    { caption: 'Clinic Certificate 10', image: certificateImg10 },
+  ]
+
+  const certificateList2 = [
+    { caption: 'Clinic Certificate 11', image: certificateImg11 },
+    { caption: 'Clinic Certificate 12', image: certificateImg12 },
+    { caption: 'Clinic Certificate 13', image: certificateImg13 },
+    { caption: 'Clinic Certificate 14', image: certificateImg14 },
+    { caption: 'Clinic Certificate 15', image: certificateImg15 },
+    { caption: 'Clinic Certificate 16', image: certificateImg16 },
+    { caption: 'Clinic Certificate 17', image: certificateImg17 },
+    { caption: 'Clinic Certificate 18', image: certificateImg18 },
+    { caption: 'Clinic Certificate 19', image: certificateImg19 },
+    { caption: 'Clinic Certificate 20', image: certificateImg20 },
+    { caption: 'Clinic Certificate 21', image: certificateImg21 },
+  ]
+
+  return (
+    <section className='py-16 bg-[#E7DDD3]'>
+      <div className='container'>
+        <div className='text-center mb-8 space-y-2'>
+          <p className='text-[#9C6E5A] font-semibold'>ความภาคภูมิใจของเรา</p>
+          <h3 className='text-2xl font-light text-gray-600 max-w-lg mx-auto'>
+            เราได้รับการรับรองและความไว้วางใจจากสถาบันชั้นนำ
+            เพื่อยืนยันคุณภาพและความเป็นมืออาชีพของเรา
+          </h3>
+        </div>
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+          {certificateList1.map((certificate, index) => (
+            <div key={index} className='w-full'>
+              <Image
+                src={certificate.image}
+                alt={certificate.caption}
+                className='w-full h-auto object-cover'
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8'>
+          {certificateList2.map((certificate, index) => (
+            <div key={index} className='w-full'>
+              <Image
+                src={certificate.image}
+                alt={certificate.caption}
+                className='w-full h-auto object-cover'
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

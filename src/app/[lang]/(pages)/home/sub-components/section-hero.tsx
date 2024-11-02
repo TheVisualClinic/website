@@ -1,10 +1,9 @@
 'use client'
 
 import { socialFacebookDark, socialInstagramDark, socialLineDark } from '@/assets/icons'
-import { homeHeroImg } from '@/assets/images'
 import { Button } from '@/components/ui/button'
 import { PhoneIcon } from 'lucide-react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -12,13 +11,26 @@ import { useRouter } from 'next/navigation'
 export default function HeroSection() {
   const router = useRouter()
   const activeLocale = useLocale()
+  const tBtn = useTranslations('button')
+
+  const sectionImage = '/src/uploads/public/clinic-img-3.webp'
+  const heroCard = {
+    title_th: '" The Tailor-made Experience "',
+    title_en: '" The Tailor-made Experience "',
+    description_th:
+      'เราเชื่อว่าความงามที่แท้จริงเริ่มต้นจากความรู้สึกสบายใจและเชื่อมั่นในการดูแลตัวเอง คลินิกของเราจึงออกแบบในสไตล์ที่อบอุ่น มินิมอล ให้ความรู้สึกเหมือนได้เข้ามานั่งเล่นที่คาเฟ่ บรรยากาศเป็นกันเอง ให้ทุกครั้งที่คุณเข้ามารับบริการ ได้รับประสบการณ์ที่ผ่อนคลายและน่าประทับใจ',
+    description_en:
+      'We believe that true beauty begins with feeling comfortable and confident in taking care of yourself. Our clinic is designed with a warm, minimal style, giving you the feeling of sitting in a cozy café. The friendly atmosphere ensures that every visit provides you with a relaxing and memorable experience.',
+  }
 
   return (
     <section className='relative'>
       <div className='flex justify-center'>
         <Image
-          src={homeHeroImg}
+          src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
           alt='home page hero image'
+          width={1920}
+          height={700}
           className='w-full h-[700px] object-cover'
         />
       </div>
@@ -28,26 +40,20 @@ export default function HeroSection() {
           <div className='bg-white/50 p-6 rounded-lg backdrop-blur-md max-w-lg space-y-6'>
             <div>
               <h3 className='text-4xl dancing-script-font'>
-                {'"'} The Tailor-made Experience {'"'}
+                {activeLocale === 'th' ? heroCard.title_th : heroCard.title_en}
               </h3>
             </div>
-            <p>
-              ที่ The Visual Clinic
-              เราเชื่อว่าความงามที่แท้จริงเริ่มต้นจากความรู้สึกสบายใจและเชื่อมั่นในการดูแลตัวเอง
-              คลินิกของเราจึงออกแบบในสไตล์ที่อบอุ่น มินิมอล
-              ให้ความรู้สึกเหมือนได้เข้ามานั่งเล่นที่คาเฟ่ บรรยากาศเป็นกันเอง
-              ให้ทุกครั้งที่คุณเข้ามารับการรักษาเป็นประสบการณ์ที่ผ่อนคลายและน่าประทับใจ
-            </p>
+            <p>{activeLocale === 'th' ? heroCard.description_th : heroCard.description_en}</p>
             <div className='flex items-center gap-4'>
               <Link href={'https://lin.ee/CyHa9b3'} target='_blank'>
-                <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer'>
-                  จองนัดหมาย
+                <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
+                  {tBtn('booking')}
                 </Button>
               </Link>
 
               <Link href={`/${activeLocale}/about`}>
-                <Button className='w-[120px] bg-white py-3 rounded-sm flex justify-center align-middle text-[#9C6E5A] hover:bg-[#E7DDD3] cursor-pointer border border-[#9C6E5A]'>
-                  เกี่ยวกับเรา
+                <Button className='w-[120px] bg-white py-3 rounded-sm flex justify-center align-middle text-[#9C6E5A] hover:bg-[#E7DDD3] cursor-pointer border border-[#9C6E5A] capitalize'>
+                  {tBtn('aboutUs')}
                 </Button>
               </Link>
             </div>
@@ -63,7 +69,7 @@ export default function HeroSection() {
             className='flex items-center md:justify-center gap-2'
           >
             <Image src={socialFacebookDark} alt='Social Icon' width={24} />
-            <p>The Visual Clinic รัชโยธิน</p>
+            <p>The Visual Clinic {activeLocale === 'th' ? 'รัชโยธิน' : 'Ratchayotin'}</p>
           </Link>
           <Link
             href={'https://www.instagram.com/thevisual_clinic/'}

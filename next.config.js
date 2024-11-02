@@ -10,5 +10,13 @@ const nextConfig = {
     IDP_PROVIDER_URL: process.env.IDP_PROVIDER_URL,
     STORAGE_PROVIDER_URL: process.env.STORAGE_PROVIDER_URL,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'storage.thevisual-clinic.com',
+      },
+    ],
+  },
 }
 module.exports = withNextIntl(nextConfig)

@@ -1,5 +1,6 @@
 'use client'
 
+import { doctorMeen } from '@/assets/doctor-images'
 import { img1200x1425 } from '@/assets/images'
 import { CheckCheckIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -7,21 +8,12 @@ import Image from 'next/image'
 const medicalTeam = [
   {
     id: 1,
-    name: 'พญ. ชื่อ-นามสกุล',
-    nickname: 'คุณหมอ ชื่อเล่น',
+    name: 'ธนวรรณ โชควัฒนคุปต์',
+    nickname: 'หมอ มีน',
     description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis laborum non velit accusamus recusandae ducimus quos, corrupti amet unde placeat adipisci voluptatibus autem? Dolores ea amet dignissimos cumque ducimus veniam.',
+      'M.D., M.Sc.Dermatology Fellowship in Laser & Cosmetic Dermatology, Florida International University',
     skills: ['Skill 1', 'Skill 2', 'Skill 3'],
-    image: img1200x1425,
-  },
-  {
-    id: 2,
-    name: 'นพ. ชื่อ-นามสกุล',
-    nickname: 'คุณหมอ ชื่อเล่น 2',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis laborum non velit accusamus recusandae ducimus quos, corrupti amet unde placeat adipisci voluptatibus autem? Dolores ea amet dignissimos cumque ducimus veniam.',
-    skills: ['Skill A', 'Skill B', 'Skill C'],
-    image: img1200x1425,
+    image: doctorMeen,
   },
 ]
 

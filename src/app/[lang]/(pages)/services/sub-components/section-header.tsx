@@ -4,8 +4,9 @@ export default function HeaderSection() {
       <div className='container'>
         <div className='text-center mb-8 space-y-2'>
           <p className='text-[#9C6E5A] font-semibold'>บริการทั้งหมดของ The Visual Clinic</p>
-          <h2 className='text-3xl font-light max-w-lg mx-auto text-[#483E3B]'>
-            สัมผัสบริการเสริมความงามครบวงจรจากเรา เพื่อดูแลคุณให้มั่นใจและดูดีทุกวัน
+          <h2 className='text-3xl font-light mx-auto text-[#483E3B]'>
+            สัมผัสบริการเสริมความงามของเรา <br />
+            เพื่อดูแลคุณให้มั่นใจและเป็นตัวเองในเวอร์ชันที่ดีที่สุด
           </h2>
         </div>
       </div>
