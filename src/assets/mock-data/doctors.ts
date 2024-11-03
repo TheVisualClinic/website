@@ -1,7 +1,7 @@
 export const doctorsList = [
   {
     id: 1,
-    image: '/src/uploads/public/meen-doctor.webp',
+    image: '/storage/meen-doctor.webp',
     name_th: 'หมอ มีน',
     name_en: 'Doctor Meen',
     full_name_th: 'ธนวรรณ โชควัฒนคุปต์',

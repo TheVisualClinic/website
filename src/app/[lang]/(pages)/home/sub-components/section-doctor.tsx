@@ -9,7 +9,7 @@ export default function DoctorSection() {
   const router = useRouter()
   const activeLocale = useLocale()
 
-  const sectionImage = '/src/uploads/public/clinic-img-4.webp'
+  const sectionImage = '/storage/clinic-img-4.webp'
 
   const pageContent = {
     caption_th: 'ทีมแพทย์',

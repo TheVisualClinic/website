@@ -8,7 +8,7 @@ export const blogsList = [
       'บทความนี้จะพาคุณรู้จักกับโบท็อกซ์ วิธีการทำงาน และข้อดีของการรักษาเพื่อลดเลือนริ้วรอยบนใบหน้า.',
     description_en:
       'This article introduces you to Botox, how it works, and the benefits of wrinkle reduction.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/botox',
   },
   {
@@ -20,7 +20,7 @@ export const blogsList = [
       'ทำความรู้จักกับเดอร์มอลฟิลเลอร์ และเหตุผลที่ทำให้การเติมเต็มและฟื้นฟูความเต่งตึงบนใบหน้าเป็นที่นิยม.',
     description_en:
       'Learn about dermal fillers and why they are popular for facial volume restoration.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/dermal-filler',
   },
   {
@@ -32,7 +32,7 @@ export const blogsList = [
       'บทความนี้อธิบายเกี่ยวกับคอลลาเจนไบโอสติมูเลเตอร์ และวิธีการที่ช่วยกระตุ้นการผลิตคอลลาเจนในผิว.',
     description_en:
       'This article explains collagen biostimulators and how they help stimulate collagen production in the skin.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/collagen-biostimulators',
   },
   {
@@ -44,7 +44,7 @@ export const blogsList = [
       'เรียนรู้เกี่ยวกับอัลตราฟอร์เมอร์ การรักษาที่ไม่ต้องผ่าตัดและใช้เทคโนโลยีอัลตราซาวด์เพื่อยกกระชับผิว.',
     description_en:
       'Learn about Ultraformer, a non-surgical treatment using ultrasound technology for skin lifting.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/ultraformer',
   },
   {
@@ -56,7 +56,7 @@ export const blogsList = [
       'วิธีการทำเมโสแฟตเพื่อกำจัดไขมันเฉพาะจุดและปรับรูปทรงของร่างกายอย่างมีประสิทธิภาพ.',
     description_en:
       'Learn about Mesofat, a procedure for targeted fat reduction and body contouring.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/mesofat',
   },
   {
@@ -68,7 +68,7 @@ export const blogsList = [
       'HIFU (High-Intensity Focused Ultrasound) เทคโนโลยีที่ช่วยยกกระชับผิวหน้าโดยไม่ต้องผ่าตัด.',
     description_en:
       'HIFU (High-Intensity Focused Ultrasound) is a technology that lifts the facial skin without surgery.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/hifu',
   },
   {
@@ -80,7 +80,7 @@ export const blogsList = [
       'บทความนี้จะพาคุณรู้จักกับ Thermage และวิธีการที่ใช้พลังงานคลื่นวิทยุเพื่อกระชับและเรียบเนียนผิว.',
     description_en:
       'This article introduces Thermage and how it uses radiofrequency energy to tighten and smooth the skin.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/thermage',
   },
   {
@@ -92,7 +92,7 @@ export const blogsList = [
       'PRP Therapy (Platelet-Rich Plasma) คืออะไร และวิธีการใช้พลาสมาจากเลือดของคุณเองเพื่อฟื้นฟูผิว.',
     description_en:
       'PRP Therapy (Platelet-Rich Plasma) explained: how your own blood plasma is used for skin rejuvenation.',
-    imgSrc: '/src/uploads/public/image-1200-1200.webp',
+    imgSrc: '/storage/image-1200-1200.webp',
     link: '/blogs/prp-therapy',
   },
 ]

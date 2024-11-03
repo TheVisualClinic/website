@@ -7,7 +7,7 @@ import Image from 'next/image'
 export default function AboutSection() {
   const activeLocale = useLocale()
 
-  const sectionImage = '/src/uploads/public/clinic-img-1.webp'
+  const sectionImage = '/storage/clinic-img-1.webp'
 
   const sectionContent = {
     caption_th: 'เกี่ยวกับเรา',

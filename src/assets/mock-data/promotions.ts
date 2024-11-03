@@ -1,7 +1,7 @@
 export const promotionsList = [
   {
     id: 1,
-    image: '/src/uploads/public/image-1200-1200.webp',
+    image: '/storage/image-1200-1200.webp',
     title_th: 'ยกระดับผิวใส ไร้ริ้วรอย แลดูอ่อนเยาว์',
     title_en: 'Enhance Clear Skin, Wrinkle-Free, Youthful Look',
     price: '29,900 .-',
@@ -30,7 +30,7 @@ export const promotionsList = [
   },
   {
     id: 2,
-    image: '/src/uploads/public/image-1200-1200.webp',
+    image: '/storage/image-1200-1200.webp',
     title_th: 'ลดเลือนริ้วรอย ด้วยโปรแกรม BOTOX',
     title_en: 'Reduce Wrinkles with BOTOX Program',
     price: '15,000 .-',
@@ -55,7 +55,7 @@ export const promotionsList = [
   },
   {
     id: 3,
-    image: '/src/uploads/public/image-1200-1200.webp',
+    image: '/storage/image-1200-1200.webp',
     title_th: 'โปรแกรมเลเซอร์กำจัดขน DIODE',
     title_en: 'DIODE Hair Removal Laser Program',
     price: '9,900 .-',

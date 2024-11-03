@@ -13,7 +13,7 @@ export default function HeroSection() {
   const activeLocale = useLocale()
   const tBtn = useTranslations('button')
 
-  const sectionImage = '/src/uploads/public/clinic-img-3.webp'
+  const sectionImage = '/storage/clinic-img-3.webp'
   const heroCard = {
     title_th: '" The Tailor-made Experience "',
     title_en: '" The Tailor-made Experience "',

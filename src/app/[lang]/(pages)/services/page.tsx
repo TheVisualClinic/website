@@ -1,5 +1,6 @@
 import HeaderSection from './sub-components/section-header'
 import NewCustomerPromotionSection from './sub-components/section-new-customer-promotion'
+import PartnerSection from './sub-components/section-partner'
 import PromotionsSection from './sub-components/section-promotions'
 import ServicesListSection from './sub-components/section-services-list'
 import SocialMediaSection from './sub-components/section-social-media'
@@ -10,6 +11,7 @@ export default function ServicesPage() {
       <HeaderSection />
       <NewCustomerPromotionSection />
       <ServicesListSection />
+      <PartnerSection />
       <SocialMediaSection />
       <PromotionsSection />
     </div>
