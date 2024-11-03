@@ -4,14 +4,14 @@ import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import anime from 'animejs'
-import { blogsMockup } from '../../../home/sub-components/mock-data'
+import { blogsList } from '@/assets/mock-data/blogs'
 import { useLocale } from 'next-intl'
 import Link from 'next/link'
 
 export default function BlogsSection() {
   const activeLocale = useLocale()
 
-  const sortedServices = [...blogsMockup].sort((a, b) => a.order - b.order)
+  const sortedServices = [...blogsList].sort((a, b) => a.order - b.order)
   const groupedServices = []
   for (let i = 0; i < sortedServices.length; i += 4) {
     groupedServices.push(sortedServices.slice(i, i + 4))
@@ -98,14 +98,20 @@ export default function BlogsSection() {
               <div key={blog.id} className={`service-item`}>
                 <Link href={`/${activeLocale}/blog/${blog.id}`}>
                   <Image
-                    src={blog.imgSrc}
-                    alt={blog.title}
+                    src={`${process.env.STORAGE_PROVIDER_URL}${blog.imgSrc}`}
+                    alt={activeLocale === 'th' ? blog.title_th : blog.title_en}
+                    width={1200}
+                    height={1200}
                     className='rounded-2xl hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer transition-all duration-300'
                   />
                 </Link>
                 <div className='p-2'>
-                  <h3 className='text-2xl text-[#483E3B] truncate'>{blog.title}</h3>
-                  <p className='text-[#877A6B] line-clamp-2'>{blog.description}</p>
+                  <h3 className='text-2xl text-[#483E3B] truncate'>
+                    {activeLocale === 'th' ? blog.title_th : blog.title_en}
+                  </h3>
+                  <p className='text-[#877A6B] line-clamp-2'>
+                    {activeLocale === 'th' ? blog.description_th : blog.description_en}
+                  </p>
                   <div className='flex justify-end py-2'>
                     <Link
                       href={`/${activeLocale}/blog/${blog.id}`}
