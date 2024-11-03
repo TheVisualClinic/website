@@ -7,6 +7,8 @@ import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { socialLink, clinicContact } from '@/assets/mock-data/contacts'
+import { formatPhoneNumber } from '@/lib/phoneFormatter'
 
 export default function HeroSection() {
   const router = useRouter()
@@ -45,7 +47,7 @@ export default function HeroSection() {
             </div>
             <p>{activeLocale === 'th' ? heroCard.description_th : heroCard.description_en}</p>
             <div className='flex items-center gap-4'>
-              <Link href={'https://lin.ee/CyHa9b3'} target='_blank'>
+              <Link href={socialLink.line} target='_blank'>
                 <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                   {tBtn('booking')}
                 </Button>
@@ -64,7 +66,7 @@ export default function HeroSection() {
       <div className='bg-[#CDB8A4] relative z-30'>
         <div className='max-w-[1080px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-6 py-6 text-center'>
           <Link
-            href={'https://www.facebook.com/thevisualclinic'}
+            href={socialLink.facebook}
             target='_blank'
             className='flex items-center md:justify-center gap-2'
           >
@@ -72,7 +74,7 @@ export default function HeroSection() {
             <p>The Visual Clinic {activeLocale === 'th' ? 'รัชโยธิน' : 'Ratchayotin'}</p>
           </Link>
           <Link
-            href={'https://www.instagram.com/thevisual_clinic/'}
+            href={socialLink.instagram}
             target='_blank'
             className='flex items-center md:justify-center gap-2'
           >
@@ -80,17 +82,20 @@ export default function HeroSection() {
             <p>thevisual_clinic</p>
           </Link>
           <Link
-            href={'https://lin.ee/CyHa9b3'}
+            href={socialLink.line}
             target='_blank'
             className='flex items-center md:justify-center gap-2'
           >
             <Image src={socialLineDark} alt='Social Icon' width={24} />
             <p>@thevisual_clinic</p>
           </Link>
-          <div className='flex items-center md:justify-center gap-2'>
+          <Link
+            href={`tel:${clinicContact.phone}`}
+            className='flex items-center md:justify-center gap-2'
+          >
             <PhoneIcon className='w-[32px] h-[24px]' />
-            <p>084-194-5626</p>
-          </div>
+            <p>{formatPhoneNumber(clinicContact.phone)}</p>
+          </Link>
         </div>
       </div>
     </section>

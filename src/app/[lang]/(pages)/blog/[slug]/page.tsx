@@ -1,3 +1,5 @@
+'use client'
+
 import { img1600x900 } from '@/assets/images'
 import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'

@@ -8,8 +8,9 @@ import { useState, useEffect, useRef } from 'react'
 import anime from 'animejs'
 import { useLocale, useTranslations } from 'next-intl'
 import { promotionsList } from '@/assets/mock-data/promotions'
+import { socialLink } from '@/assets/mock-data/contacts'
 
-export default function PromotionsSection() {
+export default function PromotionsBaseSection() {
   const activeLocale = useLocale()
   const tBtn = useTranslations('button')
 
@@ -64,14 +65,14 @@ export default function PromotionsSection() {
                     <div>
                       {promotion.benefits.map((benefit, i) => (
                         <div key={i} className='flex items-center gap-2'>
-                          <CheckCheckIcon className='text-[#AA7F65]' />
+                          <CheckCheckIcon className='text-[#AA7F65] min-w-6 min-h-6' />
                           <span>{activeLocale === 'th' ? benefit.th : benefit.en}</span>
                         </div>
                       ))}
                     </div>
 
                     <div>
-                      <Link href={'https://lin.ee/CyHa9b3'} target='_blank'>
+                      <Link href={socialLink.line} target='_blank'>
                         <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                           {tBtn('booking')}
                         </Button>

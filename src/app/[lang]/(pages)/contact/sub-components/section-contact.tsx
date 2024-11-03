@@ -1,3 +1,5 @@
+'use client'
+
 import {
   socialFacebookSolid,
   socialInstagramSolid,
@@ -6,44 +8,68 @@ import {
 } from '@/assets/icons'
 import { Separator } from '@/components/ui/separator'
 import { Clock2Icon, MailIcon, MapPinIcon, PhoneIcon } from 'lucide-react'
+import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+import { clinicContact, socialLink } from '@/assets/mock-data/contacts'
+import { formatPhoneNumber } from '@/lib/phoneFormatter'
 
 export default function ContactSection() {
+  const activeLocale = useLocale()
+
+  const sectionContent = {
+    caption_th: 'The Visual Clinic',
+    caption_en: 'The Visual Clinic',
+    description_th:
+      'ติดต่อเราวันนี้เพื่อรับข้อมูลเพิ่มเติมเกี่ยวกับบริการของเรา \n ทีมงานของเราพร้อมให้คำแนะนำและช่วยเหลือคุณในทุกขั้นตอน',
+    description_en:
+      'Contact us today to learn more about our services. \n Our team is ready to provide guidance and assist you every step of the way.',
+  }
+
+  const sectionSocialMedia = {
+    title_th: 'ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง',
+    title_en: 'Follow our news and promotions through',
+  }
+
   return (
     <section className='py-16 bg-[#F9F6F3] text-[#483E3B]'>
       <div className='container space-y-10 px-4 sm:px-8'>
         <div className='space-y-2'>
-          <p className='text-[#9C6E5A] font-semibold'>The Visual Clinic</p>
-          <h2 className='text-xl font-light sm:text-2xl w-full sm:max-w-2xl text-[#483E3B]'>
-            ติดต่อเราวันนี้เพื่อรับข้อมูลเพิ่มเติมเกี่ยวกับบริการของเรา
-            ทีมงานของเราพร้อมให้คำแนะนำและช่วยเหลือคุณในทุกขั้นตอน
+          <p className='text-[#9C6E5A] font-semibold capitalize'>
+            {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
+          </p>
+          <h2 className='text-xl font-light sm:text-2xl w-full text-[#483E3B] whitespace-pre-line'>
+            {activeLocale === 'th' ? sectionContent.description_th : sectionContent.description_en}
           </h2>
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           <div className='border border-[#473D3C] rounded-xl p-6 space-y-4'>
-            <h3 className='text-2xl'>Contact Us</h3>
+            <h3 className='text-2xl'>{activeLocale === 'th' ? 'ติดต่อเรา' : 'Contact Us'}</h3>
             <div className='flex items-center gap-4'>
               <MapPinIcon className='min-w-6 min-h-6' />
-              <p>1845/10 1845/10 ถ. พหลโยธิน แขวงลาดยาว จตุจักร กรุงเทพมหานคร 10900</p>
+              <p>{activeLocale === 'th' ? clinicContact.address_th : clinicContact.address_en}</p>
             </div>
             <div className='flex items-center gap-4'>
               <PhoneIcon className='min-w-6 min-h-6' />
-              <p>084-194-5626</p>
+              <p>{formatPhoneNumber(clinicContact.phone)}</p>
             </div>
             <div className='flex items-center gap-4'>
               <MailIcon className='min-w-6 min-h-6' />
-              <p>thevisualclinic@gmail.com</p>
+              <p>{clinicContact.email}</p>
             </div>
             <div className='flex items-center gap-4'>
               <Clock2Icon className='min-w-6 min-h-6' />
-              <p>12.00-20.00 น. (หยุดทุกวันพุธ)</p>
+              <p>
+                {activeLocale === 'th'
+                  ? clinicContact.service_hours_th
+                  : clinicContact.service_hours_en}
+              </p>
             </div>
           </div>
           <div>
             <iframe
-              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242.1345118738378!2d100.56927081014231!3d13.829898397608032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29d34a47fcaeb%3A0x48156cd397f1250e!2zVGhlIFZpc3VhbCBDbGluaWMg4Lij4Lix4LiK4LmC4Lii4LiY4Li04LiZ!5e0!3m2!1sth!2sth!4v1728897511198!5m2!1sth!2sth'
+              src={clinicContact.google_map}
               width='100%'
               height='100%'
               style={{ border: 0 }}
@@ -55,32 +81,34 @@ export default function ContactSection() {
         </div>
 
         <div className='text-center'>
-          <h2 className='text-xl sm:text-2xl'>ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง</h2>
+          <h2 className='text-xl sm:text-2xl capitalize'>
+            {activeLocale === 'th' ? sectionSocialMedia.title_th : sectionSocialMedia.title_en}
+          </h2>
           <Separator className='my-6 max-w-md mx-auto bg-[#483E3B]' />
           <div className='flex items-center gap-6 justify-center'>
             <Link
-              href={'https://www.facebook.com/thevisualclinic'}
+              href={socialLink.facebook}
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >
               <Image src={socialFacebookSolid} alt='Socail Icon' />
             </Link>
             <Link
-              href={'https://www.instagram.com/thevisual_clinic/'}
+              href={socialLink.instagram}
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >
               <Image src={socialInstagramSolid} alt='Socail Icon' />
             </Link>
             <Link
-              href={'https://www.tiktok.com/@thevisualclinic'}
+              href={socialLink.tiktok}
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >
               <Image src={socialTiktokSolid} alt='Socail Icon' />
             </Link>
             <Link
-              href={'https://lin.ee/CyHa9b3'}
+              href={socialLink.line}
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >

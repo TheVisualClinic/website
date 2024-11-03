@@ -1,3 +1,5 @@
+'use client'
+
 import BeforeAfterSection from './sub-components/section-before-after'
 import HeaderSection from './sub-components/section-header'
 import ImageSection from './sub-components/section-image'

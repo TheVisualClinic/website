@@ -1,10 +1,19 @@
-import { contactImg } from '@/assets/images'
+'use client'
+
 import Image from 'next/image'
 
 export default function ImageSection() {
+  const sectionImage = '/storage/clinic-img-9.webp'
+
   return (
     <div>
-      <Image src={contactImg} alt='Contact Image Cover' className='w-full' />
+      <Image
+        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        alt='Contact Image Cover'
+        width={1920}
+        height={500}
+        className='w-full h-[500px] object-cover'
+      />
     </div>
   )
 }

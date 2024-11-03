@@ -41,7 +41,11 @@ export default function DoctorSection() {
         </div>
         <div
           className={`grid ${
-            doctorsList.length === 1 ? 'justify-items-center' : 'grid-cols-1 md:grid-cols-2'
+            doctorsList.length === 1
+              ? 'justify-items-center'
+              : doctorsList.length === 2
+              ? 'grid-cols-1 md:grid-cols-2'
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
           } gap-8 mt-10`}
         >
           {doctorsList.map((doctor, index) => (
@@ -57,7 +61,7 @@ export default function DoctorSection() {
                 }}
               />
               <div>
-                <h3 className='text-xl'>
+                <h3 className='text-xl text-[#9C6E5A] font-medium'>
                   {activeLocale === 'th' ? doctor.name_th : doctor.name_en}
                 </h3>
                 <p>{activeLocale === 'th' ? doctor.full_name_th : doctor.full_name_en}</p>

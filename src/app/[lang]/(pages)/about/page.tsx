@@ -1,3 +1,5 @@
+'use client'
+
 import AboutSection from './sub-components/section-about'
 import AboutClinicSection from './sub-components/section-about-clinic'
 import DoctorSection from './sub-components/section-doctor'

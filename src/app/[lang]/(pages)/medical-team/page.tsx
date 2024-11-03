@@ -1,3 +1,5 @@
+'use client'
+
 import CertificateSection from './sub-components/section-certificate'
 import HeaderSection from './sub-components/section-header'
 import ImageSection from './sub-components/section-image'

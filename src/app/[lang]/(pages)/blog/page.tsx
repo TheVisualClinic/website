@@ -1,3 +1,5 @@
+'use client'
+
 import BlogsList from './sub-components/blogs-list'
 import ImageSection from './sub-components/section-image'
 import ToolsBar from './sub-components/tools-bar'

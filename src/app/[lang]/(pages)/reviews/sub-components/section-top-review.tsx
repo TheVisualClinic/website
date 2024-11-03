@@ -1,21 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
-import { topReviewImg } from '@/assets/images'
 import { StarRatingIcon } from '@/components/base/star-rating-icon'
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import anime from 'animejs'
-
-const topReview = {
-  image: topReviewImg,
-  reviewContent:
-    '“ บริการยอดเยี่ยมมากค่ะ พนักงานให้คำแนะนำอย่างละเอียดและมืออาชีพ รู้สึกผ่อนคลายและมั่นใจในการให้บริการ ทุกขั้นตอนมีการอธิบายอย่างชัดเจน ประทับใจมากค่ะ และจะกลับมาใช้บริการอีกแน่นอน บรรยากาศในคลินิกก็สะอาดและอบอุ่น ทำให้รู้สึกสบายใจในการเข้ามารับบริการ รู้สึกว่าตัวเองได้รับการดูแลอย่างดีทุกขั้นตอน และการติดตามผลหลังการรักษาก็ทำให้มั่นใจในคุณภาพของที่นี่มากขึ้น ขอบคุณทีมงานทุกคนที่ทำให้ประสบการณ์ครั้งนี้ยอดเยี่ยมจริง ๆ ค่ะ “',
-  rating: 5,
-  tags: ['ได้ตรงตามความต้องการ', 'บริการดีใส่ใจทุกขั้นตอน', 'คุณหมอเป็นมืออาชีพและเป็นกันเอง'],
-  customerName: 'นามแฝง: แอนนา',
-  caption: 'ประทับใจในบริการและผลลัพธ์ที่ได้ค่ะ',
-}
+import { topReview } from '@/assets/mock-data/reviews'
 
 export default function TopReviewsSection() {
   const activeLocale = useLocale()
@@ -36,14 +26,18 @@ export default function TopReviewsSection() {
       <div className='grid grid-cols-12 gap-6 max-w-[1080px] mx-auto'>
         <div className='col-span-4'>
           <Image
-            src={topReview.image}
+            src={`${process.env.STORAGE_PROVIDER_URL}${topReview.image}`}
             alt='Top Review'
+            width={1200}
+            height={1200}
             className='w-full object-cover rounded-xl'
           />
         </div>
         <div className='col-span-8 px-4'>
           <div className='bg-white p-6 rounded-2xl space-y-4'>
-            <p className='text-sm text-[#483E3B]'>{topReview.reviewContent}</p>
+            <p className='text-sm text-[#483E3B]'>
+              {activeLocale === 'th' ? topReview.review_content_th : topReview.review_content_en}
+            </p>
             <div className='flex items-center justify-end gap-2'>
               {Array.from({ length: 5 }, (_, index) => (
                 <StarRatingIcon
@@ -56,13 +50,17 @@ export default function TopReviewsSection() {
           <div className='flex items-center py-4 gap-4'>
             {topReview.tags.map((tag, index) => (
               <div key={index} className='text-white bg-[#51463A] rounded-full py-2 px-4 text-xs'>
-                {tag}
+                {activeLocale === 'th' ? tag.th : tag.en}
               </div>
             ))}
           </div>
           <div>
-            <p className='text-[#483E3B] font-medium text-lg'>{topReview.customerName}</p>
-            <p className='text-[#877A6B]'>{topReview.caption}</p>
+            <p className='text-[#483E3B] font-medium text-lg'>
+              {activeLocale === 'th' ? topReview.customer_name_th : topReview.customer_name_en}
+            </p>
+            <p className='text-[#877A6B]'>
+              {activeLocale === 'th' ? topReview.caption_th : topReview.caption_en}
+            </p>
           </div>
         </div>
       </div>

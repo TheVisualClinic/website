@@ -1,10 +1,19 @@
-import { reviewImg } from '@/assets/images'
+'use client'
+
 import Image from 'next/image'
 
 export default function ImageSection() {
+  const sectionImage = '/storage/clinic-img-10.webp'
+
   return (
     <div>
-      <Image src={reviewImg} alt='Contact Image Cover' className='w-full' />
+      <Image
+        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        alt='Customer Reviews'
+        width={1920}
+        height={500}
+        className='w-full h-[500px] object-cover'
+      />
     </div>
   )
 }

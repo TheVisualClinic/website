@@ -1,3 +1,5 @@
+'use client'
+
 import ContactSection from './sub-components/section-contact'
 import HeaderSection from './sub-components/section-header'
 import ImageSection from './sub-components/section-image'

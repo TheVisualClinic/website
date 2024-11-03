@@ -1,3 +1,5 @@
+'use client'
+
 import { homeDoctorImg } from '@/assets/images'
 import Image from 'next/image'
 

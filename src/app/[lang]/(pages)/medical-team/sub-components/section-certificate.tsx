@@ -24,8 +24,11 @@ import {
   certificateImg20,
   certificateImg21,
 } from '@/assets/certificate-images'
+import { useLocale } from 'next-intl'
 
 export default function CertificateSection() {
+  const activeLocale = useLocale()
+
   const certificateList1 = [
     { caption: 'Clinic Certificate 1', image: certificateImg1 },
     { caption: 'Clinic Certificate 2', image: certificateImg2 },
@@ -53,14 +56,24 @@ export default function CertificateSection() {
     { caption: 'Clinic Certificate 21', image: certificateImg21 },
   ]
 
+  const sectionContent = {
+    caption_th: 'ความภาคภูมิใจของเรา',
+    caption_en: 'Our Pride',
+    title_th:
+      'เราได้รับการรับรองและความไว้วางใจจากสถาบันชั้นนำ \n เพื่อยืนยันคุณภาพและความเป็นมืออาชีพของเรา',
+    title_en:
+      'Certified and Trusted by Leading Institutions \n Ensuring Our Quality and Professionalism',
+  }
+
   return (
     <section className='py-16 bg-[#E7DDD3]'>
       <div className='container'>
         <div className='text-center mb-8 space-y-2'>
-          <p className='text-[#9C6E5A] font-semibold'>ความภาคภูมิใจของเรา</p>
-          <h3 className='text-2xl font-light text-gray-600 max-w-lg mx-auto'>
-            เราได้รับการรับรองและความไว้วางใจจากสถาบันชั้นนำ
-            เพื่อยืนยันคุณภาพและความเป็นมืออาชีพของเรา
+          <p className='text-[#9C6E5A] font-semibold capitalize'>
+            {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
+          </p>
+          <h3 className='text-2xl font-light text-gray-600 mx-auto whitespace-pre-line'>
+            {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
           </h3>
         </div>
 

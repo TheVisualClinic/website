@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 import { socialLink, clinicContact } from '@/assets/mock-data/contacts'
+import { formatPhoneNumber } from '@/lib/phoneFormatter'
 
 export default function Footer() {
   const activeLocale = useLocale()
@@ -58,12 +59,6 @@ export default function Footer() {
     { icon: <PhoneIcon className='w-5 h-5' />, label: formatPhoneNumber(clinicContact.phone) },
     { icon: <MailIcon className='w-5 h-5' />, label: clinicContact.email },
   ]
-
-  function formatPhoneNumber(phoneNumber: string) {
-    const cleaned = ('' + phoneNumber).replace(/\D/g, '')
-    const formatted = cleaned.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
-    return formatted
-  }
 
   return (
     <footer className='bg-[#483E3B] text-white pt-14 text-lg md:text-sm'>

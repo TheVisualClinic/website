@@ -1,46 +1,52 @@
 'use client'
 
 import { useState } from 'react'
-import { img1200x1200 } from '@/assets/images'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
+import { beforeDataList } from '@/assets/mock-data/reviews'
+import { useLocale } from 'next-intl'
 
 interface BeforeAfterImage {
   id: number
-  imgSrc: StaticImageData
-  altText: string
+  img_src: string
+  alt_text: string
 }
 
-const beforeAfterImages: BeforeAfterImage[] = Array.from({ length: 20 }, (_, index) => ({
-  id: index + 1,
-  imgSrc: img1200x1200,
-  altText: `Before After ${index + 1}`,
-}))
-
 export default function BeforeAfterSection() {
+  const activeLocale = useLocale()
+
   const [currentPage, setCurrentPage] = useState<number>(1)
   const itemsPerPage: number = 8
-  const totalPages: number = Math.ceil(beforeAfterImages.length / itemsPerPage)
+  const totalPages: number = Math.ceil(beforeDataList.length / itemsPerPage)
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
 
-  const paginatedImages = beforeAfterImages.slice(
+  const paginatedImages = beforeDataList.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   )
 
+  const sectionContent = {
+    title_th: 'รูปภาพเปรียบเทียบก่อนและหลังการใช้บริการ',
+    title_en: 'Before and After Service Comparison Photos',
+  }
+
   return (
     <section className='bg-[#F9F6F3]'>
       <div className='container py-16 space-y-6 text-center'>
-        <p className='text-[#9C6E5A] font-semibold'>รูปภาพเปรียบเทียบก่อนและหลังการใช้บริการ</p>
+        <p className='text-[#9C6E5A] font-semibold capitalize'>
+          {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
+        </p>
 
         <div className='grid grid-cols-12 gap-6'>
           {paginatedImages.map((image) => (
             <div key={image.id} className='col-span-3'>
               <Image
-                src={image.imgSrc}
-                alt={image.altText}
+                src={`${process.env.STORAGE_PROVIDER_URL}${image.img_src}`}
+                alt={image.alt_text}
+                width={1200}
+                height={1200}
                 className='w-full object-cover rounded-xl'
               />
             </div>
