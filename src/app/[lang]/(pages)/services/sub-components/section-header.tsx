@@ -13,13 +13,13 @@ export default function HeaderSection() {
   }
 
   return (
-    <section className='pt-16 bg-[#F9F6F3]'>
-      <div className='container'>
+    <section className='pt-12 md:pt-16 bg-[#F9F6F3]'>
+      <div className='container px-4 md:px-6'>
         <div className='text-center mb-8 space-y-2'>
           <p className='text-[#9C6E5A] font-semibold'>
             {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
           </p>
-          <h2 className='text-3xl font-light mx-auto text-[#483E3B] whitespace-pre-line'>
+          <h2 className='text-xl font-light mx-auto text-[#483E3B] md:whitespace-pre-line'>
             {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
           </h2>
         </div>

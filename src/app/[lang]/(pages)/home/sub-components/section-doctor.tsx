@@ -15,7 +15,7 @@ export default function DoctorSection() {
     caption_th: 'ทีมแพทย์',
     caption_en: 'Medical Team',
     title_th:
-      'เราพร้อมดูแลคุณด้วยความใส่ใจและประสบการณ์ระดับมืออาชีพ \n เพื่อให้คุณได้รับการดูแลที่ดีที่สุด',
+      'เราพร้อมดูแลคุณด้วยความใส่ใจ และประสบการณ์ระดับมืออาชีพ \n เพื่อให้คุณได้รับการดูแลที่ดีที่สุด',
     title_en:
       'We provide dedicated and professional \n care to ensure you receive the best treatment and attention you deserve.',
   }
@@ -27,15 +27,15 @@ export default function DoctorSection() {
         alt='Medical Team Cover'
         width={1920}
         height={500}
-        className='w-full h-[500px] object-cover'
+        className='w-full h-[350px] md:h-[500px] object-cover'
       />
 
-      <div className='container py-16'>
+      <div className='container px-4 md:px-6 py-12 md:py-16'>
         <div className='text-center space-y-2'>
           <p className='text-[#9C6E5A] font-semibold'>
             {activeLocale === 'th' ? pageContent.caption_th : pageContent.caption_en}
           </p>
-          <h2 className='text-3xl font-light text-center whitespace-pre-line'>
+          <h2 className='text-x md:text-2xl lg:text-3xl font-light text-center md:whitespace-pre-line'>
             {activeLocale === 'th' ? pageContent.title_th : pageContent.title_en}
           </h2>
         </div>
@@ -64,8 +64,10 @@ export default function DoctorSection() {
                 <h3 className='text-xl text-[#9C6E5A] font-medium'>
                   {activeLocale === 'th' ? doctor.name_th : doctor.name_en}
                 </h3>
-                <p>{activeLocale === 'th' ? doctor.full_name_th : doctor.full_name_en}</p>
-                <p className='text-[#877A6B] whitespace-pre-line'>
+                <p className='text-lg'>
+                  {activeLocale === 'th' ? doctor.full_name_th : doctor.full_name_en}
+                </p>
+                <p className='text-[#877A6B] whitespace-pre-line text-sm'>
                   {activeLocale === 'th' ? doctor.qualifications_th : doctor.qualifications_en}
                 </p>
               </div>

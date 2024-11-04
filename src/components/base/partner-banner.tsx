@@ -16,10 +16,10 @@ export default function PartnerBanner() {
   }
 
   return (
-    <section className='py-16 bg-white px-4 md:px-6'>
-      <div className='container space-y-6'>
+    <section className='py-12 md:py-16 bg-white px-4 md:px-6'>
+      <div className='container px-4 md:px-6 space-y-6'>
         <div className='text-center'>
-          <h2 className='text-3xl font-semibold text-[#483E3B]'>
+          <h2 className='text-xl md:text-3xl font-semibold text-[#483E3B]'>
             {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
           </h2>
         </div>

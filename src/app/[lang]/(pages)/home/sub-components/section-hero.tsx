@@ -6,12 +6,10 @@ import { PhoneIcon } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { socialLink, clinicContact } from '@/assets/mock-data/contacts'
 import { formatPhoneNumber } from '@/lib/phoneFormatter'
 
 export default function HeroSection() {
-  const router = useRouter()
   const activeLocale = useLocale()
   const tBtn = useTranslations('button')
 
@@ -27,21 +25,19 @@ export default function HeroSection() {
 
   return (
     <section className='relative'>
-      <div className='flex justify-center'>
-        <Image
-          src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
-          alt='home page hero image'
-          width={1920}
-          height={700}
-          className='w-full h-[700px] object-cover'
-        />
-      </div>
+      <Image
+        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        alt='home page hero image'
+        width={1920}
+        height={700}
+        className='w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover'
+      />
 
-      <div className='absolute top-0 left-0 w-full h-full flex items-center mt-[-50px] md:mt-0 text-[#483E3B]'>
-        <div className='w-full md:w-3/4 lg:w-1/2 p-6 ml-0 md:ml-32'>
-          <div className='bg-white/50 p-6 rounded-lg backdrop-blur-md max-w-lg space-y-6'>
+      <div className='absolute top-0 left-0 w-full h-full flex items-center text-[#483E3B]'>
+        <div className='container px-4 md:px-6 grid grid-cols-12'>
+          <div className='col-span-12 bg-white/50 p-4 md:p-6 rounded-lg backdrop-blur-md max-w-lg space-y-4 md:space-y-6 xl:ml-24'>
             <div>
-              <h3 className='text-4xl dancing-script-font'>
+              <h3 className='text-[28px] md:text-3xl lg:text-4xl dancing-script-font'>
                 {activeLocale === 'th' ? heroCard.title_th : heroCard.title_en}
               </h3>
             </div>
@@ -64,37 +60,42 @@ export default function HeroSection() {
       </div>
 
       <div className='bg-[#CDB8A4] relative z-30'>
-        <div className='max-w-[1080px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-6 py-6 text-center'>
+        <div className='max-w-[1080px] mx-auto px-4 md:px-6 py-4 md:py-6 grid grid-cols-4 gap-4 md:gap-6 text-center'>
           <Link
             href={socialLink.facebook}
             target='_blank'
-            className='flex items-center md:justify-center gap-2'
+            className='flex items-center gap-4 justify-center'
           >
-            <Image src={socialFacebookDark} alt='Social Icon' width={24} />
-            <p>The Visual Clinic {activeLocale === 'th' ? 'รัชโยธิน' : 'Ratchayotin'}</p>
+            <Image src={socialFacebookDark} alt='Social Icon' width={28} />
+            <p className='hidden lg:block'>
+              The Visual Clinic {activeLocale === 'th' ? 'รัชโยธิน' : 'Ratchayotin'}
+            </p>
           </Link>
+
           <Link
             href={socialLink.instagram}
             target='_blank'
-            className='flex items-center md:justify-center gap-2'
+            className='flex items-center gap-4 justify-center'
           >
-            <Image src={socialInstagramDark} alt='Social Icon' width={24} />
-            <p>thevisual_clinic</p>
+            <Image src={socialInstagramDark} alt='Social Icon' width={28} />
+            <p className='hidden lg:block'>thevisual_clinic</p>
           </Link>
+
           <Link
             href={socialLink.line}
             target='_blank'
-            className='flex items-center md:justify-center gap-2'
+            className='flex items-center gap-4 justify-center'
           >
-            <Image src={socialLineDark} alt='Social Icon' width={24} />
-            <p>@thevisual_clinic</p>
+            <Image src={socialLineDark} alt='Social Icon' width={28} />
+            <p className='hidden lg:block'>@thevisual_clinic</p>
           </Link>
+
           <Link
             href={`tel:${clinicContact.phone}`}
-            className='flex items-center md:justify-center gap-2'
+            className='flex items-center gap-4 justify-center'
           >
-            <PhoneIcon className='w-[32px] h-[24px]' />
-            <p>{formatPhoneNumber(clinicContact.phone)}</p>
+            <PhoneIcon className='w-[28px] h-[28px]' />
+            <p className='hidden lg:block'>{formatPhoneNumber(clinicContact.phone)}</p>
           </Link>
         </div>
       </div>

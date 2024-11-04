@@ -1,10 +1,10 @@
 'use client'
 
+import Link from 'next/link'
+import anime from 'animejs'
 import { useEffect } from 'react'
 import { StarRatingIcon } from '@/components/base/star-rating-icon'
 import { useLocale, useTranslations } from 'next-intl'
-import anime from 'animejs'
-import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { reviewsList } from '@/assets/mock-data/reviews'
 
@@ -34,12 +34,12 @@ export default function ReviewsBanner({ action }: { action: boolean }) {
 
   return (
     <section className='bg-[#E7DDD3]'>
-      <div className='container py-16 space-y-6 text-center'>
+      <div className='container px-4 md:px-6 py-12 md:py-16 space-y-6 text-center'>
         <p className='text-[#9C6E5A] font-semibold'>
           {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
         </p>
 
-        <div className='grid grid-cols-3 gap-6 max-w-[1080px] mx-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-[1080px] mx-auto'>
           {reviewsList.map((review) => (
             <div key={review.id} className='review-card bg-white/40 p-6 rounded-xl space-y-4'>
               <div className='flex items-center justify-center gap-2'>

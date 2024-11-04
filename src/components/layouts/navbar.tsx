@@ -30,6 +30,8 @@ export default function Navbar() {
       }
     }
 
+    handleScroll()
+
     window.addEventListener('scroll', handleScroll)
 
     return () => {

@@ -1,11 +1,11 @@
 'use client'
 
+import Link from 'next/link'
 import Image from 'next/image'
+import anime from 'animejs'
 import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
-import anime from 'animejs'
 import { useLocale, useTranslations } from 'next-intl'
-import Link from 'next/link'
 import { LastArticleList } from '@/assets/mock-data/blogs'
 
 export default function LastArticleBanner() {
@@ -90,16 +90,16 @@ export default function LastArticleBanner() {
   }
 
   return (
-    <section className='py-16 bg-[#F9F6F3]' ref={sectionRef}>
-      <div className='container'>
+    <section className='py-12 md:py-16 bg-[#F9F6F3]' ref={sectionRef}>
+      <div className='container px-4 md:px-6'>
         <div className='text-center mb-8 opacity-0' ref={textRef}>
-          <h2 className='text-3xl max-w-xl mx-auto text-[#483E3B] font-semibold capitalize'>
+          <h2 className='text-2xl md:text-3xl max-w-xl mx-auto text-[#483E3B] font-semibold capitalize'>
             {activeLocale === 'th' ? pageContent.caption_th : pageContent.caption_en}
           </h2>
         </div>
 
-        <div className='space-y-6 opacity-0' ref={groupRef}>
-          <div className='grid gap-6 grid-cols-4'>
+        <div className='space-y-4 md:space-y-6 opacity-0' ref={groupRef}>
+          <div className='grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-4'>
             {groupedServices[currentGroupIndex].map((blog) => (
               <div key={blog.id} className={`service-item`}>
                 <Link href={`/${activeLocale}/blog/${blog.id}`}>
@@ -112,13 +112,13 @@ export default function LastArticleBanner() {
                   />
                 </Link>
                 <div className='p-2'>
-                  <h3 className='text-2xl text-[#483E3B] truncate'>
+                  <h3 className='text-lg md:text-2xl font-medium text-[#483E3B] truncate'>
                     {activeLocale === 'th' ? blog.title_th : blog.title_en}
                   </h3>
-                  <p className='text-[#877A6B] line-clamp-2'>
+                  <p className='text-[#877A6B] line-clamp-2 text-sm md:text-base'>
                     {activeLocale === 'th' ? blog.description_th : blog.description_en}
                   </p>
-                  <div className='flex justify-end py-2'>
+                  <div className='flex justify-end py-2 text-sm md:text-base'>
                     <Link
                       href={`/${activeLocale}/blog/${blog.id}`}
                       className='flex gap-1 items-center text-[#9C6E5A] max-w-fit cursor-pointer transition-all duration-300 group hover:text-[#9C6E5A]/80'

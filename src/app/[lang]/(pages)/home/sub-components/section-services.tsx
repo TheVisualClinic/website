@@ -1,21 +1,41 @@
 'use client'
 
+import Link from 'next/link'
 import Image from 'next/image'
+import anime from 'animejs'
 import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
-import anime from 'animejs'
 import { servicesList } from '@/assets/mock-data/services'
 import { useLocale, useTranslations } from 'next-intl'
-import Link from 'next/link'
 
 export default function ServicesSection() {
   const activeLocale = useLocale()
   const tLink = useTranslations('buttonLink')
 
+  const [numberOfGroup, setNumberOfGroup] = useState(4)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setNumberOfGroup(2)
+      } else if (window.innerWidth < 1024) {
+        setNumberOfGroup(3)
+      } else {
+        setNumberOfGroup(4)
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   const sortedServices = [...servicesList].sort((a, b) => a.order - b.order)
   const groupedServices = []
-  for (let i = 0; i < sortedServices.length; i += 4) {
-    groupedServices.push(sortedServices.slice(i, i + 4))
+  for (let i = 0; i < sortedServices.length; i += numberOfGroup) {
+    groupedServices.push(sortedServices.slice(i, i + numberOfGroup))
   }
 
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
@@ -95,18 +115,18 @@ export default function ServicesSection() {
 
   return (
     <section className='py-16 bg-[#F9F6F3]' ref={sectionRef}>
-      <div className='container'>
+      <div className='container px-4 md:px-6'>
         <div className='text-center mb-8 opacity-0' ref={textRef}>
           <p className='text-[#9C6E5A] font-semibold capitalize'>
             {activeLocale === 'th' ? pageContent.caption_th : pageContent.caption_en}
           </p>
-          <h2 className='text-3xl font-light mx-auto text-[#483E3B] whitespace-pre-line'>
+          <h2 className='text-xl md:text-3 font-light mx-auto text-[#483E3B] whitespace-pre-line'>
             {activeLocale === 'th' ? pageContent.description_th : pageContent.description_en}
           </h2>
         </div>
 
         <div className='space-y-6 opacity-0' ref={groupRef}>
-          <div className='grid gap-6 grid-cols-4'>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6'>
             {groupedServices[currentGroupIndex].map((service, serviceIndex) => (
               <div
                 key={service.id}
@@ -122,7 +142,7 @@ export default function ServicesSection() {
                   />
                 </Link>
                 <div className='p-2'>
-                  <h3 className='text-2xl text-[#483E3B]'>
+                  <h3 className='text-lg lg:text-xl xl:text-2xl font-medium text-[#483E3B] capitalize truncate'>
                     {activeLocale === 'th' ? service.title_th : service.title_en}
                   </h3>
                   <p className='text-[#9C6E5A] space-x-2'>
@@ -131,7 +151,7 @@ export default function ServicesSection() {
                     </span>
                     <span className='font-medium'>{service.price.toLocaleString('th-TH')}.-</span>
                   </p>
-                  <p className='text-[#877A6B] line-clamp-2'>
+                  <p className='text-[#877A6B] line-clamp-2 text-sm lg:text-base'>
                     {activeLocale === 'th' ? service.description_th : service.description_en}
                   </p>
                   <div className='flex justify-end py-2'>

@@ -33,9 +33,9 @@ export default function AboutUsBanner() {
           alt='home page hero image'
           width={1920}
           height={500}
-          className='w-full h-[500px] object-cover'
+          className='w-full h-[750px] md:h-[400px] xl:h-[500px] object-cover'
         />
-        <div className='absolute inset-0 flex flex-col items-center justify-center space-y-8'>
+        <div className='absolute inset-0 flex flex-col items-center justify-center space-y-8 p-4 md:p-6'>
           <div className='space-y-2 text-center'>
             <p className='text-[#9C6E5A] font-semibold capitalize'>
               {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
@@ -45,20 +45,20 @@ export default function AboutUsBanner() {
             </h2>
           </div>
 
-          <div className='bg-white grid grid-cols-3 p-4 gap-4 rounded-2xl text-center w-[1080px]'>
-            <div className='flex flex-col gap-6 py-8'>
+          <div className='bg-white grid grid-cols-1 md:grid-cols-3 p-4 gap-4 rounded-2xl text-center w-full lg:w-[800px] xl:w-[1080px]'>
+            <div className='flex flex-col gap-4 py-6'>
               <Image src={aboutIcon1} alt='icon' width={60} className='mx-auto' />
               <p className='capitalize'>
                 {activeLocale === 'th' ? captionCard.col1_th : captionCard.col1_en}
               </p>
             </div>
-            <div className='flex flex-col gap-6 py-8 border-x border-[#473D3C] px-6'>
+            <div className='flex flex-col gap-4 py-6 md:border-x border-[#473D3C] px-4'>
               <Image src={aboutIcon2} alt='icon' width={60} className='mx-auto' />
               <p className='capitalize'>
                 {activeLocale === 'th' ? captionCard.col2_th : captionCard.col2_en}
               </p>
             </div>
-            <div className='flex flex-col gap-6 py-8'>
+            <div className='flex flex-col gap-4 py-6'>
               <Image src={aboutIcon3} alt='icon' width={60} className='mx-auto' />
               <p className='capitalize'>
                 {activeLocale === 'th' ? captionCard.col3_th : captionCard.col3_en}
