@@ -1,11 +1,11 @@
 'use client'
 
-import BeforeAfterSection from './sub-components/section-before-after'
 import HeaderSection from './sub-components/section-header'
 import ImageSection from './sub-components/section-image'
-import ReviewsSection from './sub-components/section-reviews'
-import SocialMediaSection from './sub-components/section-social-media'
 import TopReviewsSection from './sub-components/section-top-review'
+import ReviewsBanner from '@/components/base/reviews-banner'
+import BeforeAfterSection from './sub-components/section-before-after'
+import SocialBanner from '@/components/base/social-banner'
 
 export default function ReviewsPage() {
   return (
@@ -13,9 +13,9 @@ export default function ReviewsPage() {
       <HeaderSection />
       <ImageSection />
       <TopReviewsSection />
-      <ReviewsSection />
+      <ReviewsBanner action={false} />
       <BeforeAfterSection />
-      <SocialMediaSection />
+      <SocialBanner />
     </div>
   )
 }

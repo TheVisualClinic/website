@@ -29,7 +29,8 @@
     "viewReviews": "ดูรีวิวทั้งหมด"
   },
   "buttonLink": {
-    "readMore": "อ่านเพิ่มเติม"
+    "readMore": "อ่านเพิ่มเติม",
+    "requestInfo": "สอบถามข้อมูล"
   },
   "navMenu": {
     "home": "หน้าแรก",

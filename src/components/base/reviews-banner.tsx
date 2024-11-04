@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { reviewsList } from '@/assets/mock-data/reviews'
 
-export default function ReviewsSection() {
+export default function ReviewsBanner({ action }: { action: boolean }) {
   const activeLocale = useLocale()
   const tBtn = useTranslations('button')
 
@@ -61,13 +61,15 @@ export default function ReviewsSection() {
           ))}
         </div>
 
-        <div className='flex justify-center'>
-          <Link href={`/${activeLocale}/reviews`}>
-            <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
-              {tBtn('viewReviews')}
-            </Button>
-          </Link>
-        </div>
+        {action && (
+          <div className='flex justify-center'>
+            <Link href={`/${activeLocale}/reviews`}>
+              <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
+                {tBtn('viewReviews')}
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )

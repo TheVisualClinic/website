@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { BannerContent } from '@/assets/mock-data/banner-content'
 import { socialLink } from '@/assets/mock-data/contacts'
 
-export default function BannerSection() {
+export default function CaptionBanner() {
   const activeLocale = useLocale()
   const tBtn = useTranslations('button')
 

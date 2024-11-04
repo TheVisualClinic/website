@@ -4,7 +4,7 @@ import { img1600x900 } from '@/assets/images'
 import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { DotIcon } from 'lucide-react'
-import BlogsSection from './sub-components/section-blogs'
+import LastArticleBanner from '@/components/base/last-article-banner'
 
 export default function Page({ params }: { params: { slug: string } }) {
   return (
@@ -80,7 +80,9 @@ export default function Page({ params }: { params: { slug: string } }) {
           เนื่องจากความร้อนอาจส่งผลกระทบต่อการทำงานของคลื่นเสียงที่ถูกส่งลงไปในชั้นผิวหนังและลดประสิทธิภาพของการรักษา
         </p>
       </div>
-      <BlogsSection />
+
+      {/* Last Article Banner */}
+      <LastArticleBanner />
     </div>
   )
 }

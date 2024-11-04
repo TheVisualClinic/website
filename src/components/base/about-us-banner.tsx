@@ -4,7 +4,7 @@ import { aboutIcon1, aboutIcon2, aboutIcon3 } from '@/assets/icons'
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
 
-export default function AboutSection() {
+export default function AboutUsBanner() {
   const activeLocale = useLocale()
 
   const sectionImage = '/storage/clinic-img-1.webp'

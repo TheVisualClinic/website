@@ -1,7 +1,7 @@
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
 
-export default function PartnerSection() {
+export default function PartnerBanner() {
   const activeLocale = useLocale()
 
   const sectionContent = {
@@ -19,7 +19,7 @@ export default function PartnerSection() {
     <section className='py-16 bg-white px-4 md:px-6'>
       <div className='container space-y-6'>
         <div className='text-center'>
-          <h2 className='text-3xl font-semibold'>
+          <h2 className='text-3xl font-semibold text-[#483E3B]'>
             {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
           </h2>
         </div>

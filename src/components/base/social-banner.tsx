@@ -12,7 +12,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { socialLink } from '@/assets/mock-data/contacts'
 
-export default function SocialMediaSection() {
+export default function SocialBanner() {
   const activeLocale = useLocale()
   const sectionImage = '/storage/clinic-img-9.webp'
 

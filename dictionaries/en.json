@@ -29,7 +29,8 @@
     "viewReviews": "all reviews"
   },
   "buttonLink": {
-    "readMore": "read more"
+    "readMore": "read more",
+    "requestInfo": "Request Info"
   },
   "navMenu": {
     "home": "Home",

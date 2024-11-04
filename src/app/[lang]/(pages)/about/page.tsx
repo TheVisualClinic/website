@@ -1,11 +1,11 @@
 'use client'
 
-import AboutSection from './sub-components/section-about'
-import AboutClinicSection from './sub-components/section-about-clinic'
-import DoctorSection from './sub-components/section-doctor'
 import HeaderSection from './sub-components/section-header'
 import ImageSection from './sub-components/section-image'
-import PartnerSection from './sub-components/section-partner'
+import AboutClinicSection from './sub-components/section-about-clinic'
+import AboutUsBanner from '@/components/base/about-us-banner'
+import DoctorSection from './sub-components/section-doctor'
+import PartnerBanner from '@/components/base/partner-banner'
 
 export default function AboutPage() {
   return (
@@ -13,9 +13,9 @@ export default function AboutPage() {
       <HeaderSection />
       <ImageSection />
       <AboutClinicSection />
-      <AboutSection />
+      <AboutUsBanner />
       <DoctorSection />
-      <PartnerSection />
+      <PartnerBanner />
     </div>
   )
 }

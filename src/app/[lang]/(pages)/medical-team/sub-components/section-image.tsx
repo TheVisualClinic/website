@@ -9,7 +9,7 @@ export default function ImageSection() {
     <div>
       <Image
         src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
-        alt='Contact Image Cover'
+        alt='Image Cover'
         width={1920}
         height={500}
         className='w-full h-[500px] object-cover'

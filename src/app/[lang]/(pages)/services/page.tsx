@@ -1,18 +1,20 @@
+'use client'
+
 import HeaderSection from './sub-components/section-header'
-import BannerSection from './sub-components/section-banner'
-import PartnerSection from './sub-components/section-partner'
+import CaptionBanner from '@/components/base/caption-banner'
 import ServicesListSection from './sub-components/section-services-list'
-import SocialMediaSection from './sub-components/section-social-media'
+import PartnerBanner from '@/components/base/partner-banner'
+import SocialBanner from '@/components/base/social-banner'
 import PromotionsBaseSection from '@/components/base/section-promotions'
 
 export default function ServicesPage() {
   return (
     <div className='bg-[#F9F6F3] pt-16'>
       <HeaderSection />
-      <BannerSection />
+      <CaptionBanner />
       <ServicesListSection />
-      <PartnerSection />
-      <SocialMediaSection />
+      <PartnerBanner />
+      <SocialBanner />
       <PromotionsBaseSection />
     </div>
   )

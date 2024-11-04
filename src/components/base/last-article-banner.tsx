@@ -4,15 +4,15 @@ import Image from 'next/image'
 import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import anime from 'animejs'
-import { blogsList } from '@/assets/mock-data/blogs'
 import { useLocale, useTranslations } from 'next-intl'
 import Link from 'next/link'
+import { LastArticleList } from '@/assets/mock-data/blogs'
 
-export default function BlogsSection() {
+export default function LastArticleBanner() {
   const activeLocale = useLocale()
   const tLink = useTranslations('buttonLink')
 
-  const sortedServices = [...blogsList].sort((a, b) => a.order - b.order)
+  const sortedServices = [...LastArticleList].sort((a, b) => a.order - b.order)
   const groupedServices = []
   for (let i = 0; i < sortedServices.length; i += 4) {
     groupedServices.push(sortedServices.slice(i, i + 4))
@@ -104,7 +104,7 @@ export default function BlogsSection() {
               <div key={blog.id} className={`service-item`}>
                 <Link href={`/${activeLocale}/blog/${blog.id}`}>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${blog.imgSrc}`}
+                    src={`${process.env.STORAGE_PROVIDER_URL}${blog.img_src}`}
                     alt={activeLocale === 'th' ? blog.title_th : blog.title_en}
                     width={1200}
                     height={1200}
