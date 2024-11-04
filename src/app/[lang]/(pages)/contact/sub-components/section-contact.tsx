@@ -38,7 +38,7 @@ export default function ContactSection() {
           <p className='text-[#9C6E5A] font-semibold capitalize'>
             {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
           </p>
-          <h2 className='text-xl font-light sm:text-2xl w-full text-[#483E3B] whitespace-pre-line'>
+          <h2 className='text-lg font-light sm:text-2xl lg:text-2xl w-full text-[#483E3B] md:whitespace-pre-line'>
             {activeLocale === 'th' ? sectionContent.description_th : sectionContent.description_en}
           </h2>
         </div>

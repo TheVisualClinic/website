@@ -9,6 +9,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { startTransition } from 'react'
 import { Menu, X } from 'lucide-react'
 import anime from 'animejs'
+import LangSwitcher from '../base/lang-switcher'
 
 export default function Navbar() {
   const tNavMenu = useTranslations('navMenu')
@@ -84,12 +85,12 @@ export default function Navbar() {
       }`}
     >
       <div className='container flex justify-between items-center px-4 lg:pr-6'>
-        <div className='px-4 py-2'>
+        <div className='py-2'>
           <Image
             src={logoText}
             alt='The Visual Clinic'
             width={isScrolled ? 100 : 150}
-            className='cursor-pointer transition-all duration-300 hidden lg:block'
+            className='cursor-pointer transition-all duration-300 hidden xl:block'
             onClick={() => {
               router.replace(`/${activeLocale}/home`)
             }}
@@ -98,7 +99,7 @@ export default function Navbar() {
             src={logoText}
             alt='The Visual Clinic'
             width={100}
-            className='cursor-pointer transition-all duration-300 lg:hidden'
+            className='cursor-pointer transition-all duration-300 xl:hidden'
             onClick={() => {
               router.replace(`/${activeLocale}/home`)
             }}
@@ -123,30 +124,10 @@ export default function Navbar() {
               )
             })}
           </nav>
-          <div className='flex items-center gap-2'>
-            <span
-              className={`cursor-pointer ${
-                activeLocale === 'th'
-                  ? 'text-[#9C6E5A] font-semibold'
-                  : 'text-gray-700 hover:text-gray-500'
-              }`}
-              onClick={() => onLangChange('th')}
-            >
-              TH
-            </span>
-            <span>|</span>
-            <span
-              className={`cursor-pointer ${
-                activeLocale === 'en'
-                  ? 'text-[#9C6E5A] font-semibold'
-                  : 'text-gray-700 hover:text-gray-500'
-              }`}
-              onClick={() => onLangChange('en')}
-            >
-              EN
-            </span>
-          </div>
+
+          <LangSwitcher />
         </div>
+
         <div className='lg:hidden flex items-center'>
           <button
             className='text-gray-700'
@@ -186,34 +167,9 @@ export default function Navbar() {
               )
             })}
           </nav>
-          <div className='flex items-center gap-4 mt-8'>
-            <span
-              className={`cursor-pointer ${
-                activeLocale === 'th'
-                  ? 'text-[#9C6E5A] font-semibold'
-                  : 'text-gray-700 hover:text-gray-500'
-              } text-2xl transition-transform duration-300 ease-in-out transform hover:scale-110`}
-              onClick={() => {
-                onLangChange('th')
-                setIsMobileMenuOpen(false)
-              }}
-            >
-              TH
-            </span>
-            <span className='text-2xl'>|</span>
-            <span
-              className={`cursor-pointer ${
-                activeLocale === 'en'
-                  ? 'text-[#9C6E5A] font-semibold'
-                  : 'text-gray-700 hover:text-gray-500'
-              } text-2xl transition-transform duration-300 ease-in-out transform hover:scale-110`}
-              onClick={() => {
-                onLangChange('en')
-                setIsMobileMenuOpen(false)
-              }}
-            >
-              EN
-            </span>
+
+          <div className='mt-8 text-xl'>
+            <LangSwitcher />
           </div>
         </div>
       )}
