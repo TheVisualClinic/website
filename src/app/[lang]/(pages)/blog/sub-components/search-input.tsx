@@ -17,7 +17,7 @@ export default function SearchInput() {
   }
 
   return (
-    <div className='flex items-center gap-2 bg-white w-1/2 pl-6 pr-2 py-2 rounded-full shadow-md'>
+    <div className='flex items-center gap-2 bg-white xl:w-1/2 pl-6 pr-2 py-2 rounded-full shadow-md'>
       <input
         type='text'
         className='outline-none w-full'

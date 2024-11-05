@@ -7,12 +7,16 @@ import { DotIcon } from 'lucide-react'
 import LastArticleBanner from '@/components/base/last-article-banner'
 
 export default function Page({ params }: { params: { slug: string } }) {
+  const serviceImage = '/storage/image-1600-900.webp'
+
   return (
-    <div className='pt-32 text-[#483E3B]'>
-      <div className='max-w-[1080px] mx-auto space-y-6 mb-12'>
+    <div className='pt-24 md:pt-32 text-[#483E3B]'>
+      <div className='max-w-[1080px] px-4 md:px-6 mx-auto space-y-6 mb-12'>
         <Image
-          src={img1600x900}
+          src={`${process.env.STORAGE_PROVIDER_URL}${serviceImage}`}
           alt='HIFU treatment image'
+          width={1920}
+          height={900}
           className='w-full object-cover rounded-xl'
         />
 
@@ -24,8 +28,8 @@ export default function Page({ params }: { params: { slug: string } }) {
             </Avatar>
           </div>
           <div>
-            <div className='text-xl font-semibold text-[#9C6E5A]'>
-              ชื่อจริง (ชื่อเล่น) คุณหมอ หรือ Admin ที่เขียน บทความนี้
+            <div className='md:text-xl lg:text-2xl font-semibold text-[#9C6E5A]'>
+              ชื่อจริง (ชื่อเล่น) คุณหมอ หรือ Admin
             </div>
             <div className='flex items-center gap-2 text-sm text-gray-500'>
               <span>เวลาอ่านโดยเฉลี่ย 5 นาที</span>

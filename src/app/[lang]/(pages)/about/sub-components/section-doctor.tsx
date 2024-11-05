@@ -20,12 +20,12 @@ export default function DoctorSection() {
 
   return (
     <section className='bg-[#F9F6F3]'>
-      <div className='container py-16'>
+      <div className='container px-4 md:px-6 py-12 md:py-16'>
         <div className='text-center space-y-2'>
           <p className='text-[#9C6E5A] font-semibold'>
             {activeLocale === 'th' ? pageContent.caption_th : pageContent.caption_en}
           </p>
-          <h2 className='text-3xl font-light text-center whitespace-pre-line'>
+          <h2 className='text-xl md:text-2xl lg:text-3xl font-light text-center whitespace-pre-line'>
             {activeLocale === 'th' ? pageContent.title_th : pageContent.title_en}
           </h2>
         </div>
@@ -39,16 +39,21 @@ export default function DoctorSection() {
               <Image
                 src={`${process.env.STORAGE_PROVIDER_URL}${doctor.image}`}
                 alt={activeLocale === 'th' ? doctor.name_th : doctor.name_en}
-                className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3'
+                className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
                 width={1200}
                 height={1425}
+                onClick={() => {
+                  router.replace(`/${activeLocale}/medical-team`)
+                }}
               />
               <div>
-                <h3 className='text-xl'>
+                <h3 className='text-xl text-[#9C6E5A]'>
                   {activeLocale === 'th' ? doctor.name_th : doctor.name_en}
                 </h3>
-                <p>{activeLocale === 'th' ? doctor.full_name_th : doctor.full_name_en}</p>
-                <p className='text-[#877A6B] whitespace-pre-line'>
+                <p className='text-lg'>
+                  {activeLocale === 'th' ? doctor.full_name_th : doctor.full_name_en}
+                </p>
+                <p className='text-[#877A6B] whitespace-pre-line text-sm'>
                   {activeLocale === 'th' ? doctor.qualifications_th : doctor.qualifications_en}
                 </p>
               </div>

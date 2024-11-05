@@ -17,12 +17,12 @@ export default function BlogsList() {
       <div>
         <SearchInput />
       </div>
-      <div className='grid grid-cols-12 gap-4'>
+      <div className='grid grid-cols-12 gap-4 md:gap-6'>
         {blogsList.map((blog) => (
           <div
             key={blog.id}
             className={
-              'col-span-4 rounded-2xl bg-white/50 h-fit transition-all duration-300 hover:bg-white'
+              'col-span-12 md:col-span-6 lg:col-span-4 rounded-2xl bg-white/50 h-fit transition-all duration-300 hover:bg-white'
             }
           >
             <div className='pt-2 px-2'>

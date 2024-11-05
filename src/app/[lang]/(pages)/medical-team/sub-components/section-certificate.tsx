@@ -25,6 +25,14 @@ import {
   certificateImg21,
 } from '@/assets/certificate-images'
 import { useLocale } from 'next-intl'
+import { Card, CardContent } from '@/components/ui/card'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 export default function CertificateSection() {
   const activeLocale = useLocale()
@@ -66,18 +74,18 @@ export default function CertificateSection() {
   }
 
   return (
-    <section className='py-16 bg-[#E7DDD3]'>
-      <div className='container'>
+    <section className='py-12 md:py-16 bg-[#E7DDD3]'>
+      <div className='container px-4 md:px-6'>
         <div className='text-center mb-8 space-y-2'>
           <p className='text-[#9C6E5A] font-semibold capitalize'>
             {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
           </p>
-          <h3 className='text-2xl font-light text-gray-600 mx-auto whitespace-pre-line'>
+          <h3 className='text-xl md:text-2xl lg:text-3xl font-light text-gray-600 mx-auto md:whitespace-pre-line'>
             {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
           </h3>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6'>
           {certificateList1.map((certificate, index) => (
             <div key={index} className='w-full'>
               <Image
@@ -89,7 +97,7 @@ export default function CertificateSection() {
           ))}
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8'>
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 mt-8'>
           {certificateList2.map((certificate, index) => (
             <div key={index} className='w-full'>
               <Image

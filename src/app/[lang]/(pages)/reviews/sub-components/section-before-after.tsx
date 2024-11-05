@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
+import { useState } from 'react'
 import { beforeDataList } from '@/assets/mock-data/reviews'
 import { useLocale } from 'next-intl'
 
@@ -34,14 +34,14 @@ export default function BeforeAfterSection() {
 
   return (
     <section className='bg-[#F9F6F3]'>
-      <div className='container py-16 space-y-6 text-center'>
+      <div className='container px-4 md:px-6 py-12 md:py-6 space-y-6 text-center'>
         <p className='text-[#9C6E5A] font-semibold capitalize'>
           {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
         </p>
 
-        <div className='grid grid-cols-12 gap-6'>
+        <div className='grid grid-cols-12 gap-4 md:gap-6'>
           {paginatedImages.map((image) => (
-            <div key={image.id} className='col-span-3'>
+            <div key={image.id} className='col-span-12 md:col-span-6 xl:col-span-3'>
               <Image
                 src={`${process.env.STORAGE_PROVIDER_URL}${image.img_src}`}
                 alt={image.alt_text}

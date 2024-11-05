@@ -1,30 +1,17 @@
 'use client'
 
-import { useEffect } from 'react'
+import Image from 'next/image'
 import { StarRatingIcon } from '@/components/base/star-rating-icon'
 import { useLocale } from 'next-intl'
-import Image from 'next/image'
-import anime from 'animejs'
 import { topReview } from '@/assets/mock-data/reviews'
 
 export default function TopReviewsSection() {
   const activeLocale = useLocale()
 
-  useEffect(() => {
-    anime({
-      targets: '.top-review-section .col-span-4, .top-review-section .col-span-8',
-      translateY: [-50, 0],
-      opacity: [0, 1],
-      duration: 1000,
-      easing: 'easeOutQuad',
-      delay: anime.stagger(200),
-    })
-  }, [])
-
   return (
-    <section className='bg-[#F9F6F3] py-16 top-review-section'>
-      <div className='grid grid-cols-12 gap-6 max-w-[1080px] mx-auto'>
-        <div className='col-span-4'>
+    <section className='bg-[#F9F6F3] py-12 md:py-16 top-review-section'>
+      <div className='grid grid-cols-12 gap-4 md:gap-6 max-w-[1080px] mx-auto px-4 md:px-6 xl:px-0'>
+        <div className='col-span-12 lg:col-span-5'>
           <Image
             src={`${process.env.STORAGE_PROVIDER_URL}${topReview.image}`}
             alt='Top Review'
@@ -33,7 +20,7 @@ export default function TopReviewsSection() {
             className='w-full object-cover rounded-xl'
           />
         </div>
-        <div className='col-span-8 px-4'>
+        <div className='col-span-12 lg:col-span-7'>
           <div className='bg-white p-6 rounded-2xl space-y-4'>
             <p className='text-sm text-[#483E3B]'>
               {activeLocale === 'th' ? topReview.review_content_th : topReview.review_content_en}
@@ -47,15 +34,15 @@ export default function TopReviewsSection() {
               ))}
             </div>
           </div>
-          <div className='flex items-center py-4 gap-4'>
+          <div className='flex items-center justify-center lg:justify-start py-4 gap-4 text-sm text-center'>
             {topReview.tags.map((tag, index) => (
               <div key={index} className='text-white bg-[#51463A] rounded-full py-2 px-4 text-xs'>
                 {activeLocale === 'th' ? tag.th : tag.en}
               </div>
             ))}
           </div>
-          <div>
-            <p className='text-[#483E3B] font-medium text-lg'>
+          <div className='text-center lg:text-left'>
+            <p className='text-[#483E3B] font-medium text-2xl'>
               {activeLocale === 'th' ? topReview.customer_name_th : topReview.customer_name_en}
             </p>
             <p className='text-[#877A6B]'>

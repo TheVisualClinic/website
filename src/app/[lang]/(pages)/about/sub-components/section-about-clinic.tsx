@@ -22,10 +22,10 @@ export default function AboutClinicSection() {
   }
 
   return (
-    <section className='py-16 bg-[#F9F6F3]'>
-      <div className='container'>
-        <div className='grid grid-cols-12 gap-24 items-center'>
-          <div className='col-span-4'>
+    <section className='py-12 md:py-16 bg-[#F9F6F3]'>
+      <div className='container px-4 md:px-6'>
+        <div className='grid grid-cols-12 gap-6 items-center'>
+          <div className='col-span-12 lg:col-span-4'>
             <Image
               src={`${process.env.STORAGE_PROVIDER_URL}${clinicImage}`}
               alt='The Visual Clinic'
@@ -34,28 +34,29 @@ export default function AboutClinicSection() {
               className='w-full object-cover rounded-xl'
             />
           </div>
-          <div className='col-span-8 space-y-4'>
+
+          <div className='col-span-12 space-y-4 lg:col-span-8'>
             <div className='pb-4'>
               <Image src={logoText} alt='The Visual Clinic' className='max-w-xs' />
             </div>
             <h2 className='text-3xl font-normal text-[#483E3B] capitalize'>
               {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
             </h2>
-            <p className='whitespace-pre-line'>
+            <p className='xl:whitespace-pre-line'>
               {activeLocale === 'th'
                 ? sectionContent.description_th
                 : sectionContent.description_en}
             </p>
-            <div className='grid grid-cols-3 text-center max-w-xl'>
-              <div>
+            <div className='grid grid-cols-6 gap-6 text-center max-w-xl'>
+              <div className='col-span-3 md:col-span-2'>
                 <div className='text-[#AA7F65] text-[60px]'>{sectionContent.yearsOfService}</div>
                 <p>{activeLocale === 'th' ? 'ปีที่เปิดบริการ' : 'Years of Service'}</p>
               </div>
-              <div>
+              <div className='col-span-3 md:col-span-2'>
                 <div className='text-[#AA7F65] text-[60px]'>{sectionContent.allServices}</div>
                 <p>{activeLocale === 'th' ? 'บริการทั้งหมด' : 'Total Services'}</p>
               </div>
-              <div>
+              <div className='col-span-6 md:col-span-2'>
                 <div className='text-[#AA7F65] text-[60px]'>{sectionContent.loyaltyCustomer}</div>
                 <p>{activeLocale === 'th' ? 'ลูกค้าที่ไว้ใจ' : 'Satisfied Customers'}</p>
               </div>

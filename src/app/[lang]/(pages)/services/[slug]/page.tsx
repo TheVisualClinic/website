@@ -1,17 +1,20 @@
 'use client'
 
-import { img1600x900 } from '@/assets/images'
 import Image from 'next/image'
 import FaqSection from './sub-components/section-faq'
 import PromotionsBaseSection from '@/components/base/section-promotions'
 
 export default function Page({ params }: { params: { slug: string } }) {
+  const serviceImage = '/storage/image-1600-900.webp'
+
   return (
-    <div className='pt-32'>
-      <div className='max-w-[1080px] mx-auto space-y-6 mb-12'>
+    <div className='pt-24 md:pt-32'>
+      <div className='max-w-[1080px] px-4 md:px-6 mx-auto space-y-6 mb-12'>
         <Image
-          src={img1600x900}
+          src={`${process.env.STORAGE_PROVIDER_URL}${serviceImage}`}
           alt='HIFU treatment image'
+          width={1920}
+          height={900}
           className='w-full object-cover rounded-xl'
         />
         <h1 className='text-2xl'>HIFU คืออะไร? - ยกกระชับผิวด้วยเทคโนโลยีทันสมัย</h1>

@@ -3,8 +3,11 @@
 import { useState, useEffect, useRef } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 import anime from 'animejs'
+import { useLocale } from 'next-intl'
 
 export default function FaqSection() {
+  const activeLocale = useLocale()
+
   const [activeIndex, setActiveIndex] = useState<number | null>(0)
   const contentRefs = useRef<(HTMLDivElement | null)[]>([])
 
@@ -52,14 +55,25 @@ export default function FaqSection() {
     },
   ]
 
+  const sectionContent = {
+    caption_th: 'FAQs',
+    caption_en: 'FAQs',
+    title_th: 'คำถามที่พบบ่อย',
+    title_en: 'Frequently Asked Questions',
+  }
+
   return (
-    <div className='py-12 bg-[#E7DDD3]'>
+    <div className='py-12 bg-[#E7DDD3] px-4 md:px-6'>
       <div className='text-center mb-8 space-y-2'>
-        <p className='text-[#9C6E5A] font-semibold'>FAQs</p>
-        <h2 className='text-3xl font-light max-w-lg mx-auto text-[#483E3B]'>คำถามที่พบบ่อย</h2>
+        <p className='text-[#9C6E5A] font-semibold'>
+          {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
+        </p>
+        <h2 className='text-xl md:text-2xl lg:text-3xl font-light text-[#483E3B]'>
+          {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
+        </h2>
       </div>
 
-      <div className='max-w-[1080px] mx-auto border border-[#9C6E5A] rounded-xl bg-white/50 p-6 text-[#483E3B]'>
+      <div className='max-w-[1080px] mx-auto border border-[#9C6E5A] rounded-xl bg-white/50 p-4 md:p-6 text-[#483E3B]'>
         {faqData.map((faq, index) => (
           <div key={index} className='border-b border-[#483E3B] pb-4'>
             <div
@@ -70,7 +84,7 @@ export default function FaqSection() {
                 {activeIndex === index ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </div>
               <h3
-                className={`text-2xl font-medium transition-colors duration-300 ${
+                className={`text-lg font-medium transition-colors duration-300 ${
                   activeIndex === index ? 'text-[#9C6E5A]' : 'text-[#483E3B]'
                 }`}
               >
@@ -78,7 +92,7 @@ export default function FaqSection() {
               </h3>
             </div>
             <div ref={(el: any) => (contentRefs.current[index] = el)} className='overflow-hidden'>
-              <div className='py-4 px-6'>
+              <div className='py-4 px-4 md:px-6 text-sm md:text-base'>
                 <p>{faq.answer}</p>
               </div>
             </div>

@@ -11,7 +11,7 @@ export default function ImageSection() {
         alt='The Visual Clinic Cover'
         width={1920}
         height={500}
-        className='w-full h-[500px] object-cover'
+        className='w-full h-[350px] md:h-[500px] object-cover'
       />
     </div>
   )
