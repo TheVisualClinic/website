@@ -56,6 +56,16 @@ export default function MedicalTeamSection() {
                     </div>
                   </div>
                 </div>
+
+                <div className='space-y-2 col-span-12'>
+                  <h3 className='font-medium'>Certificates</h3>
+                  {member.certificates.map((cer, cerIndex) => (
+                    <div key={cerIndex} className='flex items-center gap-3'>
+                      <GraduationCapIcon />
+                      <div className=' w-full'>{`${cer}, `}</div>
+                    </div>
+                  ))}
+                </div>
               </>
             ) : (
               <>
