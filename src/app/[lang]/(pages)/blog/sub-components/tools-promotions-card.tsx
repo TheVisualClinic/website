@@ -23,7 +23,7 @@ export default function ToolsPromotionsCard() {
   return (
     <div className='p-4 bg-white rounded-xl space-y-4'>
       <div className='flex items-center gap-6'>
-        <h3 className='text-xl min-w-fit'>{activeLocale === 'th' ? 'โปรโมชั่น' : 'Promotions'}</h3>
+        <h3 className='text-xl min-w-fit'>{activeLocale === 'th' ? 'โปรโมชัน' : 'Promotions'}</h3>
         <div className='h-[2px] w-full bg-[#B8977F]' />
       </div>
 
@@ -43,7 +43,7 @@ export default function ToolsPromotionsCard() {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>{activeLocale === 'th' ? 'โปรโมชั่น' : 'Promotion'}</DialogTitle>
+                    <DialogTitle>{activeLocale === 'th' ? 'โปรโมชัน' : 'Promotion'}</DialogTitle>
                     <DialogDescription></DialogDescription>
                   </DialogHeader>
 

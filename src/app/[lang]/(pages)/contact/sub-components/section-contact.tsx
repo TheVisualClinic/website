@@ -27,7 +27,7 @@ export default function ContactSection() {
   }
 
   const sectionSocialMedia = {
-    title_th: 'ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง',
+    title_th: 'ติดตามข่าวสารและโปรโมชันได้ผ่านช่องทาง',
     title_en: 'Follow our news and promotions through',
   }
 

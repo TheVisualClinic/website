@@ -63,8 +63,8 @@ export default function Footer() {
   const copyrightText = 'Copyright © 2024 The Visual Clinic All Rights Reserved.'
 
   return (
-    <footer className='bg-[#483E3B] text-white pt-14 text-lg md:text-sm'>
-      <div className='container px-4 md:px-6 grid grid-cols-12 gap-4 md:gap-6'>
+    <footer className='bg-[#483E3B] text-white pt-8 text-lg md:text-sm'>
+      <div className='container px-4 md:px-6 grid grid-cols-12 gap-6'>
         <div className='col-span-12 md:col-span-6 xl:col-span-4'>
           <div className='text-[#E7DDD3] space-y-4'>
             <Image src={logoTextWhite} alt='The Visual Clinic Logo' width={200} />
@@ -74,11 +74,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className='col-span-12 md:col-span-6 xl:col-span-3 mt-8 md:mt-0'>
-          <h2 className='text-lg text-[#B8977F] mb-6'>
+        <div className='col-span-12 md:col-span-6 xl:col-span-3 md:mt-0'>
+          <h2 className='text-lg text-[#B8977F] mb-4 md:mb-6'>
             {activeLocale === 'th' ? 'Social Media' : 'Social Media'}
           </h2>
-          <ul className='space-y-4'>
+          <ul className='space-y-3'>
             {socialMediaLinks.map((item, index) => (
               <li key={index}>
                 <Link
@@ -99,10 +99,10 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className='col-span-12 md:col-span-6 xl:col-span-2 mt-8 xl:mt-0'>
-          <h2 className='text-lg text-[#B8977F] mb-6'>{activeLocale === 'th' ? 'เมนู' : 'Menu'}</h2>
-          <div className='grid grid-cols-2 gap-4'>
-            <ul className='space-y-4 text-white/80'>
+        <div className='col-span-12 md:col-span-6 xl:col-span-2'>
+          <h2 className='text-lg text-[#B8977F] mb-4'>{activeLocale === 'th' ? 'เมนู' : 'Menu'}</h2>
+          <div className='grid grid-cols-2'>
+            <ul className='space-y-3 text-white/80'>
               {menuLinks.slice(0, 4).map((item, index) => (
                 <li key={index}>
                   <Link href={item.href} className='hover:text-white/100'>
@@ -111,7 +111,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <ul className='space-y-4 text-white/80'>
+            <ul className='space-y-3 text-white/80'>
               {menuLinks.slice(4).map((item, index) => (
                 <li key={index}>
                   <Link href={item.href} className='hover:text-white/100'>
@@ -123,12 +123,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className='col-span-12 md:col-span-6 xl:col-span-3 mt-8 xl:mt-0'>
+        <div className='col-span-12 md:col-span-6 xl:col-span-3 mt-2 xl:mt-0'>
           <div className='xl:w-fit mx-auto'>
-            <h2 className='text-lg text-[#B8977F] mb-6'>
+            <h2 className='text-lg text-[#B8977F] mb-4'>
               {activeLocale === 'th' ? 'ติดต่อเรา' : 'Contact Us'}
             </h2>
-            <ul className='space-y-4 text-white/80'>
+            <ul className='space-y-3 text-white/80'>
               {contactInfo.map((item, index) => (
                 <li key={index} className='flex items-center gap-3'>
                   {item.icon} {item.label}

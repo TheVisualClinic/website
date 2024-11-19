@@ -17,7 +17,7 @@ export default function SocialBanner() {
   const sectionImage = '/storage/clinic-img-9.webp'
 
   const sectionContent = {
-    title_th: 'ติดตามข่าวสารและโปรโมชั่นได้ผ่านช่องทาง',
+    title_th: 'ติดตามข่าวสารและโปรโมชันได้ผ่านช่องทาง',
     title_en: 'Follow our news and promotions through',
   }
 

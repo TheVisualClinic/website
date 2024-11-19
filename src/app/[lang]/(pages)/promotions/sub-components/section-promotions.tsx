@@ -31,7 +31,7 @@ export default function PromotionsSection() {
                 <div className='col-span-12 lg:col-span-7'>
                   <div className='space-y-4'>
                     <p className='text-[#9C6E5A] text-sm font-medium capitalize'>
-                      {activeLocale === 'th' ? 'โปรโมชั่น' : 'Promotions'}
+                      {activeLocale === 'th' ? 'โปรโมชัน' : 'Promotions'}
                     </p>
                     <div>
                       <h2 className='text-[#483E3B] text-2xl md:text-3xl mx-auto font-semibold'>
@@ -75,7 +75,7 @@ export default function PromotionsSection() {
                 <div className='col-span-12 lg:col-span-7'>
                   <div className='space-y-4'>
                     <p className='text-[#9C6E5A] text-sm font-medium capitalize'>
-                      {activeLocale === 'th' ? 'โปรโมชั่น' : 'Promotions'}
+                      {activeLocale === 'th' ? 'โปรโมชัน' : 'Promotions'}
                     </p>
                     <div>
                       <h2 className='text-[#483E3B] text-2xl md:text-3xl mx-auto font-semibold'>

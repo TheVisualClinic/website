@@ -30,7 +30,7 @@ export default function HeroSection() {
         alt='home page hero image'
         width={1920}
         height={700}
-        className='w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover'
+        className='w-full h-[calc(100vh-60px)] md:h-[600px] lg:h-[700px] object-cover'
       />
 
       <div className='absolute top-0 left-0 w-full h-full flex items-center text-[#483E3B]'>

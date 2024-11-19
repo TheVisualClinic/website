@@ -36,9 +36,6 @@ export default function AboutClinicSection() {
           </div>
 
           <div className='col-span-12 space-y-4 lg:col-span-8'>
-            <div className='pb-4'>
-              <Image src={logoText} alt='The Visual Clinic' className='max-w-xs' />
-            </div>
             <h2 className='text-3xl font-normal text-[#483E3B] capitalize'>
               {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
             </h2>

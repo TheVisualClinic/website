@@ -6,9 +6,9 @@ export default function HeaderSection() {
   const activeLocale = useLocale()
 
   const sectionContent = {
-    caption_th: 'โปรโมชั่น',
+    caption_th: 'โปรโมชัน',
     caption_en: 'Promotions',
-    title_th: 'พบกับโปรโมชั่นสุดพิเศษ \n เพื่อความสวยและสุขภาพผิวที่ดีที่สุดสำหรับคุณ',
+    title_th: 'พบกับโปรโมชันสุดพิเศษ \n เพื่อความสวยและสุขภาพผิวที่ดีที่สุดสำหรับคุณ',
     title_en: 'Discover Exclusive Promotions \n for Your Beauty and Skin Health',
   }
 

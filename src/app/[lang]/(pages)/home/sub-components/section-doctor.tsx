@@ -22,14 +22,6 @@ export default function DoctorSection() {
 
   return (
     <section className='bg-[#F9F6F3]'>
-      <Image
-        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
-        alt='Medical Team Cover'
-        width={1920}
-        height={500}
-        className='w-full h-[350px] md:h-[500px] object-cover'
-      />
-
       <div className='container px-4 md:px-6 py-12 md:py-16'>
         <div className='text-center space-y-2'>
           <p className='text-[#9C6E5A] font-semibold'>
@@ -75,6 +67,13 @@ export default function DoctorSection() {
           ))}
         </div>
       </div>
+      <Image
+        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        alt='Medical Team Cover'
+        width={1920}
+        height={500}
+        className='w-full h-[350px] md:h-[500px] object-cover'
+      />
     </section>
   )
 }
