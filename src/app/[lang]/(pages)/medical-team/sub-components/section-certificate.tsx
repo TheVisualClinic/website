@@ -1,77 +1,36 @@
 'use client'
 
 import Image from 'next/image'
-import {
-  certificateImg1,
-  certificateImg2,
-  certificateImg3,
-  certificateImg4,
-  certificateImg5,
-  certificateImg6,
-  certificateImg7,
-  certificateImg8,
-  certificateImg9,
-  certificateImg10,
-  certificateImg11,
-  certificateImg12,
-  certificateImg13,
-  certificateImg14,
-  certificateImg15,
-  certificateImg16,
-  certificateImg17,
-  certificateImg18,
-  certificateImg19,
-  certificateImg20,
-  certificateImg21,
-} from '@/assets/certificate-images'
 import { useLocale } from 'next-intl'
-import { Card, CardContent } from '@/components/ui/card'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel'
+import { certificateList } from '@/assets/mock-data/certificate-list'
+import { useState, useEffect } from 'react'
 
 export default function CertificateSection() {
   const activeLocale = useLocale()
 
-  const certificateList1 = [
-    { caption: 'Clinic Certificate 1', image: certificateImg1 },
-    { caption: 'Clinic Certificate 2', image: certificateImg2 },
-    { caption: 'Clinic Certificate 3', image: certificateImg3 },
-    { caption: 'Clinic Certificate 4', image: certificateImg4 },
-    { caption: 'Clinic Certificate 5', image: certificateImg5 },
-    { caption: 'Clinic Certificate 6', image: certificateImg6 },
-    { caption: 'Clinic Certificate 7', image: certificateImg7 },
-    { caption: 'Clinic Certificate 8', image: certificateImg8 },
-    { caption: 'Clinic Certificate 9', image: certificateImg9 },
-    { caption: 'Clinic Certificate 10', image: certificateImg10 },
-  ]
-
-  const certificateList2 = [
-    { caption: 'Clinic Certificate 11', image: certificateImg11 },
-    { caption: 'Clinic Certificate 12', image: certificateImg12 },
-    { caption: 'Clinic Certificate 13', image: certificateImg13 },
-    { caption: 'Clinic Certificate 14', image: certificateImg14 },
-    { caption: 'Clinic Certificate 15', image: certificateImg15 },
-    { caption: 'Clinic Certificate 16', image: certificateImg16 },
-    { caption: 'Clinic Certificate 17', image: certificateImg17 },
-    { caption: 'Clinic Certificate 18', image: certificateImg18 },
-    { caption: 'Clinic Certificate 19', image: certificateImg19 },
-    { caption: 'Clinic Certificate 20', image: certificateImg20 },
-    { caption: 'Clinic Certificate 21', image: certificateImg21 },
-  ]
-
   const sectionContent = {
-    caption_th: 'ความภาคภูมิใจของเรา',
-    caption_en: 'Our Pride',
+    caption_th: 'ใบประกาศนียบัตร',
+    caption_en: 'Certificates',
     title_th:
       'เราได้รับการรับรองและความไว้วางใจจากสถาบันชั้นนำ \n เพื่อยืนยันคุณภาพและความเป็นมืออาชีพของเรา',
     title_en:
       'Certified and Trusted by Leading Institutions \n Ensuring Our Quality and Professionalism',
   }
+
+  const [imageGroup1, setImageGroup1] = useState<any[]>([])
+  const [imageGroup2, setImageGroup2] = useState<any[]>([])
+  const [imageGroup3, setImageGroup3] = useState<any[]>([])
+
+  const groupSetup = () => {
+    setImageGroup1([certificateList[0]])
+    setImageGroup2(certificateList.slice(1, 5))
+    setImageGroup3(certificateList.slice(5))
+  }
+
+  // ใช้ useEffect เพื่อเรียก groupSetup เมื่อ component mount
+  useEffect(() => {
+    groupSetup()
+  }, [])
 
   return (
     <section className='py-12 md:py-16 bg-[#E7DDD3]'>
@@ -85,27 +44,45 @@ export default function CertificateSection() {
           </h3>
         </div>
 
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6'>
-          {certificateList1.map((certificate, index) => (
-            <div key={index} className='w-full'>
-              <Image
-                src={certificate.image}
-                alt={certificate.caption}
-                className='w-full h-auto object-cover'
-              />
-            </div>
+        {/* Group 1 */}
+        <div className='py-12'>
+          {imageGroup1.map((item, index) => (
+            <Image
+              key={index}
+              src={item.image_url}
+              alt={activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en}
+              width={1200}
+              height={1200}
+              className='object-cover aspect-square max-w-[400px] rounded-xl mx-auto'
+            />
           ))}
         </div>
 
-        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 mt-8'>
-          {certificateList2.map((certificate, index) => (
-            <div key={index} className='w-full'>
-              <Image
-                src={certificate.image}
-                alt={certificate.caption}
-                className='w-full h-auto object-cover'
-              />
-            </div>
+        {/* Group 2 */}
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 max-w-[1000px] mx-auto'>
+          {imageGroup2.map((item, index) => (
+            <Image
+              key={index}
+              src={item.image_url}
+              alt={activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en}
+              width={600}
+              height={600}
+              className='object-cover rounded-xl'
+            />
+          ))}
+        </div>
+
+        {/* Group 3 */}
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 max-w-[1200px] mx-auto'>
+          {imageGroup3.map((item, index) => (
+            <Image
+              key={index}
+              src={item.image_url}
+              alt={activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en}
+              width={400}
+              height={400}
+              className='object-cover rounded-xl'
+            />
           ))}
         </div>
       </div>
