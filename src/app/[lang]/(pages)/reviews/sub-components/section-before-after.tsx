@@ -4,11 +4,19 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useLocale } from 'next-intl'
 import { reviewsList } from '@/assets/mock-data/review-images'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 export default function BeforeAfterSection() {
   const activeLocale = useLocale()
 
-  // แยกข้อมูลตาม category_order
   const groupedByCategoryOrder = reviewsList.reduce((groups, item) => {
     const category = item.category_order
     if (!groups[category]) {
@@ -23,6 +31,8 @@ export default function BeforeAfterSection() {
     title_en: 'Before and After Service Comparison Photos',
   }
 
+  const [selectedImage, setSelectedImage] = useState<any | null>(null)
+
   return (
     <section className='bg-[#F9F6F3]'>
       <div className='container px-4 md:px-6 py-12 md:py-6 space-y-12'>
@@ -30,7 +40,6 @@ export default function BeforeAfterSection() {
           {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
         </p>
 
-        {/* Render แต่ละกลุ่ม */}
         {Object.keys(groupedByCategoryOrder)
           .sort((a, b) => Number(a) - Number(b))
           .map((category) => {
@@ -59,14 +68,36 @@ export default function BeforeAfterSection() {
 
                 <div className='grid grid-cols-12 gap-4 md:gap-6'>
                   {paginatedImages.map((image) => (
-                    <div key={image.id} className='col-span-12 md:col-span-6 xl:col-span-3'>
-                      <Image
-                        src={image.image}
-                        alt={activeLocale === 'th' ? image.category_th : image.category_en}
-                        width={1200}
-                        height={1200}
-                        className='w-full object-cover rounded-xl'
-                      />
+                    <div key={image.id} className='col-span-6 md:col-span-4 lg:col-span-3'>
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <div onClick={() => setSelectedImage(image.image)}>
+                            <Image
+                              src={image.image}
+                              alt={activeLocale === 'th' ? image.category_th : image.category_en}
+                              width={1200}
+                              height={1200}
+                              className='aspect-square object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
+                            />
+                          </div>
+                        </DialogTrigger>
+                        <DialogContent className='md:min-w-[600px] lg:min-w-[750px]'>
+                          <DialogHeader>
+                            <DialogTitle>
+                              {activeLocale === 'th' ? image.category_th : image.category_en}
+                            </DialogTitle>
+                          </DialogHeader>
+                          <div className='flex justify-center'>
+                            <Image
+                              src={selectedImage ?? ''}
+                              alt={activeLocale === 'th' ? image.category_th : image.category_en}
+                              width={1200}
+                              height={1200}
+                              className='aspect-square rounded-xl'
+                            />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                     </div>
                   ))}
                 </div>

@@ -4,6 +4,13 @@ import Image from 'next/image'
 import { useLocale } from 'next-intl'
 import { certificateList } from '@/assets/mock-data/certificate-list'
 import { useState, useEffect } from 'react'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 export default function CertificateSection() {
   const activeLocale = useLocale()
@@ -27,7 +34,6 @@ export default function CertificateSection() {
     setImageGroup3(certificateList.slice(5))
   }
 
-  // ใช้ useEffect เพื่อเรียก groupSetup เมื่อ component mount
   useEffect(() => {
     groupSetup()
   }, [])
@@ -45,44 +51,113 @@ export default function CertificateSection() {
         </div>
 
         {/* Group 1 */}
-        <div className='py-12'>
+        <div className='mb-8'>
           {imageGroup1.map((item, index) => (
-            <Image
-              key={index}
-              src={item.image_url}
-              alt={activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en}
-              width={1200}
-              height={1200}
-              className='object-cover aspect-square max-w-[400px] rounded-xl mx-auto'
-            />
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <div>
+                  <Image
+                    src={item.image_url}
+                    alt={
+                      activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en
+                    }
+                    width={1200}
+                    height={1200}
+                    className='object-cover aspect-square md:max-w-[400px] rounded-xl mx-auto cursor-pointer'
+                  />
+                </div>
+              </DialogTrigger>
+              <DialogContent className='md:min-w-[600px] lg:min-w-[750px]'>
+                <DialogHeader>
+                  <DialogTitle></DialogTitle>
+                </DialogHeader>
+                <div className='flex justify-center'>
+                  <Image
+                    src={item.image_url}
+                    alt={
+                      activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en
+                    }
+                    width={1200}
+                    height={1200}
+                    className='object-cover rounded-xl'
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
 
         {/* Group 2 */}
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 max-w-[1000px] mx-auto'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-8 max-w-[1000px] mx-auto'>
           {imageGroup2.map((item, index) => (
-            <Image
-              key={index}
-              src={item.image_url}
-              alt={activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en}
-              width={600}
-              height={600}
-              className='object-cover rounded-xl'
-            />
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <div>
+                  <Image
+                    src={item.image_url}
+                    alt={
+                      activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en
+                    }
+                    width={600}
+                    height={600}
+                    className='object-cover rounded-xl cursor-pointer'
+                  />
+                </div>
+              </DialogTrigger>
+              <DialogContent className='md:min-w-[500px]'>
+                <DialogHeader>
+                  <DialogTitle></DialogTitle>
+                </DialogHeader>
+                <div className='flex justify-center'>
+                  <Image
+                    src={item.image_url}
+                    alt={
+                      activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en
+                    }
+                    width={1200}
+                    height={1200}
+                    className='object-cover rounded-xl'
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
 
         {/* Group 3 */}
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 max-w-[1200px] mx-auto'>
+        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-12 max-w-[1200px] mx-auto'>
           {imageGroup3.map((item, index) => (
-            <Image
-              key={index}
-              src={item.image_url}
-              alt={activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en}
-              width={400}
-              height={400}
-              className='object-cover rounded-xl'
-            />
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <div>
+                  <Image
+                    src={item.image_url}
+                    alt={
+                      activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en
+                    }
+                    width={400}
+                    height={400}
+                    className='object-cover rounded-xl cursor-pointer'
+                  />
+                </div>
+              </DialogTrigger>
+              <DialogContent className='md:min-w-[600px] lg:min-w-[750px]'>
+                <DialogHeader>
+                  <DialogTitle></DialogTitle>
+                </DialogHeader>
+                <div className='flex justify-center'>
+                  <Image
+                    src={item.image_url}
+                    alt={
+                      activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en
+                    }
+                    width={1200}
+                    height={1200}
+                    className='object-cover rounded-xl'
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
       </div>
