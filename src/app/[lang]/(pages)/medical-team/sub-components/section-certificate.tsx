@@ -63,7 +63,7 @@ export default function CertificateSection() {
                     }
                     width={1200}
                     height={1200}
-                    className='object-cover aspect-square md:max-w-[400px] rounded-xl mx-auto cursor-pointer'
+                    className='object-cover aspect-square md:max-w-[400px] rounded-xl mx-auto transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
                   />
                 </div>
               </DialogTrigger>
@@ -100,7 +100,7 @@ export default function CertificateSection() {
                     }
                     width={600}
                     height={600}
-                    className='object-cover rounded-xl cursor-pointer'
+                    className='object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
                   />
                 </div>
               </DialogTrigger>
@@ -129,17 +129,13 @@ export default function CertificateSection() {
           {imageGroup3.map((item, index) => (
             <Dialog key={index}>
               <DialogTrigger asChild>
-                <div>
-                  <Image
-                    src={item.image_url}
-                    alt={
-                      activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en
-                    }
-                    width={400}
-                    height={400}
-                    className='object-cover rounded-xl cursor-pointer'
-                  />
-                </div>
+                <Image
+                  src={item.image_url}
+                  alt={activeLocale === 'th' ? item.certificate_name_th : item.certificate_name_en}
+                  width={400}
+                  height={400}
+                  className='object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
+                />
               </DialogTrigger>
               <DialogContent className='md:min-w-[600px] lg:min-w-[750px]'>
                 <DialogHeader>
