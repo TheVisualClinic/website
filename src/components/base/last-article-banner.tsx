@@ -24,22 +24,45 @@ export default function LastArticleBanner() {
   const groupRef = useRef<HTMLDivElement | null>(null)
   const [hasAnimatedText, setHasAnimatedText] = useState(false)
   const [hasAnimatedGroup, setHasAnimatedGroup] = useState(false)
+  const [startX, setStartX] = useState<number | null>(null)
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setStartX(e.touches[0].clientX) // บันทึกตำแหน่งนิ้วเริ่มต้น
+  }
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (startX === null) return
+
+    const currentX = e.touches[0].clientX
+    const deltaX = currentX - startX
+
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0 && currentGroupIndex > 0) {
+        setCurrentGroupIndex((prev) => prev - 1) // ปัดขวา
+      } else if (deltaX < 0 && currentGroupIndex < groupedServices.length - 1) {
+        setCurrentGroupIndex((prev) => prev + 1) // ปัดซ้าย
+      }
+      setStartX(null) // รีเซ็ตตำแหน่งนิ้ว
+    }
+  }
+
+  const handleTouchEnd = () => {
+    setStartX(null) // รีเซ็ตตำแหน่งเมื่อปล่อยนิ้ว
+  }
 
   const handleGroupChange = (index: number) => {
-    if (sectionRef.current) {
-      anime({
-        targets: sectionRef.current,
-        opacity: [0, 1],
-        duration: 600,
-        easing: 'easeInOutQuad',
-      })
-    }
+    anime({
+      targets: groupRef.current,
+      opacity: [0, 1],
+      duration: 600,
+      easing: 'easeInOutQuad',
+    })
     setCurrentGroupIndex(index)
   }
 
   useEffect(() => {
-    if (sectionRef.current) {
-      const serviceItems = sectionRef.current.querySelectorAll<HTMLElement>('.service-item')
+    if (groupRef.current) {
+      const serviceItems = groupRef.current.querySelectorAll<HTMLElement>('.service-item')
       anime({
         targets: serviceItems,
         translateY: ['-20%', '0%'],
@@ -90,7 +113,13 @@ export default function LastArticleBanner() {
   }
 
   return (
-    <section className='py-12 md:py-16 bg-[#F9F6F3]' ref={sectionRef}>
+    <section
+      className='py-12 md:py-16 bg-[#F9F6F3]'
+      ref={sectionRef}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className='container px-4 md:px-6'>
         <div className='text-center mb-8 opacity-0' ref={textRef}>
           <h2 className='text-2xl md:text-3xl max-w-xl mx-auto text-[#483E3B] font-semibold capitalize'>
