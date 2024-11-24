@@ -13,6 +13,13 @@ export default function ServicesSection() {
   const tLink = useTranslations('buttonLink')
 
   const [numberOfGroup, setNumberOfGroup] = useState(4)
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
+  const [startX, setStartX] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLDivElement | null>(null)
+  const textRef = useRef<HTMLDivElement | null>(null)
+  const groupRef = useRef<HTMLDivElement | null>(null)
+  const [hasAnimatedText, setHasAnimatedText] = useState(false)
+  const [hasAnimatedGroup, setHasAnimatedGroup] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,13 +44,6 @@ export default function ServicesSection() {
   for (let i = 0; i < sortedServices.length; i += numberOfGroup) {
     groupedServices.push(sortedServices.slice(i, i + numberOfGroup))
   }
-
-  const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
-  const sectionRef = useRef<HTMLDivElement | null>(null)
-  const textRef = useRef<HTMLDivElement | null>(null)
-  const groupRef = useRef<HTMLDivElement | null>(null)
-  const [hasAnimatedText, setHasAnimatedText] = useState(false)
-  const [hasAnimatedGroup, setHasAnimatedGroup] = useState(false)
 
   const handleGroupChange = (index: number) => {
     if (sectionRef.current) {
@@ -103,6 +103,49 @@ export default function ServicesSection() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [hasAnimatedText, hasAnimatedGroup])
+
+  // เพิ่ม Event Listener สำหรับการปัดซ้าย-ขวา
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      setStartX(e.touches[0].clientX)
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (startX === null) return
+      const currentX = e.touches[0].clientX
+      const diffX = currentX - startX
+
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0 && currentGroupIndex > 0) {
+          // ปัดขวา
+          setCurrentGroupIndex(currentGroupIndex - 1)
+        } else if (diffX < 0 && currentGroupIndex < groupedServices.length - 1) {
+          // ปัดซ้าย
+          setCurrentGroupIndex(currentGroupIndex + 1)
+        }
+        setStartX(null)
+      }
+    }
+
+    const handleTouchEnd = () => {
+      setStartX(null)
+    }
+
+    const sectionElement = sectionRef.current
+    if (sectionElement) {
+      sectionElement.addEventListener('touchstart', handleTouchStart)
+      sectionElement.addEventListener('touchmove', handleTouchMove)
+      sectionElement.addEventListener('touchend', handleTouchEnd)
+    }
+
+    return () => {
+      if (sectionElement) {
+        sectionElement.removeEventListener('touchstart', handleTouchStart)
+        sectionElement.removeEventListener('touchmove', handleTouchMove)
+        sectionElement.removeEventListener('touchend', handleTouchEnd)
+      }
+    }
+  }, [currentGroupIndex, groupedServices.length, startX])
 
   const pageContent = {
     caption_th: 'บริการทั้งหมด',
