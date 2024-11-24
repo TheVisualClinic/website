@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { socialFacebookDark, socialInstagramDark, socialLineDark } from '@/assets/icons'
 import { Button } from '@/components/ui/button'
 import { PhoneIcon } from 'lucide-react'
@@ -8,6 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { socialLink, clinicContact } from '@/assets/mock-data/contacts'
 import { formatPhoneNumber } from '@/lib/phoneFormatter'
+import anime from 'animejs'
 
 export default function HeroSection() {
   const activeLocale = useLocale()
@@ -23,6 +25,61 @@ export default function HeroSection() {
       'We believe that true beauty begins with feeling comfortable and confident in taking care of yourself. Our clinic is designed with a warm, minimal style, giving you the feeling of sitting in a cozy café. The friendly atmosphere ensures that every visit provides you with a relaxing and memorable experience.',
   }
 
+  const titleRef = useRef<HTMLDivElement | null>(null)
+  const descriptionRef = useRef<HTMLDivElement | null>(null)
+  const buttonRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    // แอนิเมชันสำหรับ title
+    if (titleRef.current) {
+      const textWrapper = titleRef.current
+      textWrapper.innerHTML =
+        textWrapper.textContent
+          ?.split('')
+          .map((char) => `<span class="letter">${char}</span>`)
+          .join('') || ''
+
+      anime({
+        targets: '.letter',
+        opacity: [0, 1],
+        translateY: ['1em', '0em'],
+        easing: 'easeOutExpo',
+        duration: 1000,
+        delay: anime.stagger(30),
+      })
+    }
+
+    // แอนิเมชันสำหรับ description
+    if (descriptionRef.current) {
+      const textWrapper = descriptionRef.current
+      textWrapper.innerHTML =
+        textWrapper.textContent
+          ?.split('')
+          .map((char) => `<span class="letter-desc">${char}</span>`)
+          .join('') || ''
+
+      anime({
+        targets: '.letter-desc',
+        opacity: [0, 1],
+        translateY: ['1em', '0em'],
+        easing: 'easeOutExpo',
+        duration: 600,
+        delay: anime.stagger(5),
+      })
+    }
+
+    if (buttonRef.current) {
+      anime({
+        targets: buttonRef.current.children,
+        opacity: [0, 1],
+        translateY: ['1em', '0em'],
+        easing: 'easeOutExpo',
+        duration: 800,
+        delay: anime.stagger(100),
+      })
+    }
+  }, [])
+
   return (
     <section className='relative'>
       <Image
@@ -37,12 +94,17 @@ export default function HeroSection() {
         <div className='container px-4 md:px-6 grid grid-cols-12'>
           <div className='col-span-12 bg-white/50 p-4 md:p-6 rounded-lg backdrop-blur-md max-w-lg space-y-4 md:space-y-6 xl:ml-24'>
             <div>
-              <h3 className='text-[28px] md:text-3xl lg:text-4xl dancing-script-font'>
+              <h3
+                className='text-[28px] md:text-3xl lg:text-4xl dancing-script-font'
+                ref={titleRef}
+              >
                 {activeLocale === 'th' ? heroCard.title_th : heroCard.title_en}
               </h3>
             </div>
-            <p>{activeLocale === 'th' ? heroCard.description_th : heroCard.description_en}</p>
-            <div className='flex items-center gap-4'>
+            <p className='text-base md:text-lg' ref={descriptionRef}>
+              {activeLocale === 'th' ? heroCard.description_th : heroCard.description_en}
+            </p>
+            <div className='flex items-center gap-4' ref={buttonRef}>
               <Link href={socialLink.line} target='_blank'>
                 <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                   {tBtn('booking')}
