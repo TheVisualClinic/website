@@ -101,7 +101,10 @@ export default function HeroSection() {
                 {activeLocale === 'th' ? heroCard.title_th : heroCard.title_en}
               </h3>
             </div>
-            <p className='text-base md:text-lg' ref={descriptionRef}>
+            <p
+              className='text-base md:text-lg break-words whitespace-normal max-w-full'
+              ref={descriptionRef}
+            >
               {activeLocale === 'th' ? heroCard.description_th : heroCard.description_en}
             </p>
             <div className='flex items-center gap-4' ref={buttonRef}>

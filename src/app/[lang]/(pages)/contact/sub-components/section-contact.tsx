@@ -75,7 +75,7 @@ export default function ContactSection() {
               style={{ border: 0 }}
               loading='lazy'
               referrerPolicy='no-referrer-when-downgrade'
-              className='rounded-xl'
+              className='rounded-xl aspect-square md:aspect-video'
             ></iframe>
           </div>
         </div>
