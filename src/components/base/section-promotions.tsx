@@ -2,10 +2,9 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import anime from 'animejs'
 import { Button } from '@/components/ui/button'
 import { CheckCheckIcon } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { promotionsList } from '@/assets/mock-data/promotions'
 import { socialLink } from '@/assets/mock-data/contacts'
@@ -15,28 +14,50 @@ export default function PromotionsBaseSection() {
   const tBtn = useTranslations('button')
 
   const [currentIndex, setCurrentIndex] = useState(0)
-  const promoRef = useRef(null)
+  const [startX, setStartX] = useState<number | null>(null)
 
-  useEffect(() => {
-    if (promoRef.current) {
-      anime({
-        targets: promoRef.current,
-        translateX: -currentIndex * 100 + '%',
-        easing: 'easeInOutQuad',
-        duration: 300,
-      })
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setStartX(e.touches[0].clientX) // บันทึกตำแหน่งนิ้วเริ่มต้น
+  }
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (startX === null) return
+
+    const currentX = e.touches[0].clientX
+    const deltaX = currentX - startX
+
+    // ตรวจสอบการเลื่อน
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0 && currentIndex > 0) {
+        // ปัดขวา
+        setCurrentIndex((prev) => prev - 1)
+      } else if (deltaX < 0 && currentIndex < promotionsList.length - 1) {
+        // ปัดซ้าย
+        setCurrentIndex((prev) => prev + 1)
+      }
+      setStartX(null) // รีเซ็ตตำแหน่งนิ้ว
     }
-  }, [currentIndex])
+  }
 
-  const handleDotClick = (index: number) => {
-    setCurrentIndex(index)
+  const handleTouchEnd = () => {
+    setStartX(null) // รีเซ็ตค่าเมื่อปล่อยนิ้ว
   }
 
   return (
     <section className='bg-[#F9F6F3] py-12 md:py-16 text-[#483E3B]'>
       <div className='w-[380px] md:w-[600px] lg:w-[900px] xl:w-[1080px] mx-auto px-4 md:px-6'>
-        <div className='overflow-hidden'>
-          <div ref={promoRef} className='flex transition-transform'>
+        <div
+          className='overflow-hidden relative'
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className='flex transition-transform duration-300'
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+            }}
+          >
             {promotionsList.map((promotion, index) => (
               <div key={index} className='min-w-full grid grid-cols-12 gap-4 md:gap-6'>
                 <div className='col-span-12 lg:col-span-5'>
@@ -89,7 +110,7 @@ export default function PromotionsBaseSection() {
           {promotionsList.map((_, index) => (
             <button
               key={index}
-              onClick={() => handleDotClick(index)}
+              onClick={() => setCurrentIndex(index)}
               className={`w-4 h-4 rounded-full ${
                 currentIndex === index ? 'bg-[#483E3B]' : 'bg-white border'
               }`}
