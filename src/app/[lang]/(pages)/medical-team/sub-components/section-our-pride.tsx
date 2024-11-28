@@ -18,10 +18,12 @@ export default function OurPrideSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [startX, setStartX] = useState<number | null>(null)
 
+  const sortedPrideList = ourPrideList.sort((a, b) => a.pride_order - b.pride_order)
+
   const itemsPerGroup = 4
   const groupedPrideItems = []
-  for (let i = 0; i < ourPrideList.length; i += itemsPerGroup) {
-    groupedPrideItems.push(ourPrideList.slice(i, i + itemsPerGroup))
+  for (let i = 0; i < sortedPrideList.length; i += itemsPerGroup) {
+    groupedPrideItems.push(sortedPrideList.slice(i, i + itemsPerGroup))
   }
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -36,9 +38,9 @@ export default function OurPrideSection() {
 
     if (Math.abs(deltaX) > 50) {
       if (deltaX > 0 && currentIndex > 0) {
-        setCurrentIndex((prev) => prev - 1) // ปัดขวา
+        setCurrentIndex((prev) => prev - 1)
       } else if (deltaX < 0 && currentIndex < groupedPrideItems.length - 1) {
-        setCurrentIndex((prev) => prev + 1) // ปัดซ้าย
+        setCurrentIndex((prev) => prev + 1)
       }
       setStartX(null)
     }
@@ -49,9 +51,9 @@ export default function OurPrideSection() {
   }
 
   const sectionContent = {
-    caption_th: 'Pride of Our Clinic',
+    caption_th: 'ความภาคภูมิใจของเรา',
     caption_en: 'Pride of Our Clinic',
-    title_th: 'Your Satisfaction, Our Achievement',
+    title_th: 'เพราะความพึงพอใจของคุณคือจุดมุ่งหมายของเรา',
     title_en: 'Your Satisfaction, Our Achievement',
   }
 
@@ -102,9 +104,7 @@ export default function OurPrideSection() {
                     </DialogTrigger>
                     <DialogContent className='md:min-w-[600px]'>
                       <DialogHeader>
-                        <DialogTitle>
-                          {activeLocale === 'th' ? item.our_pride_name_th : item.our_pride_name_en}
-                        </DialogTitle>
+                        <DialogTitle></DialogTitle>
                       </DialogHeader>
                       <div className='flex justify-center'>
                         <Image

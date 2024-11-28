@@ -4,8 +4,8 @@ export const doctorsList = [
     image: '/storage/meen-doctor.webp',
     name_th: 'หมอ มีน',
     name_en: 'Doctor Meen',
-    full_name_th: 'ธนวรรณ โชควัฒนคุปต์',
-    full_name_en: 'Thanawan Chokwatthanakhup',
+    full_name_th: 'พญ. ธนวรรณ โชควัฒนคุปต์',
+    full_name_en: 'Dr. Thanawan Chokwatthanakhup',
     caption_th: '" หมออยากให้ทุกคนเป็นตัวเองในเวอร์ชันที่ดีที่สุด "',
     caption_en: '" I want you to be the best version of yourself "',
     qualifications_th:

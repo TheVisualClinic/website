@@ -61,13 +61,15 @@ export default function VDOSection() {
       <div className='container px-4 md:px-6 py-12 md:py-16'>
         <div className='grid grid-cols-12 gap-6'>
           <div className='col-span-12 lg:col-span-6 text-[#483E3B]'>
-            <div className='text-center'>
-              <h2 className='text-4xl dancing-script-font'>
-                {activeLocale === 'th' ? vdoCard.title_th : vdoCard.title_en}
-              </h2>
-              <p className='text-sm md:text-base my-6 whitespace-pre-line'>
-                {activeLocale === 'th' ? vdoCard.description_th : vdoCard.description_en}
-              </p>
+            <div className='flex items-center justify-center h-full'>
+              <div className='text-center'>
+                <h2 className='text-4xl dancing-script-font'>
+                  {activeLocale === 'th' ? vdoCard.title_th : vdoCard.title_en}
+                </h2>
+                <p className='text-sm md:text-base my-6 whitespace-pre-line'>
+                  {activeLocale === 'th' ? vdoCard.description_th : vdoCard.description_en}
+                </p>
+              </div>
             </div>
           </div>
           <div className='col-span-12 lg:col-span-6'>

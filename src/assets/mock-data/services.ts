@@ -2,8 +2,8 @@ export const servicesList = [
   {
     id: 1,
     order: 1,
-    title_th: 'Filler',
-    title_en: 'Filler',
+    title_th: 'Program Filler',
+    title_en: 'Program Filler',
     price: 4999,
     description_th:
       'ฟิลเลอร์ใช้เพื่อเติมเต็มและฟื้นฟูความเต่งตึงบนใบหน้า ช่วยให้ผิวเรียบเนียนและเพิ่มความคมชัดให้ใบหน้า.',
@@ -16,8 +16,8 @@ export const servicesList = [
   {
     id: 2,
     order: 2,
-    title_th: 'Discovery Pico',
-    title_en: 'Discovery Pico',
+    title_th: 'Program Discovery Pico',
+    title_en: 'Program Discovery Pico',
     price: 5999,
     description_th:
       'Pico เป็นเทคโนโลยีเลเซอร์ที่ใช้ในการรักษาผิวเพื่อลดเลือนจุดด่างดำ กระ และรอยสัก โดยไม่ทำลายผิว.',
@@ -30,8 +30,8 @@ export const servicesList = [
   {
     id: 3,
     order: 3,
-    title_th: 'Ultraformer III',
-    title_en: 'Ultraformer III',
+    title_th: 'Program Ultraformer III',
+    title_en: 'Program Ultraformer III',
     price: 4999,
     description_th:
       'Ultraformer III เป็นการยกกระชับผิวโดยใช้เทคโนโลยีอัลตราซาวด์ที่ช่วยกระตุ้นการสร้างคอลลาเจน ทำให้ผิวกระชับและเต่งตึง.',
@@ -44,8 +44,8 @@ export const servicesList = [
   {
     id: 4,
     order: 4,
-    title_th: 'Sculptra',
-    title_en: 'Sculptra',
+    title_th: 'Program Sculptra',
+    title_en: 'Program Sculptra',
     price: 6999,
     description_th:
       'Sculptra ช่วยกระตุ้นการสร้างคอลลาเจนในผิว ทำให้ผิวกลับมามีความยืดหยุ่นและแข็งแรง ช่วยลดเลือนริ้วรอยและปรับโครงหน้าที่ดูอ่อนวัย.',
@@ -58,8 +58,8 @@ export const servicesList = [
   {
     id: 5,
     order: 5,
-    title_th: 'BOTOX',
-    title_en: 'BOTOX',
+    title_th: 'Program BOTOX',
+    title_en: 'Program BOTOX',
     price: 4999,
     description_th:
       'โบท็อกซ์เป็นการรักษาด้านความงามที่ใช้เพื่อลดเลือนริ้วรอยบนใบหน้าและเส้นริ้วต่าง ๆ.',
@@ -71,8 +71,8 @@ export const servicesList = [
   {
     id: 6,
     order: 6,
-    title_th: 'DIODE',
-    title_en: 'DIODE',
+    title_th: 'Program DIODE',
+    title_en: 'Program DIODE',
     price: 3999,
     description_th:
       'DIODE เป็นเลเซอร์ที่ใช้ในการกำจัดขนอย่างมีประสิทธิภาพ โดยไม่ทำให้ผิวระคายเคืองและช่วยให้ผิวเรียบเนียน.',
@@ -85,8 +85,8 @@ export const servicesList = [
   {
     id: 7,
     order: 7,
-    title_th: 'Acne Scar Solutions',
-    title_en: 'Acne Scar Solutions',
+    title_th: 'Program Acne Scar Solutions',
+    title_en: 'Program Acne Scar Solutions',
     price: 5999,
     description_th:
       'การรักษารอยแผลเป็นจากสิวด้วยวิธีการที่ทันสมัย ช่วยลดรอยแผลเป็นและทำให้ผิวเรียบเนียนขึ้น.',
@@ -99,8 +99,8 @@ export const servicesList = [
   {
     id: 8,
     order: 8,
-    title_th: 'Treatment',
-    title_en: 'Treatment',
+    title_th: 'Program Treatment',
+    title_en: 'Program Treatment',
     price: 2999,
     description_th: 'ทรีตเมนต์บำรุงผิวเพื่อฟื้นฟูและเติมเต็มความชุ่มชื้น ทำให้ผิวสุขภาพดีและสดใส.',
     description_en:
@@ -112,8 +112,8 @@ export const servicesList = [
   {
     id: 9,
     order: 9,
-    title_th: 'IV',
-    title_en: 'IV',
+    title_th: 'Program IV',
+    title_en: 'Program IV',
     price: 2999,
     description_th:
       'การให้สารอาหารและวิตามินผ่านทางหลอดเลือด เพื่อฟื้นฟูร่างกายและเพิ่มความสดชื่นให้กับผิว.',
@@ -126,8 +126,8 @@ export const servicesList = [
   {
     id: 10,
     order: 10,
-    title_th: 'Melasma Solutions',
-    title_en: 'Melasma Solutions',
+    title_th: 'Program Melasma Solutions',
+    title_en: 'Program Melasma Solutions',
     price: 2999,
     description_th:
       'การให้สารอาหารและวิตามินผ่านทางหลอดเลือด เพื่อฟื้นฟูร่างกายและเพิ่มความสดชื่นให้กับผิว.',
