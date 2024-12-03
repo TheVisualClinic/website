@@ -7,5 +7,5 @@
  */
 export function formatPhoneNumber(phoneNumber: string): string {
   const phonePattern = /(\d{3})(\d{3})(\d{4})/
-  return phoneNumber.replace(phonePattern, '$1-$2-$3')
+  return phoneNumber ? phoneNumber.replace(phonePattern, '$1-$2-$3') : '-'
 }

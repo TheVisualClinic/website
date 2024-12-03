@@ -62,7 +62,7 @@ export default function PromotionsBaseSection() {
               <div key={index} className='min-w-full grid grid-cols-12 gap-4 md:gap-6'>
                 <div className='col-span-12 lg:col-span-5'>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${promotion.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${promotion.image}`}
                     alt='Promotion Cover'
                     width={1200}
                     height={1200}

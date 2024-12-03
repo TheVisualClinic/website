@@ -14,7 +14,7 @@ export default function CaptionBanner() {
   return (
     <section className='relative'>
       <Image
-        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        src={`${process.env.MAIN_SERVICES_URL}${sectionImage}`}
         alt='image cover'
         width={1920}
         height={500}

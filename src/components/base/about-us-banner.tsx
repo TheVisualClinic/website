@@ -29,7 +29,7 @@ export default function AboutUsBanner() {
     <section className='relative'>
       <div className='flex justify-center relative'>
         <Image
-          src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+          src={`${process.env.MAIN_SERVICES_URL}${sectionImage}`}
           alt='home page hero image'
           width={1920}
           height={500}

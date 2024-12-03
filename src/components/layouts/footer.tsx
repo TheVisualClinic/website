@@ -1,17 +1,44 @@
 'use client'
 
+import axios from 'axios'
+
 import { socialFacebook, socialInstagram, socialLine, socialTiktok } from '@/assets/icons'
 import { logoTextWhite } from '@/assets/logo'
 import { MailIcon, PhoneIcon } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { socialLink, clinicContact } from '@/assets/mock-data/contacts'
 import { formatPhoneNumber } from '@/lib/phoneFormatter'
+import { useEffect, useRef } from 'react'
+import { useAppDispatch, useAppSelector } from '@/app/[lang]/hooks'
+import { setContactData, setSocialData } from '@/lib/store/features/websiteData'
 
 export default function Footer() {
   const activeLocale = useLocale()
   const tNavMenu = useTranslations('navMenu')
+  const dispatch = useAppDispatch()
+  const contactData = useAppSelector((state) => state.websiteData.contactData)
+  const socialData = useAppSelector((state) => state.websiteData.socialData)
+
+  const fetchData = async () => {
+    try {
+      const { data: response } = await axios.get(
+        `${process.env.MAIN_SERVICES_URL}/api/v1/website/footer`
+      )
+      dispatch(setContactData(response.data))
+      dispatch(setSocialData(response.data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const hasFetched = useRef(false)
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true
+      fetchData()
+    }
+  }, [])
 
   const footerCaption = {
     caption_th: '" The Tailor-made Experience "',
@@ -20,28 +47,28 @@ export default function Footer() {
 
   const socialMediaLinks = [
     {
-      href: socialLink.facebook,
+      href: socialData?.social_facebook_link || '',
       icon: socialFacebook,
       alt: 'social icon Facebook',
-      label: 'The Visual Clinic รัชโยธิน',
+      label: socialData?.social_facebook_label,
     },
     {
-      href: socialLink.instagram,
+      href: socialData?.social_instagram_link || '',
       icon: socialInstagram,
       alt: 'social icon Instagram',
-      label: 'thevisual_clinic',
+      label: socialData?.social_instagram_label,
     },
     {
-      href: socialLink.tiktok,
+      href: socialData?.social_tiktok_link || '',
       icon: socialTiktok,
       alt: 'social icon Tiktok',
-      label: 'thevisualclinic',
+      label: socialData?.social_tiktok_label,
     },
     {
-      href: socialLink.line,
+      href: socialData?.social_line_link || '',
       icon: socialLine,
       alt: 'social icon LINE',
-      label: '@thevisual_clinic',
+      label: socialData?.social_line_label,
     },
   ]
 
@@ -56,8 +83,8 @@ export default function Footer() {
   ]
 
   const contactInfo = [
-    { icon: <PhoneIcon className='w-5 h-5' />, label: formatPhoneNumber(clinicContact.phone) },
-    { icon: <MailIcon className='w-5 h-5' />, label: clinicContact.email },
+    { icon: <PhoneIcon className='w-5 h-5' />, label: formatPhoneNumber(contactData.phone_number) },
+    { icon: <MailIcon className='w-5 h-5' />, label: contactData.email },
   ]
 
   const copyrightText = 'Copyright © 2024 The Visual Clinic All Rights Reserved.'

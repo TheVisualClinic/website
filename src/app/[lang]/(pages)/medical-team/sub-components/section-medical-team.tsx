@@ -17,7 +17,7 @@ export default function MedicalTeamSection() {
               <>
                 <div className='col-span-12 lg:col-span-5'>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${member.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${member.image}`}
                     width={1200}
                     height={1425}
                     alt={member.full_name_th}
@@ -71,7 +71,7 @@ export default function MedicalTeamSection() {
               <>
                 <div className='col-span-12 lg:hidden'>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${member.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${member.image}`}
                     width={1200}
                     height={1425}
                     alt={member.full_name_th}
@@ -112,7 +112,7 @@ export default function MedicalTeamSection() {
                 </div>
                 <div className='col-span-5 hidden lg:block'>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${member.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${member.image}`}
                     width={1200}
                     height={1425}
                     alt={member.full_name_th}

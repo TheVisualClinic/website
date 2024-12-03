@@ -27,7 +27,7 @@ export default function AboutClinicSection() {
         <div className='grid grid-cols-12 gap-6 items-center'>
           <div className='col-span-12 lg:col-span-4'>
             <Image
-              src={`${process.env.STORAGE_PROVIDER_URL}${clinicImage}`}
+              src={`${process.env.MAIN_SERVICES_URL}${clinicImage}`}
               alt='The Visual Clinic'
               width={1200}
               height={1200}

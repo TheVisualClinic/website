@@ -11,7 +11,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     <div className='pt-24 md:pt-32'>
       <div className='max-w-[1080px] px-4 md:px-6 mx-auto space-y-6 mb-12'>
         <Image
-          src={`${process.env.STORAGE_PROVIDER_URL}${serviceImage}`}
+          src={`${process.env.MAIN_SERVICES_URL}${serviceImage}`}
           alt='HIFU treatment image'
           width={1920}
           height={900}

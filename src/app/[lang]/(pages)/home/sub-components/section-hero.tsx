@@ -30,7 +30,6 @@ export default function HeroSection() {
   const buttonRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    // แอนิเมชันสำหรับ title
     if (titleRef.current) {
       const textWrapper = titleRef.current
       textWrapper.innerHTML =
@@ -49,7 +48,6 @@ export default function HeroSection() {
       })
     }
 
-    // แอนิเมชันสำหรับ description
     if (descriptionRef.current) {
       const textWrapper = descriptionRef.current
       textWrapper.innerHTML =
@@ -83,7 +81,7 @@ export default function HeroSection() {
   return (
     <section className='relative'>
       <Image
-        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        src={`${process.env.MAIN_SERVICES_URL}${sectionImage}`}
         alt='home page hero image'
         width={1920}
         height={700}

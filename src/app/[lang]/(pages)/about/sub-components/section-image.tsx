@@ -7,7 +7,7 @@ export default function ImageSection() {
   return (
     <div>
       <Image
-        src={`${process.env.STORAGE_PROVIDER_URL}${sectionImage}`}
+        src={`${process.env.MAIN_SERVICES_URL}${sectionImage}`}
         alt='The Visual Clinic Cover'
         width={1920}
         height={500}

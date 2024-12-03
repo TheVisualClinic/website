@@ -42,7 +42,7 @@ export default function ServicesListSection() {
               <div key={index} className='text-[#877A6B] w-full max-w-[320px]'>
                 <Link href={`/${activeLocale}/services/${service.id}`}>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${service.imgSrc}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${service.imgSrc}`}
                     alt={activeLocale === 'th' ? service.title_th : service.title_en}
                     width={1200}
                     height={1425}

@@ -7,14 +7,12 @@ import { reviewsList } from '@/assets/mock-data/review-images'
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
 
-export default function BeforeAfterSection() {
+export default function BeforeAfterSection({ pageData }: any) {
   const activeLocale = useLocale()
 
   const groupedByCategoryOrder = reviewsList.reduce((groups, item) => {
@@ -27,8 +25,8 @@ export default function BeforeAfterSection() {
   }, {} as Record<number, typeof reviewsList>)
 
   const sectionContent = {
-    title_th: 'รูปภาพเปรียบเทียบก่อนและหลังการใช้บริการ',
-    title_en: 'Before and After Service Comparison Photos',
+    title_th: pageData?.reviews_section_caption_th || 'รูปภาพเปรียบเทียบก่อนและหลังการใช้บริการ',
+    title_en: pageData?.reviews_section_caption_en || 'Before and After Service Comparison Photos',
   }
 
   const [selectedImage, setSelectedImage] = useState<any | null>(null)

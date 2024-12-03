@@ -2,15 +2,36 @@
 
 import Link from 'next/link'
 import anime from 'animejs'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { StarRatingIcon } from '@/components/base/star-rating-icon'
 import { useLocale, useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
-import { reviewsList } from '@/assets/mock-data/reviews'
+import axios from 'axios'
 
 export default function ReviewsBanner({ action }: { action: boolean }) {
   const activeLocale = useLocale()
   const tBtn = useTranslations('button')
+
+  const [pageData, setPageData] = useState<any | null>(null)
+
+  const fetchData = async () => {
+    try {
+      const { data: response } = await axios.get(
+        `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/reviews-banner`
+      )
+      setPageData(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const hasFetched = useRef(false)
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true
+      fetchData()
+    }
+  }, [])
 
   useEffect(() => {
     const cards = document.querySelectorAll('.review-card')
@@ -28,8 +49,8 @@ export default function ReviewsBanner({ action }: { action: boolean }) {
   }, [])
 
   const sectionContent = {
-    title_th: 'รีวิวจากลูกค้าที่น่ารักของเรา',
-    title_en: 'Reviews from Our Lovely Customers',
+    title_th: pageData?.sub_review_caption_th || 'รีวิวจากลูกค้าที่น่ารักของเรา',
+    title_en: pageData?.sub_review_caption_en || 'Reviews from Our Lovely Customers',
   }
 
   return (
@@ -40,25 +61,71 @@ export default function ReviewsBanner({ action }: { action: boolean }) {
         </p>
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-[1080px] mx-auto'>
-          {reviewsList.map((review) => (
-            <div key={review.id} className='review-card bg-white/40 p-6 rounded-xl space-y-4'>
-              <div className='flex items-center justify-center gap-2'>
-                {Array.from({ length: 5 }, (_, index) => (
-                  <StarRatingIcon
-                    key={index}
-                    className='star-rating-icon'
-                    variant={index < review.rating ? 'filled' : 'outline'}
-                  />
-                ))}
-              </div>
-              <p className='text-sm'>
-                {activeLocale === 'th' ? review.content_th : review.content_en}
-              </p>
-              <p className='font-medium text-[#877A6B]'>
-                {activeLocale === 'th' ? review.author_th : review.author_en}
-              </p>
+          <div className='review-card bg-white/40 p-6 rounded-xl space-y-4'>
+            <div className='flex items-center justify-center gap-2'>
+              {Array.from({ length: 5 }, (_, index) => (
+                <StarRatingIcon
+                  key={index}
+                  className='star-rating-icon'
+                  variant={index < pageData?.sub_review_1_rating ? 'filled' : 'outline'}
+                />
+              ))}
             </div>
-          ))}
+            <p className='text-sm'>
+              {activeLocale === 'th'
+                ? pageData?.sub_review_1_message_th
+                : pageData?.sub_review_1_message_en}
+            </p>
+            <p className='font-medium text-[#877A6B]'>
+              {activeLocale === 'th'
+                ? pageData?.sub_review_1_nick_name_th
+                : pageData?.sub_review_1_nick_name_en}
+            </p>
+          </div>
+
+          <div className='review-card bg-white/40 p-6 rounded-xl space-y-4'>
+            <div className='flex items-center justify-center gap-2'>
+              {Array.from({ length: 5 }, (_, index) => (
+                <StarRatingIcon
+                  key={index}
+                  className='star-rating-icon'
+                  variant={index < pageData?.sub_review_2_rating ? 'filled' : 'outline'}
+                />
+              ))}
+            </div>
+            <p className='text-sm'>
+              {activeLocale === 'th'
+                ? pageData?.sub_review_2_message_th
+                : pageData?.sub_review_2_message_en}
+            </p>
+            <p className='font-medium text-[#877A6B]'>
+              {activeLocale === 'th'
+                ? pageData?.sub_review_2_nick_name_th
+                : pageData?.sub_review_2_nick_name_en}
+            </p>
+          </div>
+
+          <div className='review-card bg-white/40 p-6 rounded-xl space-y-4'>
+            <div className='flex items-center justify-center gap-2'>
+              {Array.from({ length: 5 }, (_, index) => (
+                <StarRatingIcon
+                  key={index}
+                  className='star-rating-icon'
+                  variant={index < pageData?.sub_review_3_rating ? 'filled' : 'outline'}
+                />
+              ))}
+            </div>
+            <p className='text-sm'>
+              {activeLocale === 'th'
+                ? pageData?.sub_review_3_message_th
+                : pageData?.sub_review_3_message_en}
+            </p>
+            <p className='font-medium text-[#877A6B]'>
+              {activeLocale === 'th'
+                ? pageData?.sub_review_3_nick_name_th
+                : pageData?.sub_review_3_nick_name_en}
+            </p>
+          </div>
         </div>
 
         {action && (

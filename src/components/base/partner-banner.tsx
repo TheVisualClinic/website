@@ -24,21 +24,21 @@ export default function PartnerBanner() {
           </h2>
         </div>
         <Image
-          src={`${process.env.STORAGE_PROVIDER_URL}${partnerImage.desktop}`}
+          src={`${process.env.MAIN_SERVICES_URL}${partnerImage.desktop}`}
           alt='Partner'
           width={1920}
           height={1080}
           className='w-full h-auto hidden xl:block'
         />
         <Image
-          src={`${process.env.STORAGE_PROVIDER_URL}${partnerImage.teblet}`}
+          src={`${process.env.MAIN_SERVICES_URL}${partnerImage.teblet}`}
           alt='Partner'
           width={1920}
           height={1080}
           className='w-full h-auto hidden lg:block xl:hidden'
         />
         <Image
-          src={`${process.env.STORAGE_PROVIDER_URL}${partnerImage.mobile}`}
+          src={`${process.env.MAIN_SERVICES_URL}${partnerImage.mobile}`}
           alt='Partner'
           width={1920}
           height={1080}

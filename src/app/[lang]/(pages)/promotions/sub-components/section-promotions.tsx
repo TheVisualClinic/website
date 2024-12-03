@@ -21,7 +21,7 @@ export default function PromotionsSection() {
               <>
                 <div className='col-span-12 lg:col-span-5'>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${promotion.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${promotion.image}`}
                     alt='Promotion Cover'
                     width={1200}
                     height={1200}
@@ -65,7 +65,7 @@ export default function PromotionsSection() {
               <>
                 <div className='col-span-12 lg:hidden'>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${promotion.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${promotion.image}`}
                     alt='Promotion Cover'
                     width={1200}
                     height={1200}
@@ -106,7 +106,7 @@ export default function PromotionsSection() {
                 </div>
                 <div className='col-span-5 hidden lg:block'>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${promotion.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${promotion.image}`}
                     alt='Promotion Cover'
                     width={1200}
                     height={1200}

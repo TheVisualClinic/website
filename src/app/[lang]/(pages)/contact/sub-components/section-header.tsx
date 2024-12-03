@@ -2,14 +2,16 @@
 
 import { useLocale } from 'next-intl'
 
-export default function HeaderSection() {
+export default function HeaderSection({ pageData }: any) {
   const activeLocale = useLocale()
 
   const sectionContent = {
-    caption_th: 'ติดต่อเรา',
-    caption_en: 'Contact Us',
-    description_th: 'เรายินดีให้คำปรึกษาและพร้อมช่วยเหลือทุกความต้องการของคุณ',
+    caption_th: pageData?.caption_th || 'ติดต่อเรา',
+    caption_en: pageData?.caption_en || 'Contact Us',
+    description_th:
+      pageData?.description_th || 'เรายินดีให้คำปรึกษาและพร้อมช่วยเหลือทุกความต้องการของคุณ',
     description_en:
+      pageData?.description_en ||
       'We are happy to provide consultation and ready to assist \n with all your needs.',
   }
 

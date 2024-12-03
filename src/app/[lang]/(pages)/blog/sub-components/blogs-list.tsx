@@ -28,7 +28,7 @@ export default function BlogsList() {
             <div className='pt-2 px-2'>
               <Link href={`/${activeLocale}/blog/${blog.id}`}>
                 <Image
-                  src={`${process.env.STORAGE_PROVIDER_URL}${blog.img_src}`}
+                  src={`${process.env.MAIN_SERVICES_URL}${blog.img_src}`}
                   alt={activeLocale === 'th' ? blog.title_th : blog.title_en}
                   width={1200}
                   height={1200}

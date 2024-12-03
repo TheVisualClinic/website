@@ -5,16 +5,19 @@ const withNextIntl = createNextIntlPlugin()
 const nextConfig = {
   env: {
     APPLICATION_PORT: process.env.APPLICATION_PORT,
-    NEXT_PUBLIC_CLIENT_KEY: process.env.NEXT_PUBLIC_CLIENT_KEY,
     MAIN_SERVICES_URL: process.env.MAIN_SERVICES_URL,
-    IDP_PROVIDER_URL: process.env.IDP_PROVIDER_URL,
-    STORAGE_PROVIDER_URL: process.env.STORAGE_PROVIDER_URL,
+    IMAGE_URL: process.env.IMAGE_URL,
   },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'storage.thevisual-clinic.com',
+        hostname: 'main.thevisual-clinic.com',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3001',
       },
     ],
   },

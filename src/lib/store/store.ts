@@ -1,14 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import loadingReducer from './features/loadingSlice'
-import myUserSlice from './features/myUserSlice'
-import apiNotifierSlice from './features/apiNotifierSlice'
+import websiteReducer from './features/websiteData'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      myUser: myUserSlice,
-      loading: loadingReducer,
-      apiNotifier: apiNotifierSlice,
+      websiteData: websiteReducer,
     },
   })
 }

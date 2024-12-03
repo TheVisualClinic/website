@@ -37,7 +37,7 @@ export default function DoctorSection() {
           {doctorsList.map((doctor, index) => (
             <div key={index} className='text-center space-y-4'>
               <Image
-                src={`${process.env.STORAGE_PROVIDER_URL}${doctor.image}`}
+                src={`${process.env.MAIN_SERVICES_URL}${doctor.image}`}
                 alt={activeLocale === 'th' ? doctor.name_th : doctor.name_en}
                 className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
                 width={1200}

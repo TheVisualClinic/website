@@ -177,7 +177,7 @@ export default function ServicesSection() {
               >
                 <Link href={`/${activeLocale}/services/${service.id}`}>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${service.imgSrc}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${service.imgSrc}`}
                     alt={activeLocale === 'th' ? service.title_th : service.title_en}
                     width={1200}
                     height={1425}

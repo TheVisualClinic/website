@@ -34,7 +34,7 @@ export default function ToolsPromotionsCard() {
               <Dialog>
                 <DialogTrigger>
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${promotion.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${promotion.image}`}
                     alt='Promotion Image'
                     width={1200}
                     height={1200}
@@ -48,7 +48,7 @@ export default function ToolsPromotionsCard() {
                   </DialogHeader>
 
                   <Image
-                    src={`${process.env.STORAGE_PROVIDER_URL}${promotion.image}`}
+                    src={`${process.env.MAIN_SERVICES_URL}${promotion.image}`}
                     alt='Promotion Image'
                     width={1200}
                     height={1200}

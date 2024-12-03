@@ -2,14 +2,17 @@
 
 import { useLocale } from 'next-intl'
 
-export default function HeaderSection() {
+export default function HeaderSection({ pageData }: any) {
   const activeLocale = useLocale()
 
   const sectionContent = {
-    caption_th: 'รีวิวจากลูกค้าของเรา',
-    caption_en: 'Customer Reviews',
-    desctiption_th: 'เสียงตอบรับจากลูกค้าจริง ที่มั่นใจในบริการของเรา \n และผลลัพธ์ที่น่าประทับใจ',
-    desctiption_en:
+    caption_th: pageData?.caption_th || 'รีวิวจากลูกค้าของเรา',
+    caption_en: pageData?.caption_en || 'Customer Reviews',
+    description_th:
+      pageData?.description_th ||
+      'เสียงตอบรับจากลูกค้าจริง ที่มั่นใจในบริการของเรา \n และผลลัพธ์ที่น่าประทับใจ',
+    description_en:
+      pageData?.description_en ||
       'Real feedback from our customers who trust our services \n and are impressed with the results.',
   }
 
@@ -21,7 +24,7 @@ export default function HeaderSection() {
             {activeLocale === 'th' ? sectionContent.caption_th : sectionContent.caption_en}
           </p>
           <h2 className='text-xl md:text-2xl lg:text-3xl font-light mx-auto text-[#483E3B] md:whitespace-pre-line'>
-            {activeLocale === 'th' ? sectionContent.desctiption_th : sectionContent.desctiption_en}
+            {activeLocale === 'th' ? sectionContent.description_th : sectionContent.description_en}
           </h2>
         </div>
       </div>
