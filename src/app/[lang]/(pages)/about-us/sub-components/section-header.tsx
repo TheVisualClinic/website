@@ -2,17 +2,19 @@
 
 import { useLocale } from 'next-intl'
 
-export default function HeaderSection() {
+export default function HeaderSection({ pageData }: any) {
   const activeLocale = useLocale()
 
   const sectionContent = {
-    caption_th: 'The Visual Clinic',
-    caption_en: 'The Visual Clinic',
-    title_th: '" The Tailor-made Experience "',
-    title_en: '" The Tailor-made Experience "',
+    caption_th: pageData?.caption_th || 'The Visual Clinic',
+    caption_en: pageData?.caption_en || 'The Visual Clinic',
+    title_th: pageData?.slogan || '" The Tailor-made Experience "',
+    title_en: pageData?.slogan || '" The Tailor-made Experience "',
     description_th:
+      pageData?.description_th ||
       'สัมผัสประสบการณ์ที่ออกแบบมาเฉพาะคุณที่ The Visual Clinic \n เราให้ความสำคัญกับการดูแลแบบเฉพาะบุคคล ด้วยทีมแพทย์ผู้มีประสบการณ์และเทคโนโลยีที่ทันสมัย \n เพื่อให้คุณได้รับการดูแลที่ดีที่สุดและมั่นใจได้ในทุกขั้นตอน',
     description_en:
+      pageData?.description_en ||
       'Experience a tailor-made journey at The Visual Clinic. \n We prioritize personalized care with an experienced team of doctors and advanced technology, \n ensuring you receive the best care and confidence at every step.',
   }
 

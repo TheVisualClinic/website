@@ -5,12 +5,34 @@ import Image from 'next/image'
 import anime from 'animejs'
 import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
-import { servicesList } from '@/assets/mock-data/services'
 import { useLocale, useTranslations } from 'next-intl'
+import axios from 'axios'
 
-export default function ServicesSection() {
+export default function ServicesSection({ pageData }: any) {
+  const placeholderSrc = '/placeholder-image.jpg'
   const activeLocale = useLocale()
   const tLink = useTranslations('buttonLink')
+
+  const [servicesList, setServiceList] = useState<any[]>([])
+
+  const fetchData = async () => {
+    try {
+      const { data: response } = await axios.get(
+        `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/service-list`
+      )
+      setServiceList(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const hasFetched = useRef(false)
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true
+      fetchData()
+    }
+  }, [])
 
   const [numberOfGroup, setNumberOfGroup] = useState(4)
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
@@ -39,7 +61,7 @@ export default function ServicesSection() {
     }
   }, [])
 
-  const sortedServices = [...servicesList].sort((a, b) => a.order - b.order)
+  const sortedServices = [...servicesList]
   const groupedServices = []
   for (let i = 0; i < sortedServices.length; i += numberOfGroup) {
     groupedServices.push(sortedServices.slice(i, i + numberOfGroup))
@@ -104,7 +126,6 @@ export default function ServicesSection() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [hasAnimatedText, hasAnimatedGroup])
 
-  // เพิ่ม Event Listener สำหรับการปัดซ้าย-ขวา
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       setStartX(e.touches[0].clientX)
@@ -117,10 +138,8 @@ export default function ServicesSection() {
 
       if (Math.abs(diffX) > 50) {
         if (diffX > 0 && currentGroupIndex > 0) {
-          // ปัดขวา
           setCurrentGroupIndex(currentGroupIndex - 1)
         } else if (diffX < 0 && currentGroupIndex < groupedServices.length - 1) {
-          // ปัดซ้าย
           setCurrentGroupIndex(currentGroupIndex + 1)
         }
         setStartX(null)
@@ -148,11 +167,13 @@ export default function ServicesSection() {
   }, [currentGroupIndex, groupedServices.length, startX])
 
   const pageContent = {
-    caption_th: 'บริการทั้งหมด',
-    caption_en: 'All Services',
+    caption_th: pageData?.section_services_caption_th || 'บริการทั้งหมด',
+    caption_en: pageData?.section_services_caption_en || 'All Services',
     description_th:
+      pageData?.section_services_title_th ||
       'สัมผัสบริการเสริมความงามของเรา \n เพื่อดูแลคุณให้มั่นใจและเป็นตัวเองในเวอร์ชันที่ดีที่สุด',
     description_en:
+      pageData?.section_services_title_en ||
       'Experience our beauty enhancement services \n to help you feel confident and be the best version of yourself',
   }
 
@@ -170,36 +191,58 @@ export default function ServicesSection() {
 
         <div className='space-y-6 opacity-0' ref={groupRef}>
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6'>
-            {groupedServices[currentGroupIndex].map((service, serviceIndex) => (
+            {groupedServices[currentGroupIndex]?.map((service, serviceIndex) => (
               <div
-                key={service.id}
+                key={serviceIndex}
                 className={`service-item ${serviceIndex % 2 === 0 ? 'pt-6' : ''}`}
               >
-                <Link href={`/${activeLocale}/services/${service.id}`}>
+                <Link
+                  href={`/${activeLocale}/services/${
+                    activeLocale === 'th' ? service.slug_th || '' : service.slug_en || ''
+                  }`}
+                >
                   <Image
-                    src={`${process.env.MAIN_SERVICES_URL}${service.imgSrc}`}
-                    alt={activeLocale === 'th' ? service.title_th : service.title_en}
+                    src={
+                      service?.cover_image_url
+                        ? `${process.env.IMAGE_URL}${service?.cover_image_url}`
+                        : placeholderSrc
+                    }
+                    alt={
+                      activeLocale === 'th'
+                        ? service?.service_name_th || ''
+                        : service?.service_name_en || ''
+                    }
                     width={1200}
-                    height={1425}
+                    height={1200}
                     className='rounded-2xl hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer transition-all duration-300'
+                    placeholder='blur'
+                    blurDataURL={placeholderSrc}
                   />
                 </Link>
                 <div className='p-2'>
                   <h3 className='text-lg lg:text-xl xl:text-2xl font-medium text-[#483E3B] capitalize truncate'>
-                    {activeLocale === 'th' ? service.title_th : service.title_en}
+                    {activeLocale === 'th'
+                      ? service.service_name_th || ''
+                      : service.service_name_en || ''}
                   </h3>
                   <p className='text-[#9C6E5A] space-x-2'>
                     <span className='capitalize'>
                       {activeLocale === 'th' ? 'เริ่มต้นที่' : 'starting at'}
                     </span>
-                    <span className='font-medium'>{service.price.toLocaleString('th-TH')}.-</span>
+                    <span className='font-medium'>
+                      {service.service_price.toLocaleString('th-TH')}.-
+                    </span>
                   </p>
                   <p className='text-[#877A6B] line-clamp-2 text-sm lg:text-base'>
-                    {activeLocale === 'th' ? service.description_th : service.description_en}
+                    {activeLocale === 'th'
+                      ? service.cover_description_th || ''
+                      : service.cover_description_en || ''}
                   </p>
                   <div className='flex justify-end py-2'>
                     <Link
-                      href={`/${activeLocale}/services/${service.id}`}
+                      href={`/${activeLocale}/services/${
+                        activeLocale === 'th' ? service.slug_th || '' : service.slug_en || ''
+                      }`}
                       className='flex gap-1 items-center text-[#9C6E5A] max-w-fit cursor-pointer transition-all duration-300 group hover:text-[#9C6E5A]/80'
                     >
                       <span className='capitalize'>{tLink('readMore')}</span>

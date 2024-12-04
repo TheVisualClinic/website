@@ -10,7 +10,7 @@ export default function ImageSection({ pageData }: any) {
       <Image
         src={
           pageData?.header_image_url
-            ? `${process.env.MAIN_SERVICES_URL}${pageData?.header_image_url}`
+            ? `${process.env.IMAGE_URL}${pageData?.header_image_url}`
             : placeholderSrc
         }
         alt='Contact Image Cover'

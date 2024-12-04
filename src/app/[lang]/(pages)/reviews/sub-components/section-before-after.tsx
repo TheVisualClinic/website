@@ -1,9 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocale } from 'next-intl'
-import { reviewsList } from '@/assets/mock-data/review-images'
 import {
   Dialog,
   DialogContent,
@@ -11,18 +10,32 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import axios from 'axios'
 
 export default function BeforeAfterSection({ pageData }: any) {
+  const placeholderSrc = '/placeholder-image.jpg'
   const activeLocale = useLocale()
 
-  const groupedByCategoryOrder = reviewsList.reduce((groups, item) => {
-    const category = item.category_order
-    if (!groups[category]) {
-      groups[category] = []
+  const [reviewsList, setReviewsList] = useState<any[]>([])
+
+  const fetchData = async () => {
+    try {
+      const { data: response } = await axios.get(
+        `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/reviews-list`
+      )
+      setReviewsList(response.data)
+    } catch (error) {
+      console.log(error)
     }
-    groups[category].push(item)
-    return groups
-  }, {} as Record<number, typeof reviewsList>)
+  }
+
+  const hasFetched = useRef(false)
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true
+      fetchData()
+    }
+  }, [])
 
   const sectionContent = {
     title_th: pageData?.reviews_section_caption_th || 'รูปภาพเปรียบเทียบก่อนและหลังการใช้บริการ',
@@ -32,90 +45,79 @@ export default function BeforeAfterSection({ pageData }: any) {
   const [selectedImage, setSelectedImage] = useState<any | null>(null)
 
   return (
-    <section className='bg-[#F9F6F3]'>
+    <section className='bg-[#F9F6F3] py-8 md:py-12'>
       <div className='container px-4 md:px-6 py-12 md:py-6 space-y-12'>
         <p className='text-[#9C6E5A] font-semibold capitalize text-center'>
           {activeLocale === 'th' ? sectionContent.title_th : sectionContent.title_en}
         </p>
 
-        {Object.keys(groupedByCategoryOrder)
-          .sort((a, b) => Number(a) - Number(b))
-          .map((category) => {
-            const categoryItems = groupedByCategoryOrder[Number(category)]
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const [currentPage, setCurrentPage] = useState<number>(1)
-            const itemsPerPage: number = 8
-            const totalPages: number = Math.ceil(categoryItems.length / itemsPerPage)
+        {reviewsList?.map((group, index) => {
+          return (
+            <div key={index}>
+              <h3 className='text-2xl font-semibold text-center mb-6 bg-gray-300/20 py-4 rounded-lg'>
+                {activeLocale === 'th' ? group.group_name_th || '' : group.group_name_en || ''}
+              </h3>
 
-            const handlePageChange = (page: number) => {
-              setCurrentPage(page)
-            }
-
-            const paginatedImages = categoryItems.slice(
-              (currentPage - 1) * itemsPerPage,
-              currentPage * itemsPerPage
-            )
-
-            return (
-              <div key={category}>
-                <h3 className='text-2xl font-semibold text-center mb-6 bg-black/5 py-4 rounded-xl'>
-                  {activeLocale === 'th'
-                    ? categoryItems[0].category_th
-                    : categoryItems[0].category_en}
-                </h3>
-
-                <div className='grid grid-cols-12 gap-4 md:gap-6'>
-                  {paginatedImages.map((image) => (
-                    <div key={image.id} className='col-span-6 md:col-span-4 lg:col-span-3'>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <div onClick={() => setSelectedImage(image.image)}>
-                            <Image
-                              src={image.image}
-                              alt={activeLocale === 'th' ? image.category_th : image.category_en}
-                              width={1200}
-                              height={1200}
-                              className='aspect-square object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
-                            />
-                          </div>
-                        </DialogTrigger>
-                        <DialogContent className='md:min-w-[600px] lg:min-w-[750px]'>
-                          <DialogHeader>
-                            <DialogTitle>
-                              {activeLocale === 'th' ? image.category_th : image.category_en}
-                            </DialogTitle>
-                          </DialogHeader>
-                          <div className='flex justify-center'>
-                            <Image
-                              src={selectedImage ?? ''}
-                              alt={activeLocale === 'th' ? image.category_th : image.category_en}
-                              width={1200}
-                              height={1200}
-                              className='aspect-square rounded-xl'
-                            />
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                  ))}
-                </div>
-
-                <div className='flex justify-center space-x-4 mt-8'>
-                  {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handlePageChange(index + 1)}
-                      className={`px-4 py-2 rounded-md ${
-                        currentPage === index + 1 ? 'bg-[#9C6E5A] text-white' : 'bg-white border'
-                      }`}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
+              <div className='grid grid-cols-12 gap-4 md:gap-6'>
+                {group.items?.map((image: any, index: number) => (
+                  <div key={index} className='col-span-6 md:col-span-4 lg:col-span-3'>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <div>
+                          <Image
+                            src={
+                              pageData?.header_image_url
+                                ? `${process.env.IMAGE_URL}${image.item_image_url}`
+                                : placeholderSrc
+                            }
+                            alt={
+                              activeLocale === 'th'
+                                ? group.group_name_th || ''
+                                : group.group_name_en || ''
+                            }
+                            width={1200}
+                            height={1200}
+                            className='aspect-square object-cover rounded-lg transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
+                            placeholder='blur'
+                            blurDataURL={placeholderSrc}
+                          />
+                        </div>
+                      </DialogTrigger>
+                      <DialogContent className='md:min-w-[600px] lg:min-w-[750px]'>
+                        <DialogHeader>
+                          <DialogTitle>
+                            {activeLocale === 'th'
+                              ? group.group_name_th || ''
+                              : group.group_name_en || ''}
+                          </DialogTitle>
+                        </DialogHeader>
+                        <div className='flex justify-center'>
+                          <Image
+                            src={
+                              pageData?.header_image_url
+                                ? `${process.env.IMAGE_URL}${image.item_image_url}`
+                                : placeholderSrc
+                            }
+                            alt={
+                              activeLocale === 'th'
+                                ? group.group_name_th || ''
+                                : group.group_name_en || ''
+                            }
+                            width={1200}
+                            height={1200}
+                            className='aspect-square object-cover rounded-lg'
+                            placeholder='blur'
+                            blurDataURL={placeholderSrc}
+                          />
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </div>
+                ))}
               </div>
-            )
-          })}
+            </div>
+          )
+        })}
       </div>
     </section>
   )

@@ -10,7 +10,6 @@ import { Separator } from '@/components/ui/separator'
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { socialLink } from '@/assets/mock-data/contacts'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useAppSelector } from '@/app/[lang]/hooks'
@@ -42,8 +41,8 @@ export default function SocialBanner() {
   }, [])
 
   const sectionContent = {
-    title_th: 'ติดตามข่าวสารและโปรโมชันได้ผ่านช่องทาง',
-    title_en: 'Follow our news and promotions through',
+    title_th: pageData?.social_title_th || 'ติดตามข่าวสารและโปรโมชันได้ผ่านช่องทาง',
+    title_en: pageData?.social_title_en || 'Follow our news and promotions through',
   }
 
   return (
@@ -51,7 +50,7 @@ export default function SocialBanner() {
       <Image
         src={
           pageData?.background_url
-            ? `${process.env.MAIN_SERVICES_URL}${pageData?.background_url}`
+            ? `${process.env.IMAGE_URL}${pageData?.background_url}`
             : placeholderSrc
         }
         alt='Contact Image Cover'

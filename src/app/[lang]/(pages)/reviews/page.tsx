@@ -37,7 +37,7 @@ export default function ReviewsPage() {
       <ImageSection pageData={pageData} />
       <TopReviewsSection pageData={pageData} />
       <ReviewsBanner action={false} />
-      {/* <BeforeAfterSection pageData={pageData} /> */}
+      <BeforeAfterSection pageData={pageData} />
       <SocialBanner />
     </div>
   )

@@ -7,21 +7,26 @@ import { PhoneIcon } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
-import { socialLink, clinicContact } from '@/assets/mock-data/contacts'
 import { formatPhoneNumber } from '@/lib/phoneFormatter'
 import anime from 'animejs'
+import { useAppSelector } from '@/app/[lang]/hooks'
 
-export default function HeroSection() {
+export default function HeroSection({ pageData }: any) {
+  const placeholderSrc = '/placeholder-image.jpg'
+
   const activeLocale = useLocale()
   const tBtn = useTranslations('button')
+  const contactData = useAppSelector((state) => state.websiteData.contactData)
+  const socialData = useAppSelector((state) => state.websiteData.socialData)
 
-  const sectionImage = '/storage/clinic-img-3.webp'
   const heroCard = {
-    title_th: '" The Tailor-made Experience "',
-    title_en: '" The Tailor-made Experience "',
+    title_th: pageData?.hero_slogan_th || '" The Tailor-made Experience "',
+    title_en: pageData?.hero_slogan_en || '" The Tailor-made Experience "',
     description_th:
+      pageData?.hero_content_th ||
       'เราเชื่อว่าความงามที่แท้จริงเริ่มต้นจากความรู้สึกสบายใจและเชื่อมั่นในการดูแลตัวเอง คลินิกของเราจึงออกแบบในสไตล์ที่อบอุ่น มินิมอล ให้ความรู้สึกเหมือนได้เข้ามานั่งเล่นที่คาเฟ่ บรรยากาศเป็นกันเอง ให้ทุกครั้งที่คุณเข้ามารับบริการ ได้รับประสบการณ์ที่ผ่อนคลายและน่าประทับใจ',
     description_en:
+      pageData?.hero_content_en ||
       'We believe that true beauty begins with feeling comfortable and confident in taking care of yourself. Our clinic is designed with a warm, minimal style, giving you the feeling of sitting in a cozy café. The friendly atmosphere ensures that every visit provides you with a relaxing and memorable experience.',
   }
 
@@ -81,11 +86,17 @@ export default function HeroSection() {
   return (
     <section className='relative'>
       <Image
-        src={`${process.env.MAIN_SERVICES_URL}${sectionImage}`}
-        alt='home page hero image'
+        src={
+          pageData?.hero_image_url
+            ? `${process.env.IMAGE_URL}${pageData?.hero_image_url}`
+            : placeholderSrc
+        }
+        alt='Contact Image Cover'
         width={1920}
         height={700}
         className='w-full h-[calc(100vh-60px)] md:h-[600px] lg:h-[700px] object-cover'
+        placeholder='blur'
+        blurDataURL={placeholderSrc}
       />
 
       <div className='absolute top-0 left-0 w-full h-full flex items-center text-[#483E3B]'>
@@ -106,13 +117,13 @@ export default function HeroSection() {
               {activeLocale === 'th' ? heroCard.description_th : heroCard.description_en}
             </p>
             <div className='flex items-center gap-4' ref={buttonRef}>
-              <Link href={socialLink.line} target='_blank'>
+              <Link href={socialData.social_line_link} target='_blank'>
                 <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                   {tBtn('booking')}
                 </Button>
               </Link>
 
-              <Link href={`/${activeLocale}/about`}>
+              <Link href={`/${activeLocale}/about-us`}>
                 <Button className='w-[120px] bg-white py-3 rounded-sm flex justify-center align-middle text-[#9C6E5A] hover:bg-[#E7DDD3] cursor-pointer border border-[#9C6E5A] capitalize'>
                   {tBtn('aboutUs')}
                 </Button>
@@ -125,40 +136,38 @@ export default function HeroSection() {
       <div className='bg-[#CDB8A4] relative z-30'>
         <div className='max-w-[1080px] mx-auto px-4 md:px-6 py-4 md:py-6 grid grid-cols-4 gap-4 md:gap-6 text-center'>
           <Link
-            href={socialLink.facebook}
+            href={socialData.social_facebook_link}
             target='_blank'
             className='flex items-center gap-4 justify-center'
           >
             <Image src={socialFacebookDark} alt='Social Icon' width={28} />
-            <p className='hidden lg:block'>
-              The Visual Clinic {activeLocale === 'th' ? 'รัชโยธิน' : 'Ratchayotin'}
-            </p>
+            <p className='hidden lg:block'>{socialData.social_facebook_label}</p>
           </Link>
 
           <Link
-            href={socialLink.instagram}
+            href={socialData.social_instagram_link}
             target='_blank'
             className='flex items-center gap-4 justify-center'
           >
             <Image src={socialInstagramDark} alt='Social Icon' width={28} />
-            <p className='hidden lg:block'>thevisual_clinic</p>
+            <p className='hidden lg:block'>{socialData.social_instagram_label}</p>
           </Link>
 
           <Link
-            href={socialLink.line}
+            href={socialData.social_line_link}
             target='_blank'
             className='flex items-center gap-4 justify-center'
           >
             <Image src={socialLineDark} alt='Social Icon' width={28} />
-            <p className='hidden lg:block'>@thevisual_clinic</p>
+            <p className='hidden lg:block'>{socialData.social_line_label}</p>
           </Link>
 
           <Link
-            href={`tel:${clinicContact.phone}`}
+            href={`tel:${contactData.phone_number}`}
             className='flex items-center gap-4 justify-center'
           >
             <PhoneIcon className='w-[28px] h-[28px]' />
-            <p className='hidden lg:block'>{formatPhoneNumber(clinicContact.phone)}</p>
+            <p className='hidden lg:block'>{formatPhoneNumber(contactData.phone_number)}</p>
           </Link>
         </div>
       </div>

@@ -2,14 +2,11 @@
 
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 
 export default function DoctorSection({ pageData }: any) {
   const placeholderSrc = '/placeholder-image.jpg'
-
-  const router = useRouter()
   const activeLocale = useLocale()
 
   const [doctorsList, setDoctorList] = useState<any[]>([])
@@ -38,10 +35,10 @@ export default function DoctorSection({ pageData }: any) {
     caption_en: pageData?.section_medical_team_caption_en || 'Medical Team',
     title_th:
       pageData?.section_medical_team_title_th ||
-      'เราพร้อมดูแลคุณด้วยความใส่ใจ และประสบการณ์ระดับมืออาชีพ \n เพื่อให้คุณได้รับการดูแลที่ดีที่สุด',
+      'ทีมแพทย์ผู้มีประสบการณ์ \n พร้อมให้คำปรึกษาและดูแลคุณอย่างใกล้ชิด \n เพื่อให้คุณได้รับการดูแลที่ดีที่สุด',
     title_en:
       pageData?.section_medical_team_title_en ||
-      'We provide dedicated and professional \n care to ensure you receive the best treatment and attention you deserve.',
+      'Our experienced medical team is ready to provide consultation and close care, \n ensuring you receive the best possible treatment.',
     qualifications_th:
       'M.D., M.Sc.Dermatology \n Fellowship in Laser & Cosmetic Dermatology, \n Florida International University',
     qualifications_en:
@@ -55,20 +52,16 @@ export default function DoctorSection({ pageData }: any) {
           <p className='text-[#9C6E5A] font-semibold'>
             {activeLocale === 'th' ? pageContent.caption_th : pageContent.caption_en}
           </p>
-          <h2 className='text-x md:text-2xl lg:text-3xl font-light text-center md:whitespace-pre-line'>
+          <h2 className='text-xl md:text-2xl lg:text-3xl font-light text-center whitespace-pre-line'>
             {activeLocale === 'th' ? pageContent.title_th : pageContent.title_en}
           </h2>
         </div>
         <div
           className={`grid ${
-            doctorsList?.length === 1
-              ? 'justify-items-center'
-              : doctorsList?.length === 2
-              ? 'grid-cols-1 md:grid-cols-2'
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+            doctorsList.length === 1 ? 'justify-items-center' : 'grid-cols-1 md:grid-cols-2'
           } gap-8 mt-10`}
         >
-          {doctorsList?.map((doctor, index) => (
+          {doctorsList.map((doctor, index) => (
             <div key={index} className='text-center space-y-4'>
               <Image
                 src={
@@ -82,9 +75,6 @@ export default function DoctorSection({ pageData }: any) {
                 className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
                 placeholder='blur'
                 blurDataURL={placeholderSrc}
-                onClick={() => {
-                  router.replace(`/${activeLocale}/medical-team`)
-                }}
               />
               <div>
                 <h3 className='text-xl text-[#9C6E5A] font-medium'>
@@ -107,20 +97,6 @@ export default function DoctorSection({ pageData }: any) {
           ))}
         </div>
       </div>
-
-      <Image
-        src={
-          pageData?.middle_image_url
-            ? `${process.env.IMAGE_URL}${pageData?.middle_image_url}`
-            : placeholderSrc
-        }
-        alt='Contact Image Cover'
-        width={1920}
-        height={500}
-        className='w-full h-[350px] md:h-[500px] object-cover'
-        placeholder='blur'
-        blurDataURL={placeholderSrc}
-      />
     </section>
   )
 }

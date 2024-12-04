@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { StarRatingIcon } from '@/components/base/star-rating-icon'
 import { useLocale } from 'next-intl'
-import { topReview } from '@/assets/mock-data/reviews'
 
 export default function TopReviewsSection({ pageData }: any) {
   const activeLocale = useLocale()
@@ -16,7 +15,7 @@ export default function TopReviewsSection({ pageData }: any) {
           <Image
             src={
               pageData?.top_review_image_url
-                ? `${process.env.MAIN_SERVICES_URL}${pageData?.top_review_image_url}`
+                ? `${process.env.IMAGE_URL}${pageData?.top_review_image_url}`
                 : placeholderSrc
             }
             alt='Contact Image Cover'
@@ -45,7 +44,7 @@ export default function TopReviewsSection({ pageData }: any) {
           </div>
           <div className='flex items-center justify-center lg:justify-start py-4 gap-4 text-sm text-center'>
             {activeLocale === 'th'
-              ? pageData?.top_review_caption_th.split(',').map((tag: string, index: number) => (
+              ? pageData?.top_review_caption_th?.split(',').map((tag: string, index: number) => (
                   <div
                     key={index}
                     className='text-white bg-[#51463A] rounded-full py-2 px-4 text-xs'

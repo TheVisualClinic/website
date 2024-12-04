@@ -1,20 +1,21 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import CertificateSection from './sub-components/section-certificate'
 import HeaderSection from './sub-components/section-header'
 import ImageSection from './sub-components/section-image'
-import MedicalTeamSection from './sub-components/section-medical-team'
-import OurPrideSection from './sub-components/section-our-pride'
+import AboutClinicSection from './sub-components/section-about-clinic'
+import AboutUsBanner from '@/components/base/about-us-banner'
+import DoctorSection from './sub-components/section-doctor'
+import PartnerBanner from '@/components/base/partner-banner'
+import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 
-export default function MedicalTeamPage() {
+export default function AboutPage() {
   const [pageData, setPageData] = useState<any | null>(null)
 
   const fetchData = async () => {
     try {
       const { data: response } = await axios.get(
-        `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/medical-team`
+        `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/about-us`
       )
       setPageData(response.data)
     } catch (error) {
@@ -34,9 +35,10 @@ export default function MedicalTeamPage() {
     <div className='bg-[#F9F6F3] pt-16'>
       <HeaderSection pageData={pageData} />
       <ImageSection pageData={pageData} />
-      <MedicalTeamSection />
-      <CertificateSection pageData={pageData} />
-      <OurPrideSection pageData={pageData} />
+      <AboutClinicSection pageData={pageData} />
+      <AboutUsBanner />
+      <DoctorSection pageData={pageData} />
+      <PartnerBanner />
     </div>
   )
 }

@@ -8,6 +8,11 @@ import axios from 'axios'
 
 export default function BlogPage() {
   const [pageData, setPageData] = useState<any | null>(null)
+  const [selectedTag, setSelectedTag] = useState<string | null>(null)
+
+  const handleTagClick = (tagName: string) => {
+    setSelectedTag(tagName)
+  }
 
   const fetchData = async () => {
     try {
@@ -34,10 +39,10 @@ export default function BlogPage() {
       <div className='py-12 md:py-16 bg-[#F9F6F3]'>
         <div className='container px-4 md:px-4 grid grid-cols-12 gap-4 md:gap-6'>
           <div className='col-span-3 hidden xl:block'>
-            <ToolsBar />
+            <ToolsBar onSendTagClick={handleTagClick} />
           </div>
           <div className='col-span-12 xl:col-span-9'>
-            <BlogsList />
+            <BlogsList tagSearch={selectedTag} />
           </div>
         </div>
       </div>

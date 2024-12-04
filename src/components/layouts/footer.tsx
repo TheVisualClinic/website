@@ -74,7 +74,7 @@ export default function Footer() {
 
   const menuLinks = [
     { href: `/${activeLocale}/services`, label: tNavMenu('services') },
-    { href: `/${activeLocale}/about`, label: tNavMenu('aboutUs') },
+    { href: `/${activeLocale}/about-us`, label: tNavMenu('aboutUs') },
     { href: `/${activeLocale}/medical-team`, label: tNavMenu('medicalTeam') },
     { href: `/${activeLocale}/promotions`, label: tNavMenu('promotions') },
     { href: `/${activeLocale}/reviews`, label: tNavMenu('reviews') },

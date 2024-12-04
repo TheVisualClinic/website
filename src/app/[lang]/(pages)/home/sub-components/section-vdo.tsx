@@ -3,19 +3,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocale } from 'next-intl'
 
-export default function VDOSection() {
+export default function VDOSection({ pageData }: any) {
   const activeLocale = useLocale()
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMute, setIsMute] = useState<string>('1')
 
-  const vdoLink = 'https://youtu.be/dSd5KymKLoQ'
+  const vdoLink = pageData?.section_vdo_link
 
   const extractYoutubeId = (url: string) => {
     const regex =
       /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^?&/]+)/
-    const match = url.match(regex)
+    const match = url?.match(regex)
     return match ? match[1] : null
   }
 
@@ -25,11 +25,13 @@ export default function VDOSection() {
     : ''
 
   const vdoCard = {
-    title_th: 'The Tailor-made Experience',
-    title_en: 'The Tailor-made Experience',
+    title_th: pageData?.section_vdo_slogan || 'The Tailor-made Experience',
+    title_en: pageData?.section_vdo_slogan || 'The Tailor-made Experience',
     description_th:
+      pageData?.section_vdo_content_th ||
       'เพราะความสวยงามไม่มีสูตรสำเร็จที่ตายตัว\nที่ The Visual เราเชื่อว่าทุกคนมีความดูดีในแบบของตัวเอง\nมาร่วมกันค้นหาเวอร์ชันที่ดีที่สุดของคุณกับเรา\nให้คุณได้มั่นใจ พร้อมสัมผัสกับความงามที่แท้จริงในแบบของคุณเอง',
     description_en:
+      pageData?.section_vdo_content_en ||
       'Beauty has no fixed formula,\nAt The Visual Clinic, we believe that everyone shines in their unique way.\nJoin us in discovering the best version of yourself,\nSo you can feel confident and embrace your true beauty in your own unique style.',
   }
 

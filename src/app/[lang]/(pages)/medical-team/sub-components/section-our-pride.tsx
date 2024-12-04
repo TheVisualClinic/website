@@ -12,18 +12,19 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 
-export default function OurPrideSection() {
+export default function OurPrideSection({ pageData }: any) {
+  const placeholderSrc = '/placeholder-image.jpg'
   const activeLocale = useLocale()
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [startX, setStartX] = useState<number | null>(null)
 
-  const sortedPrideList = ourPrideList.sort((a, b) => a.pride_order - b.pride_order)
+  const sortedPrideList = pageData?.prides
 
   const itemsPerGroup = 4
   const groupedPrideItems = []
-  for (let i = 0; i < sortedPrideList.length; i += itemsPerGroup) {
-    groupedPrideItems.push(sortedPrideList.slice(i, i + itemsPerGroup))
+  for (let i = 0; i < sortedPrideList?.length; i += itemsPerGroup) {
+    groupedPrideItems.push(sortedPrideList?.slice(i, i + itemsPerGroup))
   }
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -51,10 +52,10 @@ export default function OurPrideSection() {
   }
 
   const sectionContent = {
-    caption_th: 'ความภาคภูมิใจของเรา',
-    caption_en: 'Pride of Our Clinic',
-    title_th: 'เพราะความพึงพอใจของคุณคือจุดมุ่งหมายของเรา',
-    title_en: 'Your Satisfaction, Our Achievement',
+    caption_th: pageData?.section_pride_caption_th || 'ความภาคภูมิใจของเรา',
+    caption_en: pageData?.section_pride_caption_en || 'Pride of Our Clinic',
+    title_th: pageData?.section_pride_title_th || 'เพราะความพึงพอใจของคุณคือจุดมุ่งหมายของเรา',
+    title_en: pageData?.section_pride_title_en || 'Your Satisfaction, Our Achievement',
   }
 
   return (
@@ -86,20 +87,21 @@ export default function OurPrideSection() {
                 key={groupIndex}
                 className='flex-shrink-0 flex-grow-0 w-full grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6'
               >
-                {group.map((item) => (
-                  <Dialog key={item.id}>
+                {group?.map((item: any, index: number) => (
+                  <Dialog key={index}>
                     <DialogTrigger asChild>
                       <Image
-                        src={item.image_url}
-                        alt={
-                          activeLocale === 'th' ? item.our_pride_name_th : item.our_pride_name_en
+                        src={
+                          item?.image_url
+                            ? `${process.env.IMAGE_URL}${item?.image_url}`
+                            : placeholderSrc
                         }
+                        alt='The Visual Clinic Pride'
                         width={1200}
                         height={1425}
                         className='object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
-                        aria-label={
-                          activeLocale === 'th' ? item.our_pride_name_th : item.our_pride_name_en
-                        }
+                        placeholder='blur'
+                        blurDataURL={placeholderSrc}
                       />
                     </DialogTrigger>
                     <DialogContent className='md:min-w-[600px]'>
@@ -108,13 +110,17 @@ export default function OurPrideSection() {
                       </DialogHeader>
                       <div className='flex justify-center'>
                         <Image
-                          src={item.image_url}
-                          alt={
-                            activeLocale === 'th' ? item.our_pride_name_th : item.our_pride_name_en
+                          src={
+                            item?.image_url
+                              ? `${process.env.IMAGE_URL}${item?.image_url}`
+                              : placeholderSrc
                           }
+                          alt='The Visual Clinic Pride'
                           width={1200}
-                          height={1200}
+                          height={1425}
                           className='object-cover rounded-xl'
+                          placeholder='blur'
+                          blurDataURL={placeholderSrc}
                         />
                       </div>
                     </DialogContent>

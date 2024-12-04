@@ -2,14 +2,16 @@
 
 import { useLocale } from 'next-intl'
 
-export default function HeaderSection() {
+export default function HeaderSection({ pageData }: any) {
   const activeLocale = useLocale()
 
   const sectionContent = {
-    caption_th: 'โปรโมชัน',
-    caption_en: 'Promotions',
-    title_th: 'พบกับโปรโมชันสุดพิเศษ \n เพื่อความสวยและสุขภาพผิวที่ดีที่สุดสำหรับคุณ',
-    title_en: 'Discover Exclusive Promotions \n for Your Beauty and Skin Health',
+    caption_th: pageData?.caption_th || 'โปรโมชัน',
+    caption_en: pageData?.caption_en || 'Promotions',
+    title_th:
+      pageData?.title_th || 'พบกับโปรโมชันสุดพิเศษ \n เพื่อความสวยและสุขภาพผิวที่ดีที่สุดสำหรับคุณ',
+    title_en:
+      pageData?.title_en || 'Discover Exclusive Promotions \n for Your Beauty and Skin Health',
   }
 
   return (

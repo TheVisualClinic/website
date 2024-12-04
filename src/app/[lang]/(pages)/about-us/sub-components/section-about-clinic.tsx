@@ -1,24 +1,27 @@
 'use client'
 
-import { logoText } from '@/assets/logo'
 import { useLocale } from 'next-intl'
 import Image from 'next/image'
 
-export default function AboutClinicSection() {
+export default function AboutClinicSection({ pageData }: any) {
+  const placeholderSrc = '/placeholder-image.jpg'
   const activeLocale = useLocale()
 
-  const clinicImage = '/storage/clinic-img-2-1.webp'
-
   const sectionContent = {
-    title_th: 'คลินิกที่เน้นความเป็นเอกลักษณ์ของคุณให้ดูดีที่สุด',
-    title_en: 'Clinic that emphasizes your uniqueness to look your best.',
+    title_th:
+      pageData?.about_clinic_title_th || 'คลินิกที่เน้นความเป็นเอกลักษณ์ของคุณให้ดูดีที่สุด',
+    title_en:
+      pageData?.about_clinic_title_en ||
+      'Clinic that emphasizes your uniqueness to look your best.',
     description_th:
+      pageData?.about_clinic_content_th ||
       'เราเชื่อว่าความงามที่แท้จริงเริ่มต้นจากความรู้สึกสบายใจและเชื่อมั่นในการดูแลตัวเอง \n คลินิกของเราจึงออกแบบในสไตล์ที่อบอุ่น มินิมอล ให้ความรู้สึกเหมือนได้เข้ามานั่งเล่นที่คาเฟ่ บรรยากาศเป็นกันเอง \n ให้ทุกครั้งที่คุณเข้ามารับการรักษาเป็นประสบการณ์ที่ผ่อนคลายและน่าประทับใจ',
     description_en:
+      pageData?.about_clinic_content_en ||
       'We believe that true beauty begins with feeling comfortable and confident in taking care of yourself. \n Our clinic is designed in a warm, minimal style, giving you the feeling of visiting a cozy café. \n The friendly atmosphere ensures that each visit for treatment is a relaxing and memorable experience.',
-    yearsOfService: '2',
-    allServices: '30+',
-    loyaltyCustomer: '2000+',
+    yearsOfService: pageData?.about_clinic_year_of_service || '2',
+    allServices: pageData?.about_clinic_total_service || '30+',
+    loyaltyCustomer: pageData?.about_clinic_satisfied_customers || '2000+',
   }
 
   return (
@@ -27,11 +30,17 @@ export default function AboutClinicSection() {
         <div className='grid grid-cols-12 gap-6 items-center'>
           <div className='col-span-12 lg:col-span-4'>
             <Image
-              src={`${process.env.MAIN_SERVICES_URL}${clinicImage}`}
+              src={
+                pageData?.about_clinic_image_url
+                  ? `${process.env.IMAGE_URL}${pageData?.about_clinic_image_url}`
+                  : placeholderSrc
+              }
               alt='The Visual Clinic'
               width={1200}
               height={1200}
-              className='w-full object-cover rounded-xl'
+              className='aspect-square object-cover rounded-xl'
+              placeholder='blur'
+              blurDataURL={placeholderSrc}
             />
           </div>
 

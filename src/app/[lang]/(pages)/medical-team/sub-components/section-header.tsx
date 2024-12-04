@@ -2,15 +2,17 @@
 
 import { useLocale } from 'next-intl'
 
-export default function HeaderSection() {
+export default function HeaderSection({ pageData }: any) {
   const activeLocale = useLocale()
 
   const sectionContent = {
-    caption_th: 'ทีมแพทย์ของเรา',
-    caption_en: 'Our Medical Team',
+    caption_th: pageData?.caption_th || 'ทีมแพทย์ของเรา',
+    caption_en: pageData?.caption_en || 'Our Medical Team',
     title_th:
+      pageData?.title_th ||
       'เชี่ยวชาญด้านการปรับรูปหน้า และเลเซอร์ปรับคุณภาพผิว \n ออกแบบการรักษารายบุคคล เพื่อผลลัพธ์ที่ดีที่สุดสำหรับคุณ',
     title_en:
+      pageData?.title_en ||
       'Experts in Facial Contouring and Skin Quality Laser Treatment \n Providing Personalized Care for the Best Results',
   }
 

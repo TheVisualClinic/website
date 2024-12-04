@@ -1,14 +1,16 @@
 import { useLocale } from 'next-intl'
 
-export default function HeaderSection() {
+export default function HeaderSection({ pageData }: any) {
   const activeLocale = useLocale()
 
   const sectionContent = {
-    caption_th: 'บริการทั้งหมดของ The Visual Clinic',
-    caption_en: 'All Services of The Visual Clinic',
+    caption_th: pageData?.caption_th || 'บริการทั้งหมดของ The Visual Clinic',
+    caption_en: pageData?.caption_en || 'All Services of The Visual Clinic',
     title_th:
+      pageData?.title_th ||
       'สัมผัสบริการเสริมความงามของเรา \n เพื่อดูแลคุณให้มั่นใจและเป็นตัวเองในเวอร์ชันที่ดีที่สุด',
     title_en:
+      pageData?.title_en ||
       'Experience our beauty enhancement services \n to help you feel confident and be the best version of yourself.',
   }
 

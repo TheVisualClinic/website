@@ -6,13 +6,40 @@ import anime from 'animejs'
 import { ChevronRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
-import { LastArticleList } from '@/assets/mock-data/blogs'
+import axios from 'axios'
 
-export default function LastArticleBanner() {
+export default function LastArticleBanner({ slug = '' }) {
+  const placeholderSrc = '/placeholder-image.jpg'
   const activeLocale = useLocale()
   const tLink = useTranslations('buttonLink')
 
-  const sortedServices = [...LastArticleList].sort((a, b) => a.order - b.order)
+  const [lastArticleList, setLastArticleList] = useState<any[]>([])
+
+  const fetchData = async (slug: string) => {
+    try {
+      const { data: response } = await axios.post(
+        `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/blogs/last-article`,
+        {
+          notSlug: slug,
+          limit: 8,
+        }
+      )
+      setLastArticleList(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const hasFetched = useRef(false)
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true
+      const decodedSlug = decodeURIComponent(slug)
+      fetchData(decodedSlug)
+    }
+  }, [slug])
+
+  const sortedServices = [...lastArticleList]
   const groupedServices = []
   for (let i = 0; i < sortedServices.length; i += 4) {
     groupedServices.push(sortedServices.slice(i, i + 4))
@@ -27,7 +54,7 @@ export default function LastArticleBanner() {
   const [startX, setStartX] = useState<number | null>(null)
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setStartX(e.touches[0].clientX) // บันทึกตำแหน่งนิ้วเริ่มต้น
+    setStartX(e.touches[0].clientX)
   }
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -38,16 +65,16 @@ export default function LastArticleBanner() {
 
     if (Math.abs(deltaX) > 50) {
       if (deltaX > 0 && currentGroupIndex > 0) {
-        setCurrentGroupIndex((prev) => prev - 1) // ปัดขวา
+        setCurrentGroupIndex((prev) => prev - 1)
       } else if (deltaX < 0 && currentGroupIndex < groupedServices.length - 1) {
-        setCurrentGroupIndex((prev) => prev + 1) // ปัดซ้าย
+        setCurrentGroupIndex((prev) => prev + 1)
       }
-      setStartX(null) // รีเซ็ตตำแหน่งนิ้ว
+      setStartX(null)
     }
   }
 
   const handleTouchEnd = () => {
-    setStartX(null) // รีเซ็ตตำแหน่งเมื่อปล่อยนิ้ว
+    setStartX(null)
   }
 
   const handleGroupChange = (index: number) => {
@@ -129,15 +156,25 @@ export default function LastArticleBanner() {
 
         <div className='space-y-4 md:space-y-6 opacity-0' ref={groupRef}>
           <div className='grid gap-4 md:gap-6 grid-cols-2 lg:grid-cols-4'>
-            {groupedServices[currentGroupIndex].map((blog) => (
+            {groupedServices[currentGroupIndex]?.map((blog) => (
               <div key={blog.id} className={`service-item`}>
-                <Link href={`/${activeLocale}/blog/${blog.id}`}>
+                <Link
+                  href={`/${activeLocale}/blog/${
+                    activeLocale === 'th' ? blog.slug_th : blog.slug_en
+                  }`}
+                >
                   <Image
-                    src={`${process.env.MAIN_SERVICES_URL}${blog.img_src}`}
-                    alt={activeLocale === 'th' ? blog.title_th : blog.title_en}
+                    src={
+                      blog?.cover_image_url
+                        ? `${process.env.IMAGE_URL}${blog?.cover_image_url}`
+                        : placeholderSrc
+                    }
+                    alt={activeLocale === 'th' ? blog.title_th || '' : blog.title_en || ''}
                     width={1200}
                     height={1200}
                     className='rounded-2xl hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer transition-all duration-300'
+                    placeholder='blur'
+                    blurDataURL={placeholderSrc}
                   />
                 </Link>
                 <div className='p-2'>
@@ -149,7 +186,9 @@ export default function LastArticleBanner() {
                   </p>
                   <div className='flex justify-end py-2 text-sm md:text-base'>
                     <Link
-                      href={`/${activeLocale}/blog/${blog.id}`}
+                      href={`/${activeLocale}/blog/${
+                        activeLocale === 'th' ? blog.slug_th : blog.slug_en
+                      }`}
                       className='flex gap-1 items-center text-[#9C6E5A] max-w-fit cursor-pointer transition-all duration-300 group hover:text-[#9C6E5A]/80'
                     >
                       <span className='capitalize'>{tLink('readMore')}</span>
