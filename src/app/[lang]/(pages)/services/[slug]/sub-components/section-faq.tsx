@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 import anime from 'animejs'
 import { useLocale } from 'next-intl'
 
-export default function FaqSection() {
+export default function FaqSection({ serviceDetail }: any) {
   const activeLocale = useLocale()
 
   const [activeIndex, setActiveIndex] = useState<number | null>(0)
@@ -29,32 +29,6 @@ export default function FaqSection() {
     })
   }, [activeIndex])
 
-  const faqData = [
-    {
-      question: 'HIFU คืออะไร?',
-      answer:
-        'HIFU (High-Intensity Focused Ultrasound) เป็นเทคโนโลยีที่ใช้คลื่นเสียงความถี่สูงเพื่อยกกระชับผิวโดยไม่ต้องผ่าตัด.',
-    },
-    {
-      question: 'HIFU ทำงานอย่างไร?',
-      answer:
-        'HIFU ส่งพลังงานคลื่นเสียงลงไปในชั้นผิวหนังที่ลึกเพื่อกระตุ้นการสร้างคอลลาเจน ทำให้ผิวหนังดูกระชับขึ้น.',
-    },
-    {
-      question: 'HIFU เหมาะกับใคร?',
-      answer: 'HIFU เหมาะสำหรับผู้ที่มีปัญหาผิวหย่อนคล้อยและต้องการยกกระชับผิวโดยไม่ต้องผ่าตัด.',
-    },
-    {
-      question: 'การทำ HIFU ใช้เวลานานเท่าไร?',
-      answer: 'การทำ HIFU ใช้เวลาประมาณ 30-60 นาที ขึ้นอยู่กับบริเวณที่ต้องการรักษา.',
-    },
-    {
-      question: 'ผลลัพธ์ของ HIFU อยู่ได้นานเท่าไร?',
-      answer:
-        'ผลลัพธ์ของ HIFU สามารถอยู่ได้นาน 6-12 เดือน ขึ้นอยู่กับสภาพผิวและการดูแลรักษาหลังการทำ.',
-    },
-  ]
-
   const sectionContent = {
     caption_th: 'FAQs',
     caption_en: 'FAQs',
@@ -74,7 +48,7 @@ export default function FaqSection() {
       </div>
 
       <div className='max-w-[1080px] mx-auto border border-[#9C6E5A] rounded-xl bg-white/50 p-4 md:p-6 text-[#483E3B]'>
-        {faqData.map((faq, index) => (
+        {serviceDetail?.faq_list.map((faq: any, index: number) => (
           <div key={index} className='border-b border-[#483E3B] pb-4'>
             <div
               className='flex items-center gap-4 pt-4 cursor-pointer'
@@ -88,12 +62,17 @@ export default function FaqSection() {
                   activeIndex === index ? 'text-[#9C6E5A]' : 'text-[#483E3B]'
                 }`}
               >
-                {faq.question}
+                {activeLocale === 'th' ? faq.title_th : faq.title_en}
               </h3>
             </div>
-            <div ref={(el: any) => (contentRefs.current[index] = el)} className='overflow-hidden'>
+            <div
+              ref={(el: any) => (contentRefs.current[index] = el)}
+              className={`overflow-hidden transition-all duration-500 ${
+                activeIndex === index ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
               <div className='py-4 px-4 md:px-6 text-sm md:text-base'>
-                <p>{faq.answer}</p>
+                <p>{activeLocale === 'th' ? faq.description_th : faq.description_en}</p>
               </div>
             </div>
           </div>

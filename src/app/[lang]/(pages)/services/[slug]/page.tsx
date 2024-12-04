@@ -3,80 +3,273 @@
 import Image from 'next/image'
 import FaqSection from './sub-components/section-faq'
 import PromotionsBaseSection from '@/components/base/section-promotions'
+import { useEffect, useRef, useState } from 'react'
+import axios from 'axios'
+import { useLocale } from 'next-intl'
 
 export default function Page({ params }: { params: { slug: string } }) {
-  const serviceImage = '/storage/image-1600-900.webp'
+  const placeholderSrc = '/placeholder-image.jpg'
+  const activeLocale = useLocale()
+
+  const [serviceDetail, setServiceDetail] = useState<any | null>(null)
+
+  const parseLebupList = (dataString: string) => {
+    return dataString.split('\n').map((item) => (item === '[EMPTY]' ? '' : item))
+  }
+
+  const extractYoutubeId = (url: string) => {
+    const regex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/.*v=([^&]+)|youtu\.be\/([^?&]+)/
+    const match = url.match(regex)
+    return match ? match[1] || match[2] : null
+  }
+
+  const hasFetched = useRef(false)
+  useEffect(() => {
+    const decodedSlug = decodeURIComponent(params.slug)
+    if (!hasFetched.current) {
+      hasFetched.current = true
+      fetchData(decodedSlug)
+    }
+  }, [params])
+
+  const fetchData = async (slug: string) => {
+    try {
+      const { data: response } = await axios.post(
+        `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/service/detail`,
+        {
+          slug,
+        }
+      )
+      setServiceDetail(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className='pt-24 md:pt-32'>
-      <div className='max-w-[1080px] px-4 md:px-6 mx-auto space-y-6 mb-12'>
+      <div className='max-w-[900px] px-4 md:px-6 mx-auto mb-12'>
         <Image
-          src={`${process.env.MAIN_SERVICES_URL}${serviceImage}`}
-          alt='HIFU treatment image'
+          src={
+            serviceDetail?.header_image_url
+              ? `${process.env.IMAGE_URL}${serviceDetail?.header_image_url}`
+              : placeholderSrc
+          }
+          alt={
+            activeLocale === 'th' ? serviceDetail?.title_th || '' : serviceDetail?.title_en || ''
+          }
           width={1920}
-          height={900}
-          className='w-full object-cover rounded-xl'
+          height={500}
+          className='aspect-video rounded-xl'
+          placeholder='blur'
+          blurDataURL={placeholderSrc}
         />
-        <h1 className='text-2xl'>HIFU คืออะไร? - ยกกระชับผิวด้วยเทคโนโลยีทันสมัย</h1>
-        <p>
-          HIFU (High-Intensity Focused Ultrasound)
-          เป็นเทคโนโลยีความงามที่ทันสมัยที่ใช้คลื่นเสียงความถี่สูงในการยกกระชับผิวโดยไม่ต้องผ่าตัดหรือฉีดสารใดๆ
-          พลังงานคลื่นเสียงจะถูกส่งลงไปในชั้นผิวหนังที่ลึกเพื่อกระตุ้นการสร้างคอลลาเจน
-          ทำให้ผิวดูกระชับและเรียบเนียนขึ้น ผลลัพธ์ของการทำ HIFU นั้นสามารถเห็นได้ทันทีหลังการรักษา
-          และผลจะดีขึ้นอย่างต่อเนื่องในช่วง 2-3 เดือนหลังจากการรักษา
-        </p>
-        <h2 className='text-xl font-semibold'>วิธีการทำงานของ HIFU และประโยชน์ของการยกกระชับผิว</h2>
-        <p>
-          ในการทำ HIFU คลื่นเสียงจะถูกโฟกัสไปยังบริเวณที่ต้องการยกกระชับ
-          โดยพลังงานนี้จะถูกส่งลงไปยังชั้นผิวหนังที่เรียกว่า SMAS
-          ซึ่งเป็นชั้นเดียวกับที่ศัลยแพทย์ทำการผ่าตัดยกกระชับผิวหนัง
-          การส่งพลังงานไปที่ชั้นนี้จะช่วยกระตุ้นการสร้างคอลลาเจนและอีลาสติน
-          ทำให้ผิวมีความยืดหยุ่นมากขึ้นและดูกระชับขึ้นโดยไม่ต้องทำการผ่าตัด
-          ผลลัพธ์ที่ได้คือผิวที่ดูกระชับ เรียบเนียน และลดริ้วรอยได้อย่างมีประสิทธิภาพ
-        </p>
-        <h2 className='text-xl font-semibold'>HIFU เหมาะกับใครบ้าง?</h2>
-        <p>
-          HIFU เหมาะสำหรับผู้ที่มีปัญหาผิวหย่อนคล้อย เช่น บริเวณใบหน้า แนวกราม และลำคอ
-          รวมไปถึงผู้ที่ต้องการลดริ้วรอยรอบดวงตา หน้าผาก และรอบปาก การทำ HIFU
-          ยังเหมาะกับผู้ที่ต้องการยกกระชับผิวโดยไม่ต้องการพักฟื้นและไม่ต้องการผ่าตัด การรักษาด้วย
-          HIFU ไม่มีบาดแผล ทำให้สามารถกลับไปทำกิจกรรมประจำวันได้ทันทีหลังการรักษา
-          ซึ่งเหมาะสำหรับผู้ที่มีไลฟ์สไตล์ที่ยุ่งเหยิงและต้องการผลลัพธ์ที่รวดเร็ว
-        </p>
-        <h2 className='text-xl font-semibold'>ข้อดีของการทำ HIFU</h2>
-        <p>การทำ HIFU มีข้อดีหลายประการ ได้แก่:</p>
-        <ul className='list-disc pl-6 space-y-2'>
-          <li>ไม่ต้องผ่าตัด ไม่มีบาดแผล และไม่ต้องใช้เข็มในการรักษา</li>
-          <li>ไม่ต้องพักฟื้น สามารถกลับไปทำกิจกรรมปกติได้ทันทีหลังการรักษา</li>
-          <li>กระตุ้นการสร้างคอลลาเจนและอีลาสติน ทำให้ผิวดูกระชับและมีความยืดหยุ่น</li>
-          <li>เหมาะสำหรับทุกบริเวณของร่างกายที่ต้องการยกกระชับ เช่น ใบหน้า คอ และลำตัว</li>
-          <li>ผลลัพธ์ที่ได้สามารถอยู่ได้นาน 6-12 เดือน ขึ้นอยู่กับสภาพผิวของแต่ละบุคคล</li>
-        </ul>
-        <h2 className='text-xl font-semibold'>ระยะเวลาในการรักษาและผลลัพธ์ของ HIFU</h2>
-        <p>
-          การทำ HIFU ใช้เวลาประมาณ 30-60 นาที ขึ้นอยู่กับบริเวณที่ต้องการรักษา ผลลัพธ์ของการทำ HIFU
-          สามารถเห็นได้ทันทีหลังการรักษา และจะดีขึ้นอย่างต่อเนื่องในช่วง 2-3 เดือนหลังการทำ
-          เนื่องจากกระบวนการสร้างคอลลาเจนและอีลาสตินที่ถูกกระตุ้น การรักษาด้วย HIFU
-          สามารถทำซ้ำได้ทุก 6-12 เดือนเพื่อรักษาผลลัพธ์ให้คงอยู่อย่างยาวนาน
-        </p>
-        <h2 className='text-xl font-semibold'>ความรู้สึกขณะทำ HIFU</h2>
-        <p>
-          ขณะทำ HIFU ผู้รับบริการอาจรู้สึกถึงความร้อนและการสั่นเล็กน้อยใต้ผิวหนัง
-          ซึ่งเป็นสัญญาณว่าพลังงานคลื่นเสียงกำลังทำงานและกระตุ้นการสร้างคอลลาเจน
-          ความรู้สึกนี้ไม่ได้รุนแรงและส่วนใหญ่ผู้รับบริการสามารถทนได้
-          หากมีความรู้สึกไม่สบายสามารถแจ้งผู้เชี่ยวชาญเพื่อปรับการรักษาให้เหมาะสม
-        </p>
-        <h2 className='text-xl font-semibold'>การดูแลหลังการทำ HIFU</h2>
-        <p>
-          หลังการทำ HIFU ควรหลีกเลี่ยงการสัมผัสผิวบริเวณที่รักษาอย่างรุนแรง
-          และควรใช้ผลิตภัณฑ์บำรุงผิวที่ช่วยเพิ่มความชุ่มชื้น
-          การใช้ครีมกันแดดเป็นสิ่งสำคัญเพื่อปกป้องผิวจากแสงแดด
-          เนื่องจากผิวอาจมีความไวต่อแสงหลังการรักษา การดูแลผิวอย่างเหมาะสมจะช่วยให้ผลลัพธ์ของการทำ
-          HIFU ยาวนานขึ้น
-        </p>
+
+        <div className='my-4 md:my-6'>
+          {serviceDetail?.contents.length > 0 ? (
+            serviceDetail?.contents.map((content: any, index: number) => (
+              <div key={index}>
+                {content?.type === 'title' && (
+                  <h2 className='text-xl lg:text-2xl leading-relaxed font-semibold text-gray-800 mb-2 md:mb-3'>
+                    {activeLocale === 'th' ? content?.text_th : content?.text_en}
+                  </h2>
+                )}
+                {content?.type === 'subtitle' && (
+                  <h3 className='text-lg lg:text-xl leading-relaxed font-semibold text-gray-800 mb-1 md:mb-2'>
+                    {activeLocale === 'th' ? content?.text_th : content?.text_en}
+                  </h3>
+                )}
+                {content?.type === 'content' && (
+                  <p className='text-gray-600 leading-relaxed mb-4 md:mb-5'>
+                    {activeLocale === 'th' ? content?.text_th : content?.text_en}
+                  </p>
+                )}
+                {content?.type === 'bullet' && (
+                  <ul className='list-disc ml-4 leading-relaxed space-y-3 md:space-y-4 text-gray-600 pt-2 pb-4 md:pb-6'>
+                    {parseLebupList(
+                      activeLocale === 'th' ? content?.text_th : content?.text_en
+                    ).map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {content?.type === 'numbered' && (
+                  <ul className='list-decimal ml-4 leading-relaxed space-y-3 md:space-y-4 text-gray-600 pt-2 pb-4 md:pb-6'>
+                    {parseLebupList(
+                      activeLocale === 'th' ? content?.text_th : content?.text_en
+                    ).map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {content?.type === 'youtube' && content?.text_th && (
+                  <div className='aspect-video overflow-hidden rounded-xl my-4 md:my-6'>
+                    <iframe
+                      width='100%'
+                      height='100%'
+                      src={`https://www.youtube.com/embed/${extractYoutubeId(content?.text_th)}`}
+                      title='YouTube video player'
+                      frameBorder='0'
+                      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
+                {content?.type === 'image' && content?.image_url && (
+                  <div className='py-4 md:py-6'>
+                    <Image
+                      src={
+                        content?.image_url
+                          ? `${process.env.IMAGE_URL}${content?.image_url}`
+                          : placeholderSrc
+                      }
+                      alt={
+                        activeLocale === 'th'
+                          ? content?.alt_text_th || ''
+                          : content?.alt_text_en || ''
+                      }
+                      width={1920}
+                      height={1080}
+                      className='w-full rounded-xl object-cover'
+                      placeholder='blur'
+                      blurDataURL={placeholderSrc}
+                    />
+                    <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                      {activeLocale === 'th' ? content?.alt_text_th : content?.alt_text_en}
+                    </p>
+                  </div>
+                )}
+                {content?.type === 'image-2' && (
+                  <div className='py-4 md:py-6'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
+                      <div>
+                        <Image
+                          src={
+                            content?.image_url
+                              ? `${process.env.IMAGE_URL}${content?.image_url}`
+                              : placeholderSrc
+                          }
+                          alt={
+                            activeLocale === 'th'
+                              ? content?.alt_text_th || ''
+                              : content?.alt_text_en || ''
+                          }
+                          width={1200}
+                          height={1200}
+                          className='aspect-square rounded-xl object-cover'
+                          placeholder='blur'
+                          blurDataURL={placeholderSrc}
+                        />
+                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                          {activeLocale === 'th' ? content?.alt_text_th : content?.alt_text_en}
+                        </p>
+                      </div>
+                      <div>
+                        <Image
+                          src={
+                            content?.image_url
+                              ? `${process.env.IMAGE_URL}${content?.image_2_url}`
+                              : placeholderSrc
+                          }
+                          alt={
+                            activeLocale === 'th'
+                              ? content?.alt_2_text_th || ''
+                              : content?.alt_2_text_en || ''
+                          }
+                          width={1200}
+                          height={1200}
+                          className='aspect-square rounded-xl object-cover'
+                          placeholder='blur'
+                          blurDataURL={placeholderSrc}
+                        />
+                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                          {activeLocale === 'th' ? content?.alt_2_text_th : content?.alt_2_text_en}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {content?.type === 'image-3' && (
+                  <div className='py-4 md:py-6'>
+                    <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6'>
+                      <div>
+                        <Image
+                          src={
+                            content?.image_url
+                              ? `${process.env.IMAGE_URL}${content?.image_url}`
+                              : placeholderSrc
+                          }
+                          alt={
+                            activeLocale === 'th'
+                              ? content?.alt_text_th || ''
+                              : content?.alt_text_en || ''
+                          }
+                          width={1200}
+                          height={1200}
+                          className='aspect-square rounded-xl object-cover'
+                          placeholder='blur'
+                          blurDataURL={placeholderSrc}
+                        />
+                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                          {activeLocale === 'th' ? content?.alt_text_th : content?.alt_text_en}
+                        </p>
+                      </div>
+                      <div>
+                        <Image
+                          src={
+                            content?.image_url
+                              ? `${process.env.IMAGE_URL}${content?.image_2_url}`
+                              : placeholderSrc
+                          }
+                          alt={
+                            activeLocale === 'th'
+                              ? content?.alt_2_text_th || ''
+                              : content?.alt_2_text_en || ''
+                          }
+                          width={1200}
+                          height={1200}
+                          className='aspect-square rounded-xl object-cover'
+                          placeholder='blur'
+                          blurDataURL={placeholderSrc}
+                        />
+                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                          {activeLocale === 'th' ? content?.alt_2_text_th : content?.alt_text_en}
+                        </p>
+                      </div>
+                      <div>
+                        <Image
+                          src={
+                            content?.image_url
+                              ? `${process.env.IMAGE_URL}${content?.image_3_url}`
+                              : placeholderSrc
+                          }
+                          alt={
+                            activeLocale === 'th'
+                              ? content?.alt_3_text_th || ''
+                              : content?.alt_3_text_en || ''
+                          }
+                          width={1200}
+                          height={1200}
+                          className='aspect-square rounded-xl object-cover'
+                          placeholder='blur'
+                          blurDataURL={placeholderSrc}
+                        />
+                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                          {activeLocale === 'th' ? content?.alt_3_text_th : content?.alt_3_text_en}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className='text-black/10'>No Content Available</div>
+          )}
+        </div>
       </div>
 
-      <FaqSection />
-
+      {serviceDetail?.faq_list.length !== 0 && <FaqSection serviceDetail={serviceDetail} />}
       <PromotionsBaseSection />
     </div>
   )
