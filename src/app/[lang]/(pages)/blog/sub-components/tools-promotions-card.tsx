@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
-import { socialLink } from '@/assets/mock-data/contacts'
 import { ArrowUpRightIcon } from 'lucide-react'
 
 import {

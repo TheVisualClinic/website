@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import { ourPrideList } from '@/assets/mock-data/our-pride-list'
 import { useLocale } from 'next-intl'
 import {
   Dialog,
