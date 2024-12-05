@@ -81,7 +81,7 @@ export default function ServicesListSection() {
                     <h3 className='text-[#483E3B] text-xl md:text-2xl lg:text-3xl font-medium truncate'>
                       {activeLocale === 'th'
                         ? service.service_name_th || ''
-                        : service.service_en || ''}
+                        : service.service_name_en || ''}
                     </h3>
                     <div className='space-x-2 text-[#9C6E5A]'>
                       <span className='capitalize'>

@@ -142,122 +142,136 @@ export default function Page({ params }: { params: { slug: string } }) {
                 {content?.type === 'image-2' && (
                   <div className='py-4 md:py-6'>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
-                      <div>
-                        <Image
-                          src={
-                            content?.image_url
-                              ? `${process.env.IMAGE_URL}${content?.image_url}`
-                              : placeholderSrc
-                          }
-                          alt={
-                            activeLocale === 'th'
-                              ? content?.alt_text_th || ''
-                              : content?.alt_text_en || ''
-                          }
-                          width={1200}
-                          height={1200}
-                          className='aspect-square rounded-xl object-cover'
-                          placeholder='blur'
-                          blurDataURL={placeholderSrc}
-                        />
-                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
-                          {activeLocale === 'th' ? content?.alt_text_th : content?.alt_text_en}
-                        </p>
-                      </div>
-                      <div>
-                        <Image
-                          src={
-                            content?.image_url
-                              ? `${process.env.IMAGE_URL}${content?.image_2_url}`
-                              : placeholderSrc
-                          }
-                          alt={
-                            activeLocale === 'th'
-                              ? content?.alt_2_text_th || ''
-                              : content?.alt_2_text_en || ''
-                          }
-                          width={1200}
-                          height={1200}
-                          className='aspect-square rounded-xl object-cover'
-                          placeholder='blur'
-                          blurDataURL={placeholderSrc}
-                        />
-                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
-                          {activeLocale === 'th' ? content?.alt_2_text_th : content?.alt_2_text_en}
-                        </p>
-                      </div>
+                      {content?.image_url && (
+                        <div>
+                          <Image
+                            src={
+                              content?.image_url
+                                ? `${process.env.IMAGE_URL}${content?.image_url}`
+                                : placeholderSrc
+                            }
+                            alt={
+                              activeLocale === 'th'
+                                ? content?.alt_text_th || ''
+                                : content?.alt_text_en || ''
+                            }
+                            width={1200}
+                            height={1200}
+                            className='aspect-square rounded-xl object-cover'
+                            placeholder='blur'
+                            blurDataURL={placeholderSrc}
+                          />
+                          <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                            {activeLocale === 'th' ? content?.alt_text_th : content?.alt_text_en}
+                          </p>
+                        </div>
+                      )}
+                      {content?.image_2_url && (
+                        <div>
+                          <Image
+                            src={
+                              content?.image_2_url
+                                ? `${process.env.IMAGE_URL}${content?.image_2_url}`
+                                : placeholderSrc
+                            }
+                            alt={
+                              activeLocale === 'th'
+                                ? content?.alt_2_text_th || ''
+                                : content?.alt_2_text_en || ''
+                            }
+                            width={1200}
+                            height={1200}
+                            className='aspect-square rounded-xl object-cover'
+                            placeholder='blur'
+                            blurDataURL={placeholderSrc}
+                          />
+                          <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                            {activeLocale === 'th'
+                              ? content?.alt_2_text_th
+                              : content?.alt_2_text_en}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
                 {content?.type === 'image-3' && (
                   <div className='py-4 md:py-6'>
                     <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6'>
-                      <div>
-                        <Image
-                          src={
-                            content?.image_url
-                              ? `${process.env.IMAGE_URL}${content?.image_url}`
-                              : placeholderSrc
-                          }
-                          alt={
-                            activeLocale === 'th'
-                              ? content?.alt_text_th || ''
-                              : content?.alt_text_en || ''
-                          }
-                          width={1200}
-                          height={1200}
-                          className='aspect-square rounded-xl object-cover'
-                          placeholder='blur'
-                          blurDataURL={placeholderSrc}
-                        />
-                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
-                          {activeLocale === 'th' ? content?.alt_text_th : content?.alt_text_en}
-                        </p>
-                      </div>
-                      <div>
-                        <Image
-                          src={
-                            content?.image_url
-                              ? `${process.env.IMAGE_URL}${content?.image_2_url}`
-                              : placeholderSrc
-                          }
-                          alt={
-                            activeLocale === 'th'
-                              ? content?.alt_2_text_th || ''
-                              : content?.alt_2_text_en || ''
-                          }
-                          width={1200}
-                          height={1200}
-                          className='aspect-square rounded-xl object-cover'
-                          placeholder='blur'
-                          blurDataURL={placeholderSrc}
-                        />
-                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
-                          {activeLocale === 'th' ? content?.alt_2_text_th : content?.alt_text_en}
-                        </p>
-                      </div>
-                      <div>
-                        <Image
-                          src={
-                            content?.image_url
-                              ? `${process.env.IMAGE_URL}${content?.image_3_url}`
-                              : placeholderSrc
-                          }
-                          alt={
-                            activeLocale === 'th'
-                              ? content?.alt_3_text_th || ''
-                              : content?.alt_3_text_en || ''
-                          }
-                          width={1200}
-                          height={1200}
-                          className='aspect-square rounded-xl object-cover'
-                          placeholder='blur'
-                          blurDataURL={placeholderSrc}
-                        />
-                        <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
-                          {activeLocale === 'th' ? content?.alt_3_text_th : content?.alt_3_text_en}
-                        </p>
-                      </div>
+                      {content?.image_url && (
+                        <div>
+                          <Image
+                            src={
+                              content?.image_url
+                                ? `${process.env.IMAGE_URL}${content?.image_url}`
+                                : placeholderSrc
+                            }
+                            alt={
+                              activeLocale === 'th'
+                                ? content?.alt_text_th || ''
+                                : content?.alt_text_en || ''
+                            }
+                            width={1200}
+                            height={1200}
+                            className='aspect-square rounded-xl object-cover'
+                            placeholder='blur'
+                            blurDataURL={placeholderSrc}
+                          />
+                          <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                            {activeLocale === 'th' ? content?.alt_text_th : content?.alt_text_en}
+                          </p>
+                        </div>
+                      )}
+                      {content?.image_2_url && (
+                        <div>
+                          <Image
+                            src={
+                              content?.image_2_url
+                                ? `${process.env.IMAGE_URL}${content?.image_2_url}`
+                                : placeholderSrc
+                            }
+                            alt={
+                              activeLocale === 'th'
+                                ? content?.alt_2_text_th || ''
+                                : content?.alt_2_text_en || ''
+                            }
+                            width={1200}
+                            height={1200}
+                            className='aspect-square rounded-xl object-cover'
+                            placeholder='blur'
+                            blurDataURL={placeholderSrc}
+                          />
+                          <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                            {activeLocale === 'th' ? content?.alt_2_text_th : content?.alt_text_en}
+                          </p>
+                        </div>
+                      )}
+                      {content?.image_3_url && (
+                        <div>
+                          <Image
+                            src={
+                              content?.image_3_url
+                                ? `${process.env.IMAGE_URL}${content?.image_3_url}`
+                                : placeholderSrc
+                            }
+                            alt={
+                              activeLocale === 'th'
+                                ? content?.alt_3_text_th || ''
+                                : content?.alt_3_text_en || ''
+                            }
+                            width={1200}
+                            height={1200}
+                            className='aspect-square rounded-xl object-cover'
+                            placeholder='blur'
+                            blurDataURL={placeholderSrc}
+                          />
+                          <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
+                            {activeLocale === 'th'
+                              ? content?.alt_3_text_th
+                              : content?.alt_3_text_en}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
