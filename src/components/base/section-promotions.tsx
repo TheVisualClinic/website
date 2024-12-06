@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import axios from 'axios'
 import { useAppSelector } from '@/app/[lang]/hooks'
+import { handleBookingPixelClick } from '@/lib/handleBookingPixelClick'
 
 export default function PromotionsBaseSection() {
   const placeholderSrc = '/placeholder-image.jpg'
@@ -131,7 +132,17 @@ export default function PromotionsBaseSection() {
                     </div>
 
                     <div>
-                      <Link href={socialData.social_line_link} target='_blank'>
+                      <Link
+                        href={socialData.social_line_link}
+                        target='_blank'
+                        onClick={() => {
+                          handleBookingPixelClick(
+                            promotion?.title_th
+                              ? `Promotion: ${promotion?.title_th}`
+                              : 'unknown promotion'
+                          )
+                        }}
+                      >
                         <Button className='w-full md:w-[120px] mt-6 md:mt-4 bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                           {tBtn('booking')}
                         </Button>

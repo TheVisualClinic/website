@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { CheckCheckIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { handleBookingPixelClick } from '@/lib/handleBookingPixelClick'
 
 export default function PromotionsSection() {
   const placeholderSrc = '/placeholder-image.jpg'
@@ -86,7 +87,17 @@ export default function PromotionsSection() {
                     </div>
 
                     <div>
-                      <Link href={socialData.social_line_link} target='_blank'>
+                      <Link
+                        href={socialData.social_line_link}
+                        target='_blank'
+                        onClick={() => {
+                          handleBookingPixelClick(
+                            promotion?.title_th
+                              ? `Promotion: ${promotion?.title_th}`
+                              : 'unknown promotion'
+                          )
+                        }}
+                      >
                         <Button className='w-full md:w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                           {tBtn('booking')}
                         </Button>
@@ -140,7 +151,17 @@ export default function PromotionsSection() {
                     </div>
 
                     <div>
-                      <Link href={socialData.social_line_link} target='_blank'>
+                      <Link
+                        href={socialData.social_line_link}
+                        target='_blank'
+                        onClick={() => {
+                          handleBookingPixelClick(
+                            promotion?.title_th
+                              ? `Promotion: ${promotion?.title_th}`
+                              : 'unknown promotion'
+                          )
+                        }}
+                      >
                         <Button className='w-full md:w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                           {tBtn('booking')}
                         </Button>

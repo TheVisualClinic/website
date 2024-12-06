@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useAppSelector } from '@/app/[lang]/hooks'
+import { handleBookingPixelClick } from '@/lib/handleBookingPixelClick'
 
 export default function CaptionBanner() {
   const activeLocale = useLocale()
@@ -58,7 +59,13 @@ export default function CaptionBanner() {
             {activeLocale === 'th' ? bannerData?.content_th || '' : bannerData?.content_en || ''}
           </p>
           <div>
-            <Link href={socialData.social_line_link} target='_blank'>
+            <Link
+              href={socialData.social_line_link}
+              target='_blank'
+              onClick={() => {
+                handleBookingPixelClick('Caption Banner')
+              }}
+            >
               <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                 {tBtn('booking')}
               </Button>

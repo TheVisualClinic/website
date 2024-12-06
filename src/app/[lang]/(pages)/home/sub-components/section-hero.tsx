@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { formatPhoneNumber } from '@/lib/phoneFormatter'
 import anime from 'animejs'
 import { useAppSelector } from '@/app/[lang]/hooks'
+import { handleBookingPixelClick } from '@/lib/handleBookingPixelClick'
 
 export default function HeroSection({ pageData }: any) {
   const placeholderSrc = '/placeholder-image.jpg'
@@ -117,7 +118,13 @@ export default function HeroSection({ pageData }: any) {
               {activeLocale === 'th' ? heroCard.description_th : heroCard.description_en}
             </p>
             <div className='flex items-center gap-4' ref={buttonRef}>
-              <Link href={socialData.social_line_link} target='_blank'>
+              <Link
+                href={socialData.social_line_link}
+                target='_blank'
+                onClick={() => {
+                  handleBookingPixelClick('Hero Section')
+                }}
+              >
                 <Button className='w-[120px] bg-[#A29A6D] py-3 rounded-sm flex justify-center align-middle text-white hover:bg-primary cursor-pointer capitalize'>
                   {tBtn('booking')}
                 </Button>
