@@ -65,7 +65,7 @@ export default function ContactSection({ pageData }: any) {
             <div className='flex items-center gap-4'>
               <Clock2Icon className='min-w-6 min-h-6' />
               <p>
-                {activeLocale === 'th' ? pageData?.opening_hours_th : pageData?.opening_hours_th}
+                {activeLocale === 'th' ? pageData?.opening_hours_th : pageData?.opening_hours_en}
               </p>
             </div>
           </div>

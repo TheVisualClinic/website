@@ -41,9 +41,9 @@ export default function AboutUsBanner() {
   const captionCard = {
     col1_th: bannerData?.icon_1_caption_th || 'ดูแลโดยแพทย์ผู้มีประสบการณ์',
     col1_en: bannerData?.icon_1_caption_en || 'Cared for by experienced doctors',
-    col2_th: bannerData?.icon_2_caption_en || 'ทีมงานมืออาชีพ',
+    col2_th: bannerData?.icon_2_caption_th || 'ทีมงานมืออาชีพ',
     col2_en: bannerData?.icon_2_caption_en || 'Professional team',
-    col3_th: bannerData?.icon_3_caption_en || 'เครื่องมือแพทย์มีมาตรฐาน',
+    col3_th: bannerData?.icon_3_caption_th || 'เครื่องมือแพทย์มีมาตรฐาน',
     col3_en: bannerData?.icon_3_caption_en || 'Standard medical equipment',
   }
 
