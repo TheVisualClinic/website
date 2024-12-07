@@ -94,7 +94,7 @@ export default function Footer() {
       <div className='container px-4 md:px-6 grid grid-cols-12 gap-6'>
         <div className='col-span-12 md:col-span-6 xl:col-span-4'>
           <div className='text-[#E7DDD3] space-y-4'>
-            <Image src={logoTextWhite} alt='The Visual Clinic Logo' width={200} />
+            <Image src={logoTextWhite} alt='The Visual Clinic Logo' width={200} loading='lazy' />
             <h3 className='text-3xl dancing-script-font'>
               {activeLocale === 'th' ? footerCaption.caption_th : footerCaption.caption_en}
             </h3>
@@ -117,6 +117,7 @@ export default function Footer() {
                     src={item.icon}
                     alt={item.alt}
                     width={20}
+                    loading='lazy'
                     className='opacity-70 group-hover:opacity-100'
                   />
                   <span>{item.label}</span>

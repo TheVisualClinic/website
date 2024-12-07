@@ -93,28 +93,28 @@ export default function ContactSection({ pageData }: any) {
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >
-              <Image src={socialFacebookSolid} alt='Socail Icon' />
+              <Image src={socialFacebookSolid} alt='Socail Icon' loading='lazy' />
             </Link>
             <Link
               href={socialData.social_instagram_link}
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >
-              <Image src={socialInstagramSolid} alt='Socail Icon' />
+              <Image src={socialInstagramSolid} alt='Socail Icon' loading='lazy' />
             </Link>
             <Link
               href={socialData.social_tiktok_link}
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >
-              <Image src={socialTiktokSolid} alt='Socail Icon' />
+              <Image src={socialTiktokSolid} alt='Socail Icon' loading='lazy' />
             </Link>
             <Link
               href={socialData.social_line_link}
               target='_blank'
               className='transition-all duration-300 hover:mt-[-8px]'
             >
-              <Image src={socialLineSolid} alt='Socail Icon' />
+              <Image src={socialLineSolid} alt='Socail Icon' loading='lazy' />
             </Link>
           </div>
         </div>

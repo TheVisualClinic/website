@@ -67,6 +67,7 @@ export default function CertificateSection({ pageData }: any) {
                   height={1200}
                   className='object-cover aspect-square md:max-w-[400px] rounded-xl mx-auto transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
                   placeholder='blur'
+                  loading='lazy'
                   blurDataURL={placeholderSrc}
                 />
               </div>
@@ -87,6 +88,7 @@ export default function CertificateSection({ pageData }: any) {
                   height={1200}
                   className='object-cover rounded-xl'
                   placeholder='blur'
+                  loading='lazy'
                   blurDataURL={placeholderSrc}
                 />
               </div>
@@ -108,6 +110,7 @@ export default function CertificateSection({ pageData }: any) {
                   height={600}
                   className='object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
                   placeholder='blur'
+                  loading='lazy'
                   blurDataURL={placeholderSrc}
                 />
               </DialogTrigger>
@@ -125,6 +128,7 @@ export default function CertificateSection({ pageData }: any) {
                     height={1200}
                     className='object-cover rounded-xl'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>
@@ -147,6 +151,7 @@ export default function CertificateSection({ pageData }: any) {
                   height={400}
                   className='object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
                   placeholder='blur'
+                  loading='lazy'
                   blurDataURL={placeholderSrc}
                 />
               </DialogTrigger>
@@ -164,6 +169,7 @@ export default function CertificateSection({ pageData }: any) {
                     height={1200}
                     className='object-cover rounded-xl'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>

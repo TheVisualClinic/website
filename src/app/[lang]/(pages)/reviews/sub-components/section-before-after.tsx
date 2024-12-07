@@ -79,6 +79,7 @@ export default function BeforeAfterSection({ pageData }: any) {
                             height={1200}
                             className='aspect-square object-cover rounded-lg transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
                             placeholder='blur'
+                            loading='lazy'
                             blurDataURL={placeholderSrc}
                           />
                         </div>
@@ -107,6 +108,7 @@ export default function BeforeAfterSection({ pageData }: any) {
                             height={1200}
                             className='aspect-square object-cover rounded-lg'
                             placeholder='blur'
+                            loading='lazy'
                             blurDataURL={placeholderSrc}
                           />
                         </div>

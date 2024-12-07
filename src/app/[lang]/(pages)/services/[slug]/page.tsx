@@ -62,6 +62,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           height={500}
           className='aspect-video rounded-xl'
           placeholder='blur'
+          loading='lazy'
           blurDataURL={placeholderSrc}
         />
 
@@ -132,6 +133,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                       height={1080}
                       className='w-full rounded-xl object-cover'
                       placeholder='blur'
+                      loading='lazy'
                       blurDataURL={placeholderSrc}
                     />
                     <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
@@ -159,6 +161,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             height={1200}
                             className='aspect-square rounded-xl object-cover'
                             placeholder='blur'
+                            loading='lazy'
                             blurDataURL={placeholderSrc}
                           />
                           <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
@@ -183,6 +186,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             height={1200}
                             className='aspect-square rounded-xl object-cover'
                             placeholder='blur'
+                            loading='lazy'
                             blurDataURL={placeholderSrc}
                           />
                           <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
@@ -215,6 +219,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             height={1200}
                             className='aspect-square rounded-xl object-cover'
                             placeholder='blur'
+                            loading='lazy'
                             blurDataURL={placeholderSrc}
                           />
                           <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
@@ -239,6 +244,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             height={1200}
                             className='aspect-square rounded-xl object-cover'
                             placeholder='blur'
+                            loading='lazy'
                             blurDataURL={placeholderSrc}
                           />
                           <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>
@@ -263,6 +269,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                             height={1200}
                             className='aspect-square rounded-xl object-cover'
                             placeholder='blur'
+                            loading='lazy'
                             blurDataURL={placeholderSrc}
                           />
                           <p className='text-center text-sm text-black/40 mt-2 md:mt-4'>

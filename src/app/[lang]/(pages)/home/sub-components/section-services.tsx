@@ -216,6 +216,7 @@ export default function ServicesSection({ pageData }: any) {
                     height={1200}
                     className='rounded-2xl hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer transition-all duration-300'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </Link>

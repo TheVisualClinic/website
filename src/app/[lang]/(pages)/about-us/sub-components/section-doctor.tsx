@@ -74,6 +74,7 @@ export default function DoctorSection({ pageData }: any) {
                 height={1425}
                 className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
                 placeholder='blur'
+                loading='lazy'
                 blurDataURL={placeholderSrc}
               />
               <div>

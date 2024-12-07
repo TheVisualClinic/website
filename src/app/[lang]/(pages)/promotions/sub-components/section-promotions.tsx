@@ -58,6 +58,7 @@ export default function PromotionsSection() {
                     height={1200}
                     className='aspect-square object-cover rounded-xl'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>
@@ -122,6 +123,7 @@ export default function PromotionsSection() {
                     height={1200}
                     className='aspect-square object-cover rounded-xl'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>
@@ -183,6 +185,7 @@ export default function PromotionsSection() {
                     height={1200}
                     className='aspect-square object-cover rounded-xl'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>

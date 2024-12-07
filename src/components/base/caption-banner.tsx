@@ -47,6 +47,7 @@ export default function CaptionBanner() {
         height={500}
         className='w-full h-[500px] object-cover'
         placeholder='blur'
+        loading='lazy'
         blurDataURL={placeholderSrc}
       />
 

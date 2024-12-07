@@ -73,6 +73,7 @@ export default function ServicesListSection() {
                     height={1425}
                     className='rounded-xl transition-all duration-300 hover:shadow-md hover:shadow-[#CDB8A4] hover:ring-2 hover:ring-[#B8977F] cursor-pointer w-full object-cover'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </Link>

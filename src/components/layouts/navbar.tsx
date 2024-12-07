@@ -93,6 +93,7 @@ export default function Navbar() {
             alt='The Visual Clinic'
             width={isScrolled ? 100 : 150}
             className='cursor-pointer transition-all duration-300 hidden xl:block'
+            loading='lazy'
             onClick={() => {
               router.replace(`/${activeLocale}/home`)
             }}
@@ -102,6 +103,7 @@ export default function Navbar() {
             alt='The Visual Clinic'
             width={100}
             className='cursor-pointer transition-all duration-300 xl:hidden'
+            loading='lazy'
             onClick={() => {
               router.replace(`/${activeLocale}/home`)
             }}

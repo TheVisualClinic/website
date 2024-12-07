@@ -61,6 +61,7 @@ export default function AboutUsBanner() {
           height={500}
           className='w-full h-[750px] md:h-[400px] xl:h-[500px] object-cover'
           placeholder='blur'
+          loading='lazy'
           blurDataURL={placeholderSrc}
         />
         <div className='absolute inset-0 flex flex-col items-center justify-center space-y-8 p-4 md:p-6'>
@@ -86,6 +87,7 @@ export default function AboutUsBanner() {
                 height={60}
                 className='aspect-square object-cover mx-auto'
                 placeholder='blur'
+                loading='lazy'
                 blurDataURL={placeholderSrc}
               />
               <p className='capitalize'>
@@ -104,6 +106,7 @@ export default function AboutUsBanner() {
                 height={60}
                 className='aspect-square object-cover mx-auto'
                 placeholder='blur'
+                loading='lazy'
                 blurDataURL={placeholderSrc}
               />
               <p className='capitalize'>
@@ -122,6 +125,7 @@ export default function AboutUsBanner() {
                 height={60}
                 className='aspect-square object-cover mx-auto'
                 placeholder='blur'
+                loading='lazy'
                 blurDataURL={placeholderSrc}
               />
               <p className='capitalize'>

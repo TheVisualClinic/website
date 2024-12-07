@@ -53,6 +53,7 @@ export default function PartnerBanner() {
           height={1080}
           className='w-full h-auto hidden xl:block'
           placeholder='blur'
+          loading='lazy'
           blurDataURL={placeholderSrc}
         />
         {/* Partner Image md */}
@@ -67,6 +68,7 @@ export default function PartnerBanner() {
           height={1080}
           className='w-full h-auto hidden lg:block xl:hidden'
           placeholder='blur'
+          loading='lazy'
           blurDataURL={placeholderSrc}
         />
         {/* Partner Image sm */}
@@ -81,6 +83,7 @@ export default function PartnerBanner() {
           height={1080}
           className='w-full h-auto lg:hidden'
           placeholder='blur'
+          loading='lazy'
           blurDataURL={placeholderSrc}
         />
       </div>

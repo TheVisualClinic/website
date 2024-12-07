@@ -97,6 +97,7 @@ export default function HeroSection({ pageData }: any) {
         height={700}
         className='w-full h-[calc(100vh-60px)] md:h-[600px] lg:h-[700px] object-cover'
         placeholder='blur'
+        loading='lazy'
         blurDataURL={placeholderSrc}
       />
 
@@ -147,7 +148,7 @@ export default function HeroSection({ pageData }: any) {
             target='_blank'
             className='flex items-center gap-4 justify-center'
           >
-            <Image src={socialFacebookDark} alt='Social Icon' width={28} />
+            <Image src={socialFacebookDark} alt='Social Icon' width={28} loading='lazy' />
             <p className='hidden lg:block'>{socialData.social_facebook_label}</p>
           </Link>
 
@@ -156,7 +157,7 @@ export default function HeroSection({ pageData }: any) {
             target='_blank'
             className='flex items-center gap-4 justify-center'
           >
-            <Image src={socialInstagramDark} alt='Social Icon' width={28} />
+            <Image src={socialInstagramDark} alt='Social Icon' width={28} loading='lazy' />
             <p className='hidden lg:block'>{socialData.social_instagram_label}</p>
           </Link>
 
@@ -165,7 +166,7 @@ export default function HeroSection({ pageData }: any) {
             target='_blank'
             className='flex items-center gap-4 justify-center'
           >
-            <Image src={socialLineDark} alt='Social Icon' width={28} />
+            <Image src={socialLineDark} alt='Social Icon' width={28} loading='lazy' />
             <p className='hidden lg:block'>{socialData.social_line_label}</p>
           </Link>
 

@@ -48,8 +48,9 @@ export default function MedicalTeamSection() {
                     alt={activeLocale === 'th' ? doctor.nick_name_th || '' : doctor.nick_name_en}
                     width={1200}
                     height={1425}
-                    className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
+                    className='mx-auto w-[320px] rounded-2xl'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>
@@ -116,8 +117,9 @@ export default function MedicalTeamSection() {
                     alt={activeLocale === 'th' ? doctor.nick_name_th || '' : doctor.nick_name_en}
                     width={1200}
                     height={1425}
-                    className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
+                    className='mx-auto w-[320px] rounded-2xl'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>
@@ -135,7 +137,7 @@ export default function MedicalTeamSection() {
                       {activeLocale === 'th' ? doctor.caption_th : doctor.caption_en}
                     </p>
                     <div className='space-y-2'>
-                      {doctor.specialists.map((skill: any, skillIndex: number) => (
+                      {doctor.specialists?.map((skill: any, skillIndex: number) => (
                         <div key={skillIndex} className='flex items-center gap-3'>
                           <CheckCheckIcon className='text-[#AA7F65]' />
                           <div className='text-sm w-full'>{skill}</div>
@@ -155,11 +157,18 @@ export default function MedicalTeamSection() {
                 </div>
                 <div className='col-span-5 hidden lg:block'>
                   <Image
-                    src={`${process.env.MAIN_SERVICES_URL}${doctor.image}`}
+                    src={
+                      doctor?.doctor_image_url
+                        ? `${process.env.IMAGE_URL}${doctor?.doctor_image_url}`
+                        : placeholderSrc
+                    }
+                    alt={activeLocale === 'th' ? doctor.nick_name_th || '' : doctor.nick_name_en}
                     width={1200}
                     height={1425}
-                    alt={doctor.full_name_th}
-                    className='w-full rounded-xl'
+                    className='mx-auto w-[320px] rounded-2xl'
+                    placeholder='blur'
+                    loading='lazy'
+                    blurDataURL={placeholderSrc}
                   />
                 </div>
               </>

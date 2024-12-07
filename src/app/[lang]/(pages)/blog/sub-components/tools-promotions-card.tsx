@@ -68,6 +68,7 @@ export default function ToolsPromotionsCard() {
                     height={1200}
                     className='aspect-square object-cover rounded-lg'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </DialogTrigger>
@@ -87,6 +88,7 @@ export default function ToolsPromotionsCard() {
                     height={1200}
                     className='aspect-square object-cover rounded-lg'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                   <div>

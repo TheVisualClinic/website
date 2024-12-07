@@ -82,6 +82,7 @@ export default function DoctorSection({ pageData }: any) {
                 className='mx-auto w-[320px] rounded-2xl transform transition-transform duration-300 hover:rotate-3 cursor-pointer'
                 placeholder='blur'
                 blurDataURL={placeholderSrc}
+                loading='lazy'
                 onClick={() => {
                   router.replace(`/${activeLocale}/medical-team`)
                 }}
@@ -119,6 +120,7 @@ export default function DoctorSection({ pageData }: any) {
         height={500}
         className='w-full h-[350px] md:h-[500px] object-cover'
         placeholder='blur'
+        loading='lazy'
         blurDataURL={placeholderSrc}
       />
     </section>

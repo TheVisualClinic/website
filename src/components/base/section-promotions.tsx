@@ -95,6 +95,7 @@ export default function PromotionsBaseSection() {
                     height={1200}
                     className='aspect-square rounded-xl object-cover'
                     placeholder='blur'
+                    loading='lazy'
                     blurDataURL={placeholderSrc}
                   />
                 </div>

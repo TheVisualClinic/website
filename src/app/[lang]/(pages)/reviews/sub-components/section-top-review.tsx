@@ -23,6 +23,7 @@ export default function TopReviewsSection({ pageData }: any) {
             height={1200}
             className='aspect-square object-cover rounded-xl'
             placeholder='blur'
+            loading='lazy'
             blurDataURL={placeholderSrc}
           />
         </div>

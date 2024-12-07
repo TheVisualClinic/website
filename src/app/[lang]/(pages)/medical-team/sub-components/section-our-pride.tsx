@@ -100,6 +100,7 @@ export default function OurPrideSection({ pageData }: any) {
                         height={1425}
                         className='object-cover rounded-xl transform transition-transform duration-300 hover:rotate-2 cursor-pointer'
                         placeholder='blur'
+                        loading='lazy'
                         blurDataURL={placeholderSrc}
                       />
                     </DialogTrigger>
@@ -119,6 +120,7 @@ export default function OurPrideSection({ pageData }: any) {
                           height={1425}
                           className='object-cover rounded-xl'
                           placeholder='blur'
+                          loading='lazy'
                           blurDataURL={placeholderSrc}
                         />
                       </div>
