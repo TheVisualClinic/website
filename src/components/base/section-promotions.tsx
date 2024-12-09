@@ -161,8 +161,8 @@ export default function PromotionsBaseSection() {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-4 h-4 rounded-full ${
-                currentIndex === index ? 'bg-[#483E3B]' : 'bg-white border'
-              }`}
+                currentIndex === index ? 'bg-[#9C6E5A]' : 'bg-[#CDB8A4]'
+              } hover:bg-[#9C6E5A]/80 transition-all duration-300`}
             />
           ))}
         </div>

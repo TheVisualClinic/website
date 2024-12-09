@@ -10,6 +10,7 @@ import DoctorSection from './sub-components/section-doctor'
 import ReviewsBanner from '@/components/base/reviews-banner'
 import LastArticleBanner from '@/components/base/last-article-banner'
 import VDOSection from './sub-components/section-vdo'
+import ServicesSectionV2 from './sub-components/section-services-v2'
 
 export default function HomePage() {
   const [pageData, setPageData] = useState<any | null>(null)
@@ -39,7 +40,8 @@ export default function HomePage() {
       <DoctorSection pageData={pageData} />
       <VDOSection pageData={pageData} />
       <ReviewsBanner action={true} />
-      <ServicesSection pageData={pageData} />
+      {/* <ServicesSection pageData={pageData} /> */}
+      <ServicesSectionV2 pageData={pageData} />
       <AboutUsBanner />
       <PromotionsBaseSection />
       <LastArticleBanner />
