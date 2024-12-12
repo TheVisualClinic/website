@@ -1,16 +1,20 @@
-import ReactPixel from 'react-facebook-pixel'
-
-export const handleBookingPixelClick = (location: string) => {
+export const handleBookingPixelClick = async (location: string) => {
   if (typeof window === 'undefined') return
 
-  const actionData = {
-    buttonName: 'BOOKING',
-    actionType: 'redirectToLINE',
-    targetURL: 'https://lin.ee/CyHa9b3',
-    pageLocation: location || 'Default Section',
-    deviceType: detectDeviceType(),
+  try {
+    const ReactPixel = (await import('react-facebook-pixel')).default
+    const actionData = {
+      buttonName: 'BOOKING',
+      actionType: 'redirectToLINE',
+      targetURL: 'https://lin.ee/CyHa9b3',
+      pageLocation: location || 'Default Section',
+      deviceType: detectDeviceType(),
+    }
+
+    ReactPixel.trackCustom('ButtonClicked', actionData)
+  } catch (error) {
+    console.error('Error in handleBookingPixelClick:', error)
   }
-  ReactPixel.trackCustom('ButtonClicked', actionData)
 }
 
 const detectDeviceType = (): string => {
