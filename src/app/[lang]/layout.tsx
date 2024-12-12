@@ -10,18 +10,18 @@ import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'The Visual Clinic - คลินิกความงาม | ดูแลผิวหน้า',
+  title: 'The Visual Clinic - ฟิลเลอร์ เลเซอร์หลุมสิว ยกกระชับ',
   description:
-    'The Visual Clinic บริการเสริมความงามครบวงจร ดูแลผิวหน้า ปรับรูปหน้า เลเซอร์ยกกระชับ เลเซอร์เพื่อคุณภาพผิว ฟิลเลอร์ โบท็อกซ์',
+    'The Visual Clinic คลินิกปรับรูปหน้า ออกแบบการรักษาเฉพาะบุคคล เลเซอร์ผิวหนัง หลุมสิว ยกกระชับ ฟิลเลอร์ โบท็อกซ์ โดยแพทย์ M.Sc.Dermatology',
   keywords:
     'คลินิกความงาม, ดูแลผิวหน้า, เสริมความงาม, คลินิกเลเซอร์หน้าใส, คลินิกรักษาหลุมสิว, ยกกระชับใบหน้า, ปรับรูปหน้า, ฟิลเลอร์, โบท็อกซ์',
   openGraph: {
     type: 'website',
     locale: 'th_TH',
     url: 'https://thevisual-clinic.com',
-    title: 'The Visual Clinic - บริการเสริมความงามครบวงจร',
+    title: 'The Visual Clinic - ฟิลเลอร์ เลเซอร์หลุมสิว ยกกระชับ',
     description:
-      'The Visual Clinic บริการเสริมความงามครบวงจร ดูแลผิวหน้า ปรับรูปหน้า เลเซอร์ยกกระชับ เลเซอร์เพื่อคุณภาพผิว ฟิลเลอร์ โบท็อกซ์',
+      'The Visual Clinic คลินิกปรับรูปหน้า ออกแบบการรักษาเฉพาะบุคคล เลเซอร์ผิวหนัง หลุมสิว ยกกระชับ ฟิลเลอร์ โบท็อกซ์ โดยแพทย์ M.Sc.Dermatology',
     siteName: 'The Visual Clinic',
     images: [
       {
