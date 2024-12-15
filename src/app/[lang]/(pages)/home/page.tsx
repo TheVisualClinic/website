@@ -35,7 +35,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-full'>
       <HeroSection pageData={pageData} />
       <DoctorSection pageData={pageData} />
       <VDOSection pageData={pageData} />

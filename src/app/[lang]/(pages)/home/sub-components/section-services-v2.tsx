@@ -8,12 +8,21 @@ import { useState, useEffect, useRef } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import axios from 'axios'
 
-export default function ServicesSection({ pageData }: any) {
+export default function ServicesSectionV2({ pageData }: any) {
   const placeholderSrc = '/placeholder-image.jpg'
   const activeLocale = useLocale()
   const tLink = useTranslations('buttonLink')
 
   const [servicesList, setServiceList] = useState<any[]>([])
+  const [groupedServices, setGroupedServices] = useState<any[][]>([])
+  const [numberOfGroup, setNumberOfGroup] = useState(4)
+  const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
+  const [startX, setStartX] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLDivElement | null>(null)
+  const textRef = useRef<HTMLDivElement | null>(null)
+  const groupRef = useRef<HTMLDivElement | null>(null)
+  const [hasAnimatedText, setHasAnimatedText] = useState(false)
+  const [hasAnimatedGroup, setHasAnimatedGroup] = useState(false)
 
   const fetchData = async () => {
     try {
@@ -34,15 +43,6 @@ export default function ServicesSection({ pageData }: any) {
     }
   }, [])
 
-  const [numberOfGroup, setNumberOfGroup] = useState(4)
-  const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
-  const [startX, setStartX] = useState<number | null>(null)
-  const sectionRef = useRef<HTMLDivElement | null>(null)
-  const textRef = useRef<HTMLDivElement | null>(null)
-  const groupRef = useRef<HTMLDivElement | null>(null)
-  const [hasAnimatedText, setHasAnimatedText] = useState(false)
-  const [hasAnimatedGroup, setHasAnimatedGroup] = useState(false)
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -61,14 +61,19 @@ export default function ServicesSection({ pageData }: any) {
     }
   }, [])
 
-  const sortedServices = [...servicesList]
-  const groupedServices = []
-  for (let i = 0; i < sortedServices.length; i += numberOfGroup) {
-    groupedServices.push(sortedServices.slice(i, i + numberOfGroup))
-  }
+  // อัพเดต groupedServices ตาม servicesList และ numberOfGroup
+  useEffect(() => {
+    const sortedServices = [...servicesList]
+    const groups = []
+    for (let i = 0; i < sortedServices.length; i += numberOfGroup) {
+      groups.push(sortedServices.slice(i, i + numberOfGroup))
+    }
+    setGroupedServices(groups)
+  }, [servicesList, numberOfGroup])
 
-  const handleGroupChange = (index: number) => {
-    if (sectionRef.current) {
+  // Anime ทำงานหลัง groupedServices อัพเดต
+  useEffect(() => {
+    if (groupedServices.length > 0) {
       anime({
         targets: sectionRef.current,
         opacity: [0, 1],
@@ -76,8 +81,7 @@ export default function ServicesSection({ pageData }: any) {
         easing: 'easeInOutQuad',
       })
     }
-    setCurrentGroupIndex(index)
-  }
+  }, [groupedServices])
 
   useEffect(() => {
     if (sectionRef.current) {
@@ -87,7 +91,7 @@ export default function ServicesSection({ pageData }: any) {
         translateY: ['-20%', '0%'],
         opacity: [0, 1],
         delay: anime.stagger(100),
-        duration: 1000,
+        duration: 800,
         easing: 'easeOutExpo',
       })
     }
@@ -260,7 +264,7 @@ export default function ServicesSection({ pageData }: any) {
           {groupedServices.map((_, index) => (
             <button
               key={index}
-              onClick={() => handleGroupChange(index)}
+              onClick={() => setCurrentGroupIndex(index)}
               className={`w-4 h-4 rounded-full ${
                 currentGroupIndex === index ? 'bg-[#9C6E5A]' : 'bg-[#CDB8A4]'
               } hover:bg-[#9C6E5A]/80 transition-all duration-300`}

@@ -55,7 +55,7 @@ export default function RootLayout({
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link rel='canonical' href={`https://thevisual-clinic.com/${lang}`} />
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_TAG}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_TAG}`}
           strategy='afterInteractive'
         />
         <Script id='google-analytics' strategy='afterInteractive'>
@@ -63,7 +63,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_TAG}', { anonymize_ip: true });
+            gtag('config', '${process.env.GOOGLE_TAG}', { anonymize_ip: true });
           `}
         </Script>
       </head>
