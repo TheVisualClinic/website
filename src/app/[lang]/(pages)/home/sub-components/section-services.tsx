@@ -42,6 +42,7 @@ export default function ServicesSection({ pageData }: any) {
   const groupRef = useRef<HTMLDivElement | null>(null)
   const [hasAnimatedText, setHasAnimatedText] = useState(false)
   const [hasAnimatedGroup, setHasAnimatedGroup] = useState(false)
+  const [imagesLoaded, setImagesLoaded] = useState(0)
 
   useEffect(() => {
     const handleResize = () => {
@@ -62,7 +63,7 @@ export default function ServicesSection({ pageData }: any) {
   }, [])
 
   const sortedServices = [...servicesList]
-  const groupedServices = []
+  const groupedServices: any[][] = []
   for (let i = 0; i < sortedServices.length; i += numberOfGroup) {
     groupedServices.push(sortedServices.slice(i, i + numberOfGroup))
   }
@@ -113,9 +114,9 @@ export default function ServicesSection({ pageData }: any) {
         if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
           anime({
             targets: groupRef.current,
-            translateY: ['20%', '0%'],
+            translateY: ['30%', '0%'],
             opacity: [0, 1],
-            duration: 2000,
+            duration: 100,
             easing: 'easeOutExpo',
           })
           setHasAnimatedGroup(true)
@@ -166,6 +167,20 @@ export default function ServicesSection({ pageData }: any) {
     }
   }, [currentGroupIndex, groupedServices.length, startX])
 
+  useEffect(() => {
+    setImagesLoaded(0)
+  }, [currentGroupIndex, numberOfGroup, groupedServices.length])
+
+  const handleImageLoad = () => {
+    setImagesLoaded((prev) => {
+      const next = prev + 1
+      if (next === (groupedServices[currentGroupIndex]?.length || 0)) {
+        return next
+      }
+      return next
+    })
+  }
+
   const pageContent = {
     caption_th: pageData?.section_services_caption_th || 'บริการทั้งหมด',
     caption_en: pageData?.section_services_caption_en || 'All Services',
@@ -189,7 +204,7 @@ export default function ServicesSection({ pageData }: any) {
           </h2>
         </div>
 
-        <div className='space-y-6 opacity-0' ref={groupRef}>
+        <div ref={groupRef} className='space-y-6 opacity-0 transition-opacity duration-700'>
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6'>
             {groupedServices[currentGroupIndex]?.map((service, serviceIndex) => (
               <div
@@ -218,6 +233,7 @@ export default function ServicesSection({ pageData }: any) {
                     placeholder='blur'
                     loading='lazy'
                     blurDataURL={placeholderSrc}
+                    onLoad={handleImageLoad}
                   />
                 </Link>
                 <div className='p-2'>
