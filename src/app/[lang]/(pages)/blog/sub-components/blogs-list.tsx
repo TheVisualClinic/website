@@ -11,33 +11,67 @@ interface BlogsListProps {
   tagSearch: string | null
 }
 
+interface Blog {
+  cover_image_url: string
+  title_th: string
+  title_en: string
+  description_th: string
+  description_en: string
+  slug_th: string
+  slug_en: string
+  tags: { name: string }[]
+}
+
+interface BlogResponse {
+  data: Blog[]
+  total: number
+  currentPage: number
+  totalPages: number
+}
+
 export default function BlogsList({ tagSearch }: BlogsListProps) {
   const activeLocale = useLocale()
   const placeholderSrc = '/placeholder-image.jpg'
 
   const [searchLoading, setSearchLoading] = useState<boolean>(false)
-  const [blogsList, setBlogsList] = useState<any[]>([])
+  const [blogsList, setBlogsList] = useState<Blog[]>([])
   const [query, setQuery] = useState('')
+  const [page, setPage] = useState(1)
+  const [hasMore, setHasMore] = useState(true)
   const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const ITEMS_PER_PAGE = 12
 
   useEffect(() => {
     if (tagSearch) {
       const tagValue = `#${tagSearch}`
       setQuery(tagValue)
-      fetchData(tagValue)
+      setPage(1)
+      fetchData(tagValue, 1, true)
     }
   }, [tagSearch])
 
-  const fetchData = async (searchQuery = '') => {
+  const fetchData = async (searchQuery = '', currentPage = 1, isReset = false) => {
     try {
       setSearchLoading(true)
-      const { data: response } = await axios.get(
+      const offset = (currentPage - 1) * ITEMS_PER_PAGE
+
+      const { data: response } = await axios.get<any>(
         `${process.env.MAIN_SERVICES_URL}/api/v1/website/page/blogs/list`,
         {
-          params: { search: searchQuery },
+          params: {
+            search: searchQuery,
+            limit: ITEMS_PER_PAGE,
+            offset: offset,
+          },
         }
       )
-      setBlogsList(response.data)
+
+      if (isReset) {
+        setBlogsList(response.data)
+      } else {
+        setBlogsList((prev) => [...prev, ...response.data])
+      }
+      setHasMore(response.data.length === ITEMS_PER_PAGE)
       setSearchLoading(false)
     } catch (error) {
       console.error(error)
@@ -56,14 +90,21 @@ export default function BlogsList({ tagSearch }: BlogsListProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value
     setQuery(newQuery)
+    setPage(1)
 
     if (searchTimeoutRef.current) {
       clearTimeout(searchTimeoutRef.current)
     }
 
     searchTimeoutRef.current = setTimeout(() => {
-      fetchData(newQuery)
+      fetchData(newQuery, 1, true)
     }, 1000)
+  }
+
+  const handleLoadMore = () => {
+    const nextPage = page + 1
+    setPage(nextPage)
+    fetchData(query, nextPage)
   }
 
   const tLink = useTranslations('buttonLink')
@@ -151,6 +192,46 @@ export default function BlogsList({ tagSearch }: BlogsListProps) {
           </div>
         ))}
       </div>
+
+      {hasMore && blogsList.length > 0 && (
+        <div className='flex justify-center mt-8'>
+          <button
+            onClick={handleLoadMore}
+            disabled={searchLoading}
+            className='px-6 py-2 bg-[#9C6E5A] text-white rounded-full hover:bg-[#9C6E5A]/80 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed'
+          >
+            {searchLoading ? (
+              <span className='flex items-center gap-2'>
+                <svg
+                  className='animate-spin h-5 w-5 text-white'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                >
+                  <circle
+                    className='opacity-25'
+                    cx='12'
+                    cy='12'
+                    r='10'
+                    stroke='currentColor'
+                    strokeWidth='4'
+                  ></circle>
+                  <path
+                    className='opacity-75'
+                    fill='currentColor'
+                    d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                  ></path>
+                </svg>
+                {activeLocale === 'th' ? 'กำลังโหลด...' : 'Loading...'}
+              </span>
+            ) : activeLocale === 'th' ? (
+              'โหลดเพิ่มเติม'
+            ) : (
+              'Load More'
+            )}
+          </button>
+        </div>
+      )}
     </section>
   )
 }
